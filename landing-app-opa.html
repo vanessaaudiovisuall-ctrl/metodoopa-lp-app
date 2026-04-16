@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App OPA – Orçamento de Produção Audiovisual</title>
+  <!-- Pixel Utmify -->
+  <script>
+    window.pixelId = "695f26c52bd0218f0049ce5d";
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+
+  <!-- UTMs Utmify -->
+  <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-subids
+    async
+    defer
+  ></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink: #eb3186;
+      --pink-dark: #c4246f;
+      --purple: #5f4981;
+      --purple-light: #847b92;
+      --lavender: #d1cbda;
+      --dark: #180f1b;
+      --dark2: #1e1423;
+      --dark3: #251a2e;
+      --gray: #2e2238;
+      --gray2: #3d3050;
+      --white: #FFFFFF;
+      --text-muted: #847b92;
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--white); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- SCREEN FRAME ---- */
+    .screen-frame {
+      background: #0c0814;
+      border: 1px solid var(--gray2);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow:
+        0 4px 6px rgba(0,0,0,0.4),
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(255,255,255,0.04);
+    }
+    .screen-frame-bar {
+      background: #1a1126;
+      padding: 7px 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 1px solid var(--gray);
+    }
+    .sf-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .screen-frame img { width: 100%; display: block; }
+
+    /* ---- BUTTONS ---- */
+    .btn-primary {
+      display: inline-block;
+      background: #00bf63;
+      color: var(--white);
+      font-weight: 800;
+      font-size: 16px;
+      padding: 18px 40px;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #009e50; transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-block;
+      border: 2px solid #00bf63;
+      color: #00bf63;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 14px 32px;
+      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: #00bf63; color: var(--white); }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: linear-gradient(160deg, #1e1030 0%, #180f1b 60%);
+      padding: 80px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -150px; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(235,49,134,0.13) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-logo {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--pink);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 54px);
+      font-weight: 900;
+      line-height: 1.12;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span { color: var(--pink); }
+    .hero p {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--lavender);
+      max-width: 540px;
+      margin: 0 auto 36px;
+      opacity: 0.85;
+    }
+
+    /* ---- CAROUSEL ---- */
+    .carousel {
+      background: var(--dark);
+      padding: 56px 0 64px;
+      overflow: hidden;
+      position: relative;
+    }
+    .carousel::before,
+    .carousel::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .carousel::before { left: 0; background: linear-gradient(to right, var(--dark), transparent); }
+    .carousel::after  { right: 0; background: linear-gradient(to left, var(--dark), transparent); }
+    .carousel-label {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: carousel-slide 50s linear infinite;
+    }
+    .carousel-track:hover { animation-play-state: paused; }
+    @keyframes carousel-slide {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .carousel-item {
+      flex-shrink: 0;
+      width: 360px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--gray2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .carousel-item:hover { transform: translateY(-6px); border-color: rgba(0,191,99,0.5); }
+    .carousel-item-bar {
+      background: #1a1126;
+      padding: 7px 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 1px solid var(--gray);
+    }
+    .carousel-item-bar span { font-size: 11px; color: #555; margin-left: 8px; }
+    .carousel-item img { width: 100%; display: block; }
+
+    /* ---- CAPABLE ---- */
+    .capable {
+      background: var(--dark2);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .capable h2 {
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: 700;
+      margin-bottom: 56px;
+      color: #ddd;
+    }
+    .capable h2 strong { color: var(--pink); }
+    .capable-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+      max-width: 900px;
+      margin: 0 auto 48px;
+    }
+    .capable-card {
+      background: var(--dark3);
+      border: 1px solid var(--gray2);
+      border-radius: 14px;
+      overflow: hidden;
+      text-align: left;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .capable-card:hover { border-color: var(--pink); transform: translateY(-4px); }
+    .capable-card-img {
+      width: 100%;
+      overflow: hidden;
+      border-bottom: 1px solid var(--gray);
+    }
+    .capable-card-img img { width: 100%; display: block; }
+    .capable-card-body { padding: 20px; }
+    .capable-card-body h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+    .capable-card-body p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ---- PATH ---- */
+    .path {
+      background: var(--dark3);
+      padding: 80px 24px;
+    }
+    .path-inner {
+      max-width: 1020px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    @media (max-width: 720px) { .path-inner { grid-template-columns: 1fr; } }
+    .path-tag {
+      display: inline-block;
+      background: rgba(235,49,134,0.12);
+      color: var(--pink);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .path h2 {
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .path h2 span { color: var(--pink); }
+    .path-subtitle { color: var(--text-muted); font-size: 15px; margin-bottom: 32px; line-height: 1.7; }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+    .check-list li {
+      display: flex;
+      gap: 12px;
+      font-size: 15px;
+      color: #ccc;
+      align-items: flex-start;
+    }
+    .check-list li .ck {
+      flex-shrink: 0;
+      width: 20px; height: 20px;
+      background: var(--purple);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    /* ---- TESTIMONIALS ---- */
+    .testimonials {
+      background: var(--dark2);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .testimonials h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 800; margin-bottom: 48px; }
+    .testimonials h2 span { color: var(--pink); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+    .testimonial-card {
+      background: var(--dark3);
+      border: 1px solid var(--gray2);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: left;
+    }
+    .testimonials-img-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+    @media (max-width: 900px) { .testimonials-img-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .testimonials-img-grid { grid-template-columns: 1fr; max-width: 360px; } }
+    .testimonial-img-card {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--gray2);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .testimonial-img-card:hover { transform: translateY(-6px); border-color: rgba(235,49,134,0.4); }
+    .testimonial-img-card img { width: 100%; display: block; }
+
+    /* ---- COMPARISON ---- */
+    .comparison { background: var(--dark); padding: 80px 24px; text-align: center; }
+    .comparison h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 800; margin-bottom: 48px; }
+    .comparison h2 span { color: var(--pink); }
+    .comparison-table {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 820px;
+      margin: 0 auto 48px;
+    }
+    @media (max-width: 600px) { .comparison-table { grid-template-columns: 1fr; } }
+    .comp-col { border-radius: 16px; overflow: hidden; }
+    .comp-header { padding: 18px 24px; font-weight: 800; font-size: 16px; }
+    .comp-col.bad .comp-header { background: #1e1020; color: #FF6B6B; border: 1px solid #3a2040; border-bottom: none; }
+    .comp-col.good .comp-header { background: rgba(235,49,134,0.1); color: var(--pink); border: 1px solid rgba(235,49,134,0.3); border-bottom: none; }
+    .comp-body { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+    .comp-col.bad .comp-body { background: #17091a; border: 1px solid #3a2040; border-top: none; border-radius: 0 0 16px 16px; }
+    .comp-col.good .comp-body { background: rgba(235,49,134,0.05); border: 1px solid rgba(235,49,134,0.2); border-top: none; border-radius: 0 0 16px 16px; }
+    .comp-item { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; text-align: left; }
+    .comp-item .ci { flex-shrink: 0; font-size: 16px; }
+
+    /* ---- FEATURES ---- */
+    .features { background: var(--dark3); padding: 80px 24px; }
+    .features-title { text-align: center; font-size: clamp(22px, 3vw, 32px); font-weight: 800; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .features-subtitle { text-align: center; color: var(--text-muted); font-size: 15px; max-width: 520px; margin: 0 auto 72px; }
+    .feature-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      max-width: 1020px;
+      margin: 0 auto 88px;
+    }
+    .feature-block.reverse { direction: rtl; }
+    .feature-block.reverse > * { direction: ltr; }
+    @media (max-width: 720px) {
+      .feature-block, .feature-block.reverse { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+    }
+    .feature-num { font-size: 52px; font-weight: 900; color: rgba(235,49,134,0.12); line-height: 1; margin-bottom: 8px; }
+    .feature-block h3 { font-size: 22px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.02em; }
+    .feature-block h3 span { color: var(--pink); }
+    .feature-block p { font-size: 15px; color: var(--text-muted); line-height: 1.75; }
+
+    /* ---- ALL MODULES STRIP ---- */
+    .modules {
+      background: var(--dark2);
+      padding: 80px 24px;
+    }
+    .modules h2 { text-align: center; font-size: clamp(22px, 3vw, 32px); font-weight: 800; margin-bottom: 12px; }
+    .modules h2 span { color: var(--pink); }
+    .modules-sub { text-align: center; color: var(--text-muted); font-size: 15px; margin-bottom: 56px; }
+    .modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+    .module-card {
+      background: var(--dark3);
+      border: 1px solid var(--gray2);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .module-card:hover { border-color: rgba(235,49,134,0.5); transform: translateY(-4px); }
+    .module-card img { width: 100%; display: block; }
+    .module-card-label {
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--lavender);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .module-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--pink);
+      flex-shrink: 0;
+    }
+
+    /* ---- CTA FINAL ---- */
+    .cta-final {
+      background: linear-gradient(160deg, #1e1030 0%, #180f1b 100%);
+      padding: 80px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      bottom: -150px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 500px;
+      background: radial-gradient(ellipse, rgba(235,49,134,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-final h2 { font-size: clamp(24px, 4vw, 44px); font-weight: 900; max-width: 640px; margin: 0 auto 20px; line-height: 1.15; letter-spacing: -0.02em; }
+    .cta-final h2 span { color: var(--pink); }
+    .benefits-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 420px;
+      margin: 0 auto 40px;
+      text-align: left;
+    }
+    .benefits-list li { display: flex; gap: 10px; align-items: center; font-size: 15px; color: #ccc; }
+    .benefits-list li span { color: var(--pink); font-size: 18px; }
+
+    /* ---- FAQ ---- */
+    .faq { background: var(--dark2); padding: 80px 24px; }
+    .faq h2 { text-align: center; font-size: clamp(22px, 3vw, 32px); font-weight: 800; margin-bottom: 48px; }
+    .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--dark3); border: 1px solid var(--gray2); border-radius: 12px; overflow: hidden; }
+    .faq-question {
+      width: 100%; background: none; border: none; color: var(--white);
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+      text-align: left; padding: 20px 24px; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--pink); }
+    .faq-chevron { flex-shrink: 0; font-size: 18px; transition: transform 0.3s; color: var(--pink); }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer p { padding: 0 24px 20px; font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ---- AUTHORITY ---- */
+    .authority { background: var(--dark3); padding: 80px 24px; }
+    .authority-inner {
+      max-width: 1020px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 72px;
+      align-items: center;
+    }
+    @media (max-width: 720px) { .authority-inner { grid-template-columns: 1fr; } }
+    .authority-img-frame {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--gray2);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .authority-img-frame img { width: 100%; display: block; }
+    .authority-tag {
+      display: inline-block;
+      background: rgba(235,49,134,0.12);
+      color: var(--pink);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .authority h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800;
+      margin-bottom: 24px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .authority h2 span { color: var(--pink); }
+    .authority-text p {
+      font-size: 15px;
+      color: #bbb;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .authority-text p:last-child { margin-bottom: 0; }
+    .authority-text strong { color: var(--white); font-weight: 700; }
+    .authority-sig {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--gray2);
+    }
+    .authority-sig strong { display: block; font-size: 17px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .authority-sig span { font-size: 13px; color: var(--text-muted); }
+
+    /* ---- GUARANTEE ---- */
+    .guarantee { background: var(--dark2); padding: 80px 24px; text-align: center; }
+    .guarantee h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 800; margin-bottom: 40px; }
+    .guarantee h2 span { color: #00bf63; }
+    .guarantee-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 32px;
+      background: var(--dark3);
+      border: 2px solid rgba(0,191,99,0.35);
+      border-radius: 20px;
+      padding: 36px 44px;
+      max-width: 700px;
+      text-align: left;
+      box-shadow: 0 0 40px rgba(0,191,99,0.08);
+    }
+    @media (max-width: 600px) { .guarantee-badge { flex-direction: column; text-align: center; padding: 28px 24px; } }
+    .guarantee-icon { font-size: 72px; flex-shrink: 0; line-height: 1; }
+    .guarantee-text h3 { font-size: 22px; font-weight: 800; color: #00bf63; margin-bottom: 10px; }
+    .guarantee-text p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
+    .guarantee-text p strong { color: #ccc; }
+
+    /* ---- FOOTER ---- */
+    .footer { background: var(--dark); border-top: 1px solid var(--gray); padding: 32px 24px; text-align: center; font-size: 13px; color: #555; }
+    .footer strong { color: var(--pink); }
+  </style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-logo">APP OPA — Orçamento de Produção Audiovisual</div>
+  <h1>Tenha controle total de cada produção audiovisual, com a <span>certeza que você vai lucrar</span> em todo projeto</h1>
+  <p>Chega de perder dinheiro por orçamento mal feito. Com o OPA você visualiza o lucro real, organiza a equipe, controla o cronograma e gere o financeiro. Tudo num só lugar.</p>
+  <a href="#oferta" class="btn-primary">QUERO CONTROLAR MINHA PRODUÇÃO AGORA</a>
+
+</section>
+
+<!-- ===== CAROUSEL ===== -->
+<section class="carousel">
+  <p class="carousel-label">Veja o app em ação</p>
+  <div class="carousel-track">
+    <!-- Original set -->
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Dashboard</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.48.png" alt="Dashboard" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Orçamento</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.27.png" alt="Orçamento" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Resumo</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.03.png" alt="Resumo" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Exportar PDF</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.16.png" alt="PDF" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Equipe Técnica</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.07.png" alt="Equipe Técnica" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Clientes</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2013.38.43.png" alt="Clientes" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Fornecedores</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.49.20.png" alt="Fornecedores" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Cronograma</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.51.59.png" alt="Cronograma" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Folha de Serviço</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.16.48.png" alt="Folha de Serviço" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Financeiro</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.37.png" alt="Financeiro" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Ordem de Rodagem</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.20.50.png" alt="Ordem de Rodagem" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Configurações</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.38.36.png" alt="Configurações" /></div>
+    <!-- Duplicado para loop infinito -->
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Dashboard</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.48.png" alt="Dashboard" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Orçamento</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.27.png" alt="Orçamento" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Resumo</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.03.png" alt="Resumo" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Exportar PDF</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.16.png" alt="PDF" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Equipe Técnica</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.07.png" alt="Equipe Técnica" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Clientes</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2013.38.43.png" alt="Clientes" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Fornecedores</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.49.20.png" alt="Fornecedores" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Cronograma</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.51.59.png" alt="Cronograma" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Folha de Serviço</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.16.48.png" alt="Folha de Serviço" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Financeiro</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.37.png" alt="Financeiro" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Ordem de Rodagem</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.20.50.png" alt="Ordem de Rodagem" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Configurações</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.38.36.png" alt="Configurações" /></div>
+  </div>
+</section>
+
+<!-- ===== CAPABLE ===== -->
+<section class="capable">
+  <h2>Com o <strong>App OPA</strong> você será capaz de:</h2>
+  <div class="capable-grid">
+    <div class="capable-card">
+      <div class="capable-card-img">
+        <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.03.png" alt="Calcular lucro" />
+      </div>
+      <div class="capable-card-body">
+        <h3>Calcular quanto vai lucrar em cada projeto</h3>
+        <p>Veja o lucro real com a comparação lado a lado de orçamento previsto e real, antes de assinar qualquer contrato</p>
+      </div>
+    </div>
+    <div class="capable-card">
+      <div class="capable-card-img">
+        <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.16.png" alt="PDF profissional" />
+      </div>
+      <div class="capable-card-body">
+        <h3>Enviar orçamentos em PDF profissional</h3>
+        <p>Gere propostas com a identidade da sua produtora, com logo do cliente e todas as condições de pagamento</p>
+      </div>
+    </div>
+    <div class="capable-card">
+      <div class="capable-card-img">
+        <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.48.png" alt="Dashboard completo" />
+      </div>
+      <div class="capable-card-body">
+        <h3>Controlar toda a produção num só lugar</h3>
+        <p>Do orçamento ao financeiro, do cronograma à folha de serviço, tudo integrado no mesmo sistema</p>
+      </div>
+    </div>
+  </div>
+  <a href="#oferta" class="btn-secondary">QUERO CERTIFICAR MINHA LUCRATIVIDADE</a>
+</section>
+
+<!-- ===== PATH ===== -->
+<section class="path">
+  <div class="path-inner">
+    <div>
+      <div class="path-tag">Baseado no Método OPA</div>
+      <h2>A ferramenta criada a partir da <span>metodologia que já transformou</span> centenas de produtoras</h2>
+      <p class="path-subtitle">O App OPA foi desenvolvido com base no <strong style="color:#d1cbda">Método OPA de Vanessa Nunes</strong>, o treinamento que ensina videomakers a sair do improviso e montar uma produtora estruturada, lucrativa e profissional. Agora toda essa metodologia está dentro do app, na prática, projeto a projeto.</p>
+      <ul class="check-list">
+        <li><span class="ck">✓</span> Orçamento detalhado por seção (equipe, arte, locais, transporte...)</li>
+        <li><span class="ck">✓</span> Comparação entre orçamento previsto e custo real</li>
+        <li><span class="ck">✓</span> Margem e imposto calculados automaticamente</li>
+        <li><span class="ck">✓</span> Exportação de orçamento em PDF com sua logo</li>
+        <li><span class="ck">✓</span> Gestão de clientes e fornecedores</li>
+        <li><span class="ck">✓</span> Cronograma e folha de serviço por projeto</li>
+        <li><span class="ck">✓</span> Controle financeiro com múltiplas moedas</li>
+      </ul>
+    </div>
+    <div class="screen-frame">
+      <div class="screen-frame-bar">
+        <div class="sf-dot" style="background:#FF5F57"></div>
+        <div class="sf-dot" style="background:#FEBC2E"></div>
+        <div class="sf-dot" style="background:#28C840"></div>
+        <span style="font-size:11px;color:#666;margin-left:8px;">OPA — Orçamento</span>
+      </div>
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.27.png" alt="Orçamento completo OPA" />
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials">
+  <h2>O que os <span>videomakers dizem</span></h2>
+  <div class="testimonials-img-grid">
+    <div class="testimonial-img-card">
+      <img src="imagens/Depoimentos-APP-OPA-01.webp" alt="Depoimento Théo Arantes" />
+    </div>
+    <div class="testimonial-img-card">
+      <img src="imagens/Depoimentos-APP-OPA-02.webp" alt="Depoimento Karina Regino" />
+    </div>
+    <div class="testimonial-img-card">
+      <img src="imagens/Depoimentos-APP-OPA-03.webp" alt="Depoimento Raquel Arantes" />
+    </div>
+    <div class="testimonial-img-card">
+      <img src="imagens/Depoimentos-APP-OPA-04.webp" alt="Depoimento Lucas Muller" />
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUTHORITY ===== -->
+<section class="authority">
+  <div class="authority-inner">
+    <div class="authority-img-frame">
+      <img src="imagens/Foto-Vanessa-.webp" alt="Vanessa Nunes" />
+    </div>
+    <div class="authority-text">
+      <div class="authority-tag">Quem criou o App OPA</div>
+      <h2>Quem é <span>Vanessa Nunes?</span></h2>
+      <p>Oi, eu sou a <strong>Vanessa Nunes.</strong> Produtora audiovisual há mais de 20 anos, formada em Publicidade, pós-graduada em Marketing Digital, e com uma trajetória que já passou por grandes agências, produtoras e estúdios de animação, tanto no Brasil quanto em Portugal, onde mora hoje.</p>
+      <p>Já estive nos bastidores de grandes campanhas, para grandes marcas mundiais, que você com certeza já viu por aí e foi exatamente ali, entre uma pré e uma pós produção, que entendi o que separa quem vive do audiovisual de quem tenta viver.</p>
+      <p>Criei o <strong>Método OPA</strong> quando percebi que o problema da maioria dos profissionais incríveis que eu encontrava não era talento, era estrutura e posicionamento. Me missionei em ajudar você a sair do improviso e se posicionar de forma profissional, com clareza, estrutura e confiança.</p>
+      <p>O App OPA nasceu dessa missão: colocar toda essa metodologia na prática, dentro de uma ferramenta que qualquer videomaker e produtora de vídeo consegue usar no dia a dia.</p>
+      <p><strong>Porque se tem uma coisa que levo a sério, é isso aqui: Produção é solução. E agora, pode ser a sua também!</strong></p>
+      <div class="authority-sig">
+        <strong>Vanessa Nunes</strong>
+        <span>Produtora audiovisual há 20 anos · Criadora do Método OPA</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARISON ===== -->
+<section class="comparison">
+  <h2>Que tipo de <span>videomaker</span> você quer ser?</h2>
+  <div class="comparison-table">
+    <div class="comp-col bad">
+      <div class="comp-header">❌ Videomaker SEM o OPA</div>
+      <div class="comp-body">
+        <div class="comp-item"><span class="ci">❌</span><span>Manda orçamento no instinto e só descobre o lucro depois</span></div>
+        <div class="comp-item"><span class="ci">❌</span><span>Esquece itens e paga do próprio bolso no final do projeto</span></div>
+        <div class="comp-item"><span class="ci">❌</span><span>Não sabe se o projeto vai dar lucro ou prejuízo</span></div>
+        <div class="comp-item"><span class="ci">❌</span><span>Proposta sem profissionalismo facilita o desconto do cliente</span></div>
+        <div class="comp-item"><span class="ci">❌</span><span>Trabalha muito e não entende por que sobra tão pouco</span></div>
+      </div>
+    </div>
+    <div class="comp-col good">
+      <div class="comp-header">✅ Videomaker COM o OPA</div>
+      <div class="comp-body">
+        <div class="comp-item"><span class="ci">✅</span><span>Sabe exatamente quanto vai lucrar antes de aceitar o projeto</span></div>
+        <div class="comp-item"><span class="ci">✅</span><span>Orçamento completo, sem item esquecido, sem surpresa no final</span></div>
+        <div class="comp-item"><span class="ci">✅</span><span>Margem de lucro calculada automaticamente em tempo real</span></div>
+        <div class="comp-item"><span class="ci">✅</span><span>Proposta profissional em PDF que justifica o valor e evita barganha</span></div>
+        <div class="comp-item"><span class="ci">✅</span><span>Previsibilidade financeira e crescimento consistente</span></div>
+      </div>
+    </div>
+  </div>
+  <a href="#oferta" class="btn-primary">QUERO SER UM VIDEOMAKER TRANQUILO</a>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features">
+  <h2 class="features-title">Organize sua produção de forma simples</h2>
+  <p class="features-subtitle">Descubra quanto investir em cada projeto de forma antecipada, com segurança e confiança</p>
+
+  <!-- Feature 1 -->
+  <div class="feature-block">
+    <div>
+      <div class="feature-num">01</div>
+      <h3>Orçamento detalhado por <span>cada seção</span> da produção</h3>
+      <p>Do produtor ao motorista, da câmera ao figurino: o OPA tem abas separadas para Equipe Técnica, Elenco & Casting, Arte & Cenografia, Estúdio & Locais, Transportes, Pós-Produção e muito mais. Nenhum custo passa despercebido.</p>
+    </div>
+    <div class="screen-frame">
+      <div class="screen-frame-bar">
+        <div class="sf-dot" style="background:#FF5F57"></div>
+        <div class="sf-dot" style="background:#FEBC2E"></div>
+        <div class="sf-dot" style="background:#28C840"></div>
+        <span style="font-size:11px;color:#666;margin-left:8px;">Equipe Técnica</span>
+      </div>
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.07.png" alt="Orçamento equipe técnica" />
+    </div>
+  </div>
+
+  <!-- Feature 2 -->
+  <div class="feature-block reverse">
+    <div>
+      <div class="feature-num">02</div>
+      <h3>Saiba <span>exatamente</span> quanto lucrou em cada projeto</h3>
+      <p>O resumo lado a lado mostra o orçamento previsto versus o custo real, com margem calculada automaticamente. Você vê na hora se o projeto está dentro do planejado ou se precisa de ajuste antes de ser tarde.</p>
+    </div>
+    <div class="screen-frame">
+      <div class="screen-frame-bar">
+        <div class="sf-dot" style="background:#FF5F57"></div>
+        <div class="sf-dot" style="background:#FEBC2E"></div>
+        <div class="sf-dot" style="background:#28C840"></div>
+        <span style="font-size:11px;color:#666;margin-left:8px;">Resumo do Projeto</span>
+      </div>
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.03.png" alt="Resumo previsto vs real" />
+    </div>
+  </div>
+
+  <!-- Feature 3 -->
+  <div class="feature-block">
+    <div>
+      <div class="feature-num">03</div>
+      <h3>Cronograma visual com <span>linha do tempo</span> do projeto</h3>
+      <p>Organize todas as etapas da produção (reunião, PPM, filmagem, pós-produção, entrega) num calendário interativo com linha do tempo. Veja o progresso de cada fase e exporte o cronograma em PDF.</p>
+    </div>
+    <div class="screen-frame">
+      <div class="screen-frame-bar">
+        <div class="sf-dot" style="background:#FF5F57"></div>
+        <div class="sf-dot" style="background:#FEBC2E"></div>
+        <div class="sf-dot" style="background:#28C840"></div>
+        <span style="font-size:11px;color:#666;margin-left:8px;">Cronograma</span>
+      </div>
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.51.59.png" alt="Cronograma do projeto" />
+    </div>
+  </div>
+
+  <!-- Feature 4 -->
+  <div class="feature-block reverse">
+    <div>
+      <div class="feature-num">04</div>
+      <h3>Controle <span>financeiro completo</span> com visão total do negócio</h3>
+      <p>Gerencie valores a receber e a pagar, acompanhe o saldo por moeda (BRL, EUR) e veja o fluxo de caixa por trimestre. Um dashboard financeiro que te dá a visão real do seu negócio em segundos.</p>
+    </div>
+    <div class="screen-frame">
+      <div class="screen-frame-bar">
+        <div class="sf-dot" style="background:#FF5F57"></div>
+        <div class="sf-dot" style="background:#FEBC2E"></div>
+        <div class="sf-dot" style="background:#28C840"></div>
+        <span style="font-size:11px;color:#666;margin-left:8px;">Financeiro — Resumo</span>
+      </div>
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.37.png" alt="Resumo financeiro" />
+    </div>
+  </div>
+</section>
+
+<!-- ===== ALL MODULES ===== -->
+<section class="modules">
+  <h2>Tudo que você precisa <span>num só lugar</span></h2>
+  <p class="modules-sub">O OPA é um ecossistema completo de gestão para produtoras audiovisuais</p>
+  <div class="modules-grid">
+    <div class="module-card">
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2013.38.43.png" alt="Clientes e prospectos" />
+      <div class="module-card-label"><span class="module-dot"></span>CRM de Clientes</div>
+    </div>
+    <div class="module-card">
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.49.20.png" alt="Fornecedores" />
+      <div class="module-card-label"><span class="module-dot"></span>Fornecedores</div>
+    </div>
+    <div class="module-card">
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.16.48.png" alt="Folha de Serviço — Storyboard" />
+      <div class="module-card-label"><span class="module-dot"></span>Folha de Serviço</div>
+    </div>
+    <div class="module-card">
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.09.png" alt="Financeiro — A Receber" />
+      <div class="module-card-label"><span class="module-dot"></span>Contas a Receber</div>
+    </div>
+    <div class="module-card">
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.21.png" alt="Financeiro — A Pagar" />
+      <div class="module-card-label"><span class="module-dot"></span>Contas a Pagar</div>
+    </div>
+    <div class="module-card">
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.38.36.png" alt="Configurações" />
+      <div class="module-card-label"><span class="module-dot"></span>Config da Produtora</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GUARANTEE ===== -->
+<section class="guarantee">
+  <h2>Você tem <span>15 dias de garantia</span> total</h2>
+  <div class="guarantee-badge">
+    <div class="guarantee-icon">🛡️</div>
+    <div class="guarantee-text">
+      <h3>Garantia de 15 dias sem risco</h3>
+      <p>Acesse o App OPA, use todas as funcionalidades e coloque a metodologia em prática nos seus projetos. Se em até <strong>15 dias você não estiver satisfeito</strong> por qualquer motivo, basta entrar em contato e devolvemos 100% do seu investimento. Sem burocracia, sem perguntas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-final" id="oferta">
+  <div class="path-tag" style="display:inline-block;background:rgba(235,49,134,0.12);color:var(--pink);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:24px;">Garanta agora</div>
+  <h2>Gerencie seu <span>Audiovisual com lucro!</span></h2>
+  <ul class="benefits-list">
+    <li><span>✓</span> Orçamento completo por seção da produção</li>
+    <li><span>✓</span> Exportação de PDF profissional com sua logo</li>
+    <li><span>✓</span> Cronograma, folha de serviço e CRM de clientes</li>
+    <li><span>✓</span> Controle financeiro com múltiplas moedas</li>
+    <li><span>✓</span> Dashboard com visão total do negócio</li>
+    <li><span>✓</span> Atualizações futuras inclusas</li>
+  </ul>
+  <a href="https://pay.hotmart.com/E105087757J?off=lldcr67i&checkoutMode=10" target="_blank" class="btn-primary" style="font-size:18px;padding:22px 52px;">QUERO O APP OPA AGORA</a>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq">
+  <h2>Perguntas Frequentes</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Como funciona o App OPA?
+        <span class="faq-chevron">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>O OPA é um sistema de gestão completo para videomakers e produtoras audiovisuais. Você cria orçamentos detalhados por seção (equipe, arte, locação, pós-produção...), acompanha o custo real versus o previsto, gera PDFs profissionais, controla o cronograma do projeto e gerencia o financeiro. Tudo num só lugar.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Preciso saber de finanças para usar?
+        <span class="faq-chevron">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Não. O OPA foi pensado para videomakers que dominam a câmera, não a planilha. A interface é simples e intuitiva, com categorias pré-definidas para o audiovisual. É só inserir os valores e o app calcula margem, impostos e lucro automaticamente.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Posso usar para qualquer tipo de projeto audiovisual?
+        <span class="faq-chevron">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Sim. O OPA funciona para publicidade, clipes musicais, documentários, vídeos institucionais, filmes, eventos e qualquer outro tipo de produção. Você personaliza as seções e itens conforme o seu nicho e tipo de projeto.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Funciona no celular e no computador?
+        <span class="faq-chevron">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Sim. O OPA funciona em qualquer dispositivo com acesso à internet: celular, tablet ou computador. Você pode orçar um projeto na reunião de briefing com o cliente e já saber se vale a pena antes de sair da sala.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        O sistema suporta múltiplas moedas?
+        <span class="faq-chevron">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Sim. O OPA suporta múltiplas moedas (BRL, EUR e outras), o que é especialmente útil para produtoras que trabalham com clientes internacionais ou projetos co-produzidos com empresas estrangeiras.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Tenho dúvidas, como posso tirar?
+        <span class="faq-chevron">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Você pode entrar em contato via WhatsApp ou e-mail com nossa equipe de suporte. Respondemos em até 24 horas em dias úteis e garantimos que você vai conseguir usar o OPA com facilidade.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>&copy; 2025 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
