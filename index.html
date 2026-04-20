@@ -314,16 +314,36 @@
       padding: 24px;
       text-align: left;
     }
-    .testimonials-img-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      max-width: 1020px;
-      margin: 0 auto;
+    /* testimonials carousel */
+    .testimonials-carousel {
+      overflow: hidden;
+      position: relative;
     }
-    @media (max-width: 900px) { .testimonials-img-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 500px) { .testimonials-img-grid { grid-template-columns: 1fr; max-width: 360px; } }
+    .testimonials-carousel::before,
+    .testimonials-carousel::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 100px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .testimonials-carousel::before { left: 0; background: linear-gradient(to right, var(--dark2), transparent); }
+    .testimonials-carousel::after  { right: 0; background: linear-gradient(to left, var(--dark2), transparent); }
+    .testimonials-track {
+      display: flex;
+      gap: 20px;
+      width: max-content;
+      animation: dep-slide 40s linear infinite;
+    }
+    .testimonials-track:hover { animation-play-state: paused; }
+    @keyframes dep-slide {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
     .testimonial-img-card {
+      flex-shrink: 0;
+      width: 280px;
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid var(--gray2);
@@ -624,7 +644,7 @@
       </div>
     </div>
   </div>
-  <a href="#oferta" class="btn-secondary">QUERO CERTIFICAR MINHA LUCRATIVIDADE</a>
+  <a href="#oferta" class="btn-secondary">QUERO LUCRAR EM CADA PROJETO</a>
 </section>
 
 <!-- ===== PATH ===== -->
@@ -658,19 +678,23 @@
 
 <!-- ===== TESTIMONIALS ===== -->
 <section class="testimonials">
-  <h2>O que os <span>videomakers dizem</span></h2>
-  <div class="testimonials-img-grid">
-    <div class="testimonial-img-card">
-      <img src="imagens/Depoimentos-APP-OPA-01.webp" alt="Depoimento Théo Arantes" />
-    </div>
-    <div class="testimonial-img-card">
-      <img src="imagens/Depoimentos-APP-OPA-02.webp" alt="Depoimento Karina Regino" />
-    </div>
-    <div class="testimonial-img-card">
-      <img src="imagens/Depoimentos-APP-OPA-03.webp" alt="Depoimento Raquel Arantes" />
-    </div>
-    <div class="testimonial-img-card">
-      <img src="imagens/Depoimentos-APP-OPA-04.webp" alt="Depoimento Lucas Muller" />
+  <h2>O que os <span>profissionais do audiovisual dizem</span></h2>
+  <div class="testimonials-carousel">
+    <div class="testimonials-track">
+      <!-- Original -->
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-01.webp" alt="Depoimento Théo Arantes" /></div>
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-02.webp" alt="Depoimento Karina Regino" /></div>
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-03.webp" alt="Depoimento Raquel Arantes" /></div>
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-04.webp" alt="Depoimento Lucas Muller" /></div>
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-05.webp" alt="Depoimento Lucas Pessoa" /></div>
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-06.webp" alt="Depoimento Renato Fernandes" /></div>
+      <!-- Duplicado para loop infinito -->
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-01.webp" alt="Depoimento Théo Arantes" /></div>
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-02.webp" alt="Depoimento Karina Regino" /></div>
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-03.webp" alt="Depoimento Raquel Arantes" /></div>
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-04.webp" alt="Depoimento Lucas Muller" /></div>
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-05.webp" alt="Depoimento Lucas Pessoa" /></div>
+      <div class="testimonial-img-card"><img src="imagens/Depoimentos-APP-OPA-06.webp" alt="Depoimento Renato Fernandes" /></div>
     </div>
   </div>
 </section>
@@ -687,7 +711,7 @@
       <p>Oi, eu sou a <strong>Vanessa Nunes.</strong> Produtora audiovisual há mais de 20 anos, formada em Publicidade, pós-graduada em Marketing Digital, e com uma trajetória que já passou por grandes agências, produtoras e estúdios de animação, tanto no Brasil quanto em Portugal, onde mora hoje.</p>
       <p>Já estive nos bastidores de grandes campanhas, para grandes marcas mundiais, que você com certeza já viu por aí e foi exatamente ali, entre uma pré e uma pós produção, que entendi o que separa quem vive do audiovisual de quem tenta viver.</p>
       <p>Criei o <strong>Método OPA</strong> quando percebi que o problema da maioria dos profissionais incríveis que eu encontrava não era talento, era estrutura e posicionamento. Me missionei em ajudar você a sair do improviso e se posicionar de forma profissional, com clareza, estrutura e confiança.</p>
-      <p>O App OPA nasceu dessa missão: colocar toda essa metodologia na prática, dentro de uma ferramenta que qualquer videomaker e produtora de vídeo consegue usar no dia a dia.</p>
+      <p>O App OPA nasceu dessa missão: colocar toda essa metodologia na prática, dentro de uma ferramenta que qualquer profissional do audiovisual consegue usar no dia a dia.</p>
       <p><strong>Porque se tem uma coisa que levo a sério, é isso aqui: Produção é solução. E agora, pode ser a sua também!</strong></p>
       <div class="authority-sig">
         <strong>Vanessa Nunes</strong>
@@ -699,10 +723,10 @@
 
 <!-- ===== COMPARISON ===== -->
 <section class="comparison">
-  <h2>Que tipo de <span>videomaker</span> você quer ser?</h2>
+  <h2>Que tipo de <span>profissional do audiovisual</span> você quer ser?</h2>
   <div class="comparison-table">
     <div class="comp-col bad">
-      <div class="comp-header">❌ Videomaker SEM o OPA</div>
+      <div class="comp-header">❌ Profissionais do audiovisual sem o OPA</div>
       <div class="comp-body">
         <div class="comp-item"><span class="ci">❌</span><span>Manda orçamento no instinto e só descobre o lucro depois</span></div>
         <div class="comp-item"><span class="ci">❌</span><span>Esquece itens e paga do próprio bolso no final do projeto</span></div>
@@ -712,7 +736,7 @@
       </div>
     </div>
     <div class="comp-col good">
-      <div class="comp-header">✅ Videomaker COM o OPA</div>
+      <div class="comp-header">✅ Profissionais do audiovisual com o OPA</div>
       <div class="comp-body">
         <div class="comp-item"><span class="ci">✅</span><span>Sabe exatamente quanto vai lucrar antes de aceitar o projeto</span></div>
         <div class="comp-item"><span class="ci">✅</span><span>Orçamento completo, sem item esquecido, sem surpresa no final</span></div>
@@ -722,7 +746,7 @@
       </div>
     </div>
   </div>
-  <a href="#oferta" class="btn-primary">QUERO SER UM VIDEOMAKER TRANQUILO</a>
+  <a href="#oferta" class="btn-primary">QUERO LUCRAR EM CADA PROJETO</a>
 </section>
 
 <!-- ===== FEATURES ===== -->
@@ -872,7 +896,7 @@
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>O OPA é um sistema de gestão completo para videomakers e produtoras audiovisuais. Você cria orçamentos detalhados por seção (equipe, arte, locação, pós-produção...), acompanha o custo real versus o previsto, gera PDFs profissionais, controla o cronograma do projeto e gerencia o financeiro. Tudo num só lugar.</p>
+        <p>O OPA é um sistema de gestão completo para videomakers, produtoras e profissionais do audiovisual. Você cria orçamentos detalhados por seção (equipe, arte, locação, pós-produção...), acompanha o custo real versus o previsto, gera PDFs profissionais, controla o cronograma do projeto e gerencia o financeiro. Tudo num só lugar.</p>
       </div>
     </div>
     <div class="faq-item">
@@ -881,7 +905,7 @@
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>Não. O OPA foi pensado para videomakers que dominam a câmera, não a planilha. A interface é simples e intuitiva, com categorias pré-definidas para o audiovisual. É só inserir os valores e o app calcula margem, impostos e lucro automaticamente.</p>
+        <p>Não. O OPA foi pensado para profissionais do audiovisual que dominam a câmera, não a planilha. A interface é simples e intuitiva, com categorias pré-definidas para o audiovisual. É só inserir os valores e o app calcula margem, impostos e lucro automaticamente.</p>
       </div>
     </div>
     <div class="faq-item">
