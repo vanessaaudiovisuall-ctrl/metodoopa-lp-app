@@ -497,7 +497,17 @@
       gap: 72px;
       align-items: center;
     }
-    @media (max-width: 720px) { .authority-inner { grid-template-columns: 1fr; } }
+    @media (max-width: 720px) {
+      .authority-inner { grid-template-columns: 1fr; }
+      .authority-img-frame { order: 2; }
+      .authority-text { order: 3; }
+      .authority-mobile-header { display: block !important; }
+      .authority-desktop-header { display: none; }
+    }
+    .authority-mobile-header {
+      display: none;
+      padding: 0 0 24px;
+    }
     .authority-img-frame {
       border-radius: 16px;
       overflow: hidden;
@@ -701,13 +711,18 @@
 
 <!-- ===== AUTHORITY ===== -->
 <section class="authority">
+  <!-- Cabeçalho visível apenas no mobile (antes da foto) -->
+  <div class="authority-mobile-header">
+    <div class="authority-tag">Quem criou o App OPA</div>
+    <h2>Quem é <span>Vanessa Nunes?</span></h2>
+  </div>
   <div class="authority-inner">
     <div class="authority-img-frame">
       <img src="imagens/Foto-Vanessa-.webp" alt="Vanessa Nunes" />
     </div>
     <div class="authority-text">
-      <div class="authority-tag">Quem criou o App OPA</div>
-      <h2>Quem é <span>Vanessa Nunes?</span></h2>
+      <div class="authority-tag authority-desktop-header">Quem criou o App OPA</div>
+      <h2 class="authority-desktop-header">Quem é <span>Vanessa Nunes?</span></h2>
       <p>Oi, eu sou a <strong>Vanessa Nunes.</strong> Produtora audiovisual há mais de 20 anos, formada em Publicidade, pós-graduada em Marketing Digital, e com uma trajetória que já passou por grandes agências, produtoras e estúdios de animação, tanto no Brasil quanto em Portugal, onde mora hoje.</p>
       <p>Já estive nos bastidores de grandes campanhas, para grandes marcas mundiais, que você com certeza já viu por aí e foi exatamente ali, entre uma pré e uma pós produção, que entendi o que separa quem vive do audiovisual de quem tenta viver.</p>
       <p>Criei o <strong>Método OPA</strong> quando percebi que o problema da maioria dos profissionais incríveis que eu encontrava não era talento, era estrutura e posicionamento. Me missionei em ajudar você a sair do improviso e se posicionar de forma profissional, com clareza, estrutura e confiança.</p>
@@ -892,11 +907,11 @@
   <div class="faq-list">
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">
-        Como funciona o App OPA?
+        Já uso planilha no Google, preciso do OPA?
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>O OPA é um sistema de gestão completo para videomakers, produtoras e profissionais do audiovisual. Você cria orçamentos detalhados por seção (equipe, arte, locação, pós-produção...), acompanha o custo real versus o previsto, gera PDFs profissionais, controla o cronograma do projeto e gerencia o financeiro. Tudo num só lugar.</p>
+        <p>A planilha resolve o básico, mas o OPA foi construído especificamente para a realidade da produção audiovisual. Ele integra orçamento, cronograma, folha de serviço, controle de clientes, fornecedores e financeiro em um único lugar. Além disso, calcula automaticamente margem, impostos e lucro real por projeto — o que uma planilha genérica não faz com essa precisão e organização.</p>
       </div>
     </div>
     <div class="faq-item">
@@ -937,11 +952,20 @@
     </div>
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">
-        Tenho dúvidas, como posso tirar?
+        Sou iniciante e ainda tenho poucos projetos. Vale a pena agora?
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>Você pode entrar em contato via WhatsApp ou e-mail com nossa equipe de suporte. Respondemos em até 24 horas em dias úteis e garantimos que você vai conseguir usar o OPA com facilidade.</p>
+        <p>Vale a pena, principalmente agora. Quem começa com estrutura cresce muito mais rápido. O OPA te ajuda a cobrar o valor certo desde o primeiro projeto, evitar prejuízos por esquecer itens no orçamento e apresentar propostas profissionais para clientes maiores. Criar o hábito de orçar corretamente no início é o que separa quem evolui de quem fica estagnado.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Como é feita a entrega do acesso após a compra?
+        <span class="faq-chevron">▾</span>
+      </button>
+      <div class="faq-answer">
+        <p>Assim que a compra for confirmada, você receberá um e-mail com o link de acesso ao App OPA. O acesso é imediato e você já pode começar a usar na mesma hora. Caso tenha algum problema, nossa equipe de suporte está disponível para te ajudar pelo WhatsApp.</p>
       </div>
     </div>
   </div>
