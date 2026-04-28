@@ -466,7 +466,30 @@
       text-align: left;
     }
     .benefits-list li { display: flex; gap: 10px; align-items: center; font-size: 15px; color: #ccc; }
-    .benefits-list li span { color: var(--pink); font-size: 18px; }
+    .benefits-list li span { color: #00bf63; font-size: 18px; }
+    .price-box {
+      margin: 32px auto 32px;
+      text-align: center;
+    }
+    .price-anchor {
+      font-size: 15px;
+      color: #888;
+      margin-bottom: 6px;
+    }
+    .price-anchor s { color: #666; }
+    .price-main {
+      font-size: clamp(36px, 7vw, 58px);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .price-main span { color: #00bf63; }
+    .price-installments {
+      font-size: 13px;
+      color: #888;
+      margin-top: 8px;
+    }
 
     /* ---- FAQ ---- */
     .faq { background: var(--dark2); padding: 80px 24px; }
@@ -898,6 +921,11 @@
     <li><span>✓</span> Dashboard com visão total do negócio</li>
     <li><span>✓</span> Atualizações futuras inclusas</li>
   </ul>
+  <div class="price-box">
+    <p class="price-anchor">de <s>R$ 297,00</s> por apenas</p>
+    <p class="price-main">12x de <span>R$ 15,20</span></p>
+    <p class="price-installments">ou R$ 147,00 à vista</p>
+  </div>
   <a href="https://pay.hotmart.com/E105087757J?off=lldcr67i&checkoutMode=10" target="_blank" class="btn-primary" style="font-size:18px;padding:22px 52px;">QUERO O APP OPA AGORA</a>
 </section>
 
