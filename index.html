@@ -471,24 +471,58 @@
       margin: 32px auto 32px;
       text-align: center;
     }
-    .price-anchor {
-      font-size: 15px;
-      color: #888;
-      margin-bottom: 6px;
-    }
-    .price-anchor s { color: #666; }
+    .price-anchor { font-size: 14px; color: #888; margin-bottom: 2px; }
+    .price-anchor s { color: #666; text-decoration: line-through; }
     .price-main {
       font-size: clamp(36px, 7vw, 58px);
       font-weight: 900;
       line-height: 1.1;
       color: var(--white);
       letter-spacing: -0.02em;
+      margin: 4px 0;
     }
     .price-main span { color: #00bf63; }
-    .price-installments {
+    .price-installments { font-size: 13px; color: #888; margin-top: 6px; }
+    .offer-launch-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(95,73,129,0.2);
+      border: 1px solid rgba(95,73,129,0.5);
+      border-radius: 10px;
+      padding: 14px 18px;
+      max-width: 480px;
+      margin: 0 auto 28px;
+      text-align: left;
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.6;
+    }
+    .offer-launch-banner strong { color: var(--white); }
+    .offer-quote {
+      background: rgba(255,255,255,0.04);
+      border-left: 3px solid #00bf63;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      max-width: 480px;
+      margin: 0 auto 28px;
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.7;
+      text-align: left;
+    }
+    .offer-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,191,99,0.1);
+      border: 1px solid rgba(0,191,99,0.3);
+      border-radius: 20px;
+      padding: 6px 16px;
       font-size: 13px;
-      color: #888;
-      margin-top: 8px;
+      color: #00bf63;
+      font-weight: 600;
+      margin-top: 16px;
     }
 
     /* ---- FAQ ---- */
@@ -913,20 +947,34 @@
 <section class="cta-final" id="oferta">
   <div class="path-tag" style="display:inline-block;background:rgba(235,49,134,0.12);color:var(--pink);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:24px;">Garanta agora</div>
   <h2>Gerencie seu <span>Audiovisual com lucro!</span></h2>
+
+  <div class="offer-launch-banner">
+    <span style="font-size:18px;flex-shrink:0">🔒</span>
+    <p><strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, o app passa a ser cobrado anualmente.</p>
+  </div>
+
   <ul class="benefits-list">
-    <li><span>✓</span> Orçamento completo por seção da produção</li>
-    <li><span>✓</span> Exportação de PDF profissional com sua logo</li>
-    <li><span>✓</span> Cronograma, folha de serviço e CRM de clientes</li>
-    <li><span>✓</span> Controle financeiro com múltiplas moedas</li>
+    <li><span>✓</span> Orçamento completo da pré-produção, produção e pós-produção</li>
+    <li><span>✓</span> Orçamento pronto pra enviar com sua logo</li>
+    <li><span>✓</span> Controle de fluxo de caixa por projeto</li>
+    <li><span>✓</span> Cronograma, folha de rodagem e CRM de clientes integrado</li>
     <li><span>✓</span> Dashboard com visão total do negócio</li>
-    <li><span>✓</span> Atualizações futuras inclusas</li>
+    <li><span>✓</span> Controle financeiro completo por projeto</li>
   </ul>
+
+  <div class="offer-quote">
+    Uma proposta bem feita, o cliente fecha e o app já se paga por inteiro.
+  </div>
+
   <div class="price-box">
-    <p class="price-anchor">de <s>R$ 297,00</s> por apenas</p>
+    <p class="price-anchor"><s>R$ 297,00</s></p>
+    <p class="price-anchor" style="margin-bottom:4px;">por apenas</p>
     <p class="price-main">12x de <span>R$ 15,20</span></p>
     <p class="price-installments">ou R$ 147,00 à vista</p>
   </div>
+
   <a href="https://pay.hotmart.com/E105087757J?off=lldcr67i&checkoutMode=10" target="_blank" class="btn-primary" style="font-size:18px;padding:22px 52px;">QUERO O APP OPA AGORA</a>
+  <div><span class="offer-badge">🔒 Acesso vitalício · pagamento único</span></div>
 </section>
 
 <!-- ===== FAQ ===== -->
