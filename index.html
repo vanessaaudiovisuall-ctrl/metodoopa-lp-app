@@ -633,22 +633,47 @@
     /* ---- FOOTER ---- */
     .footer { background: var(--dark); border-top: 1px solid var(--gray); padding: 32px 24px; text-align: center; font-size: 13px; color: #555; }
     .footer strong { color: var(--pink); }
+
+    /* ---- LANG SWITCHER ---- */
+    .lang-bar {
+      position: fixed; top: 0; right: 0; z-index: 9999;
+      background: rgba(24,15,27,0.96); backdrop-filter: blur(12px);
+      border: 1px solid var(--gray2); border-top: none; border-right: none;
+      border-bottom-left-radius: 10px;
+      padding: 8px 12px; display: flex; gap: 2px;
+    }
+    .lang-btn {
+      background: none; border: 1px solid transparent;
+      color: var(--text-muted); font-family: 'Inter', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      padding: 5px 9px; border-radius: 5px; cursor: pointer; transition: all 0.2s;
+    }
+    .lang-btn:hover { color: var(--white); border-color: var(--gray2); }
+    .lang-btn.active { color: var(--pink); border-color: var(--pink); background: rgba(235,49,134,0.1); }
   </style>
 </head>
 <body>
 
+<!-- ===== LANG SWITCHER ===== -->
+<div class="lang-bar">
+  <button class="lang-btn active" data-lang="br" onclick="setLang('br')">BR</button>
+  <button class="lang-btn" data-lang="pt" onclick="setLang('pt')">PT</button>
+  <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
+  <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+</div>
+
 <!-- ===== HERO ===== -->
 <section class="hero">
-  <div class="hero-logo">APP OPA — Orçamento de Produção Audiovisual</div>
-  <h1>Tenha controle total de cada produção audiovisual, com a <span>certeza que você vai lucrar</span> em todo projeto</h1>
-  <p>Chega de perder dinheiro por orçamento mal feito. Com o OPA você visualiza o lucro real, organiza a equipe, controla o cronograma e gere o financeiro. Tudo num só lugar.</p>
-  <a href="#oferta" class="btn-primary">QUERO CONTROLAR MINHA PRODUÇÃO AGORA</a>
+  <div class="hero-logo" data-i18n="hero-logo">APP OPA — Orçamento de Produção Audiovisual</div>
+  <h1 data-i18n-html="hero-h1">Tenha controle total de cada produção audiovisual, com a <span>certeza que você vai lucrar</span> em todo projeto</h1>
+  <p data-i18n="hero-p">Chega de perder dinheiro por orçamento mal feito. Com o OPA você visualiza o lucro real, organiza a equipe, controla o cronograma e gere o financeiro. Tudo num só lugar.</p>
+  <a href="#oferta" class="btn-primary" data-i18n="hero-btn">QUERO CONTROLAR MINHA PRODUÇÃO AGORA</a>
 
 </section>
 
 <!-- ===== CAROUSEL ===== -->
 <section class="carousel">
-  <p class="carousel-label">Veja o app em ação</p>
+  <p class="carousel-label" data-i18n="carousel-label">Veja o app em ação</p>
   <div class="carousel-track">
     <!-- Original set -->
     <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Dashboard</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.48.png" alt="Dashboard" /></div>
@@ -681,15 +706,15 @@
 
 <!-- ===== CAPABLE ===== -->
 <section class="capable">
-  <h2>Com o <strong>App OPA</strong> você será capaz de:</h2>
+  <h2 data-i18n-html="capable-h2">Com o <strong>App OPA</strong> você será capaz de:</h2>
   <div class="capable-grid">
     <div class="capable-card">
       <div class="capable-card-img">
         <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.03.png" alt="Calcular lucro" />
       </div>
       <div class="capable-card-body">
-        <h3>Calcular quanto vai lucrar em cada projeto</h3>
-        <p>Veja o lucro real com a comparação lado a lado de orçamento previsto e real, antes de assinar qualquer contrato</p>
+        <h3 data-i18n="capable-c1-h3">Calcular quanto vai lucrar em cada projeto</h3>
+        <p data-i18n="capable-c1-p">Veja o lucro real com a comparação lado a lado de orçamento previsto e real, antes de assinar qualquer contrato</p>
       </div>
     </div>
     <div class="capable-card">
@@ -697,8 +722,8 @@
         <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.16.png" alt="PDF profissional" />
       </div>
       <div class="capable-card-body">
-        <h3>Enviar orçamentos em PDF profissional</h3>
-        <p>Gere propostas com a identidade da sua produtora, com logo do cliente e todas as condições de pagamento</p>
+        <h3 data-i18n="capable-c2-h3">Enviar orçamentos em PDF profissional</h3>
+        <p data-i18n="capable-c2-p">Gere propostas com a identidade da sua produtora, com logo do cliente e todas as condições de pagamento</p>
       </div>
     </div>
     <div class="capable-card">
@@ -706,29 +731,29 @@
         <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.48.png" alt="Dashboard completo" />
       </div>
       <div class="capable-card-body">
-        <h3>Controlar toda a produção num só lugar</h3>
-        <p>Do orçamento ao financeiro, do cronograma à folha de serviço, tudo integrado no mesmo sistema</p>
+        <h3 data-i18n="capable-c3-h3">Controlar toda a produção num só lugar</h3>
+        <p data-i18n="capable-c3-p">Do orçamento ao financeiro, do cronograma à folha de serviço, tudo integrado no mesmo sistema</p>
       </div>
     </div>
   </div>
-  <a href="#oferta" class="btn-secondary">QUERO LUCRAR EM CADA PROJETO</a>
+  <a href="#oferta" class="btn-secondary" data-i18n="capable-btn">QUERO LUCRAR EM CADA PROJETO</a>
 </section>
 
 <!-- ===== PATH ===== -->
 <section class="path">
   <div class="path-inner">
     <div>
-      <div class="path-tag">Baseado no Método OPA</div>
-      <h2>A ferramenta criada a partir da <span>metodologia que já transformou</span> centenas de produtoras</h2>
-      <p class="path-subtitle">O App OPA foi desenvolvido com base no <strong style="color:#d1cbda">Método OPA de Vanessa Nunes</strong>, o treinamento que ensina videomakers a sair do improviso e montar uma produtora estruturada, lucrativa e profissional. Agora toda essa metodologia está dentro do app, na prática, projeto a projeto.</p>
+      <div class="path-tag" data-i18n="path-tag">Baseado no Método OPA</div>
+      <h2 data-i18n-html="path-h2">A ferramenta criada a partir da <span>metodologia que já transformou</span> centenas de produtoras</h2>
+      <p class="path-subtitle" data-i18n-html="path-subtitle">O App OPA foi desenvolvido com base no <strong style="color:#d1cbda">Método OPA de Vanessa Nunes</strong>, o treinamento que ensina videomakers a sair do improviso e montar uma produtora estruturada, lucrativa e profissional. Agora toda essa metodologia está dentro do app, na prática, projeto a projeto.</p>
       <ul class="check-list">
-        <li><span class="ck">✓</span> Orçamento detalhado por seção (equipe, arte, locais, transporte...)</li>
-        <li><span class="ck">✓</span> Comparação entre orçamento previsto e custo real</li>
-        <li><span class="ck">✓</span> Margem e imposto calculados automaticamente</li>
-        <li><span class="ck">✓</span> Exportação de orçamento em PDF com sua logo</li>
-        <li><span class="ck">✓</span> Gestão de clientes e fornecedores</li>
-        <li><span class="ck">✓</span> Cronograma e folha de serviço por projeto</li>
-        <li><span class="ck">✓</span> Controle financeiro com múltiplas moedas</li>
+        <li><span class="ck">✓</span> <span data-i18n="path-li1">Orçamento detalhado por seção (equipe, arte, locais, transporte...)</span></li>
+        <li><span class="ck">✓</span> <span data-i18n="path-li2">Comparação entre orçamento previsto e custo real</span></li>
+        <li><span class="ck">✓</span> <span data-i18n="path-li3">Margem e imposto calculados automaticamente</span></li>
+        <li><span class="ck">✓</span> <span data-i18n="path-li4">Exportação de orçamento em PDF com sua logo</span></li>
+        <li><span class="ck">✓</span> <span data-i18n="path-li5">Gestão de clientes e fornecedores</span></li>
+        <li><span class="ck">✓</span> <span data-i18n="path-li6">Cronograma e folha de serviço por projeto</span></li>
+        <li><span class="ck">✓</span> <span data-i18n="path-li7">Controle financeiro com múltiplas moedas</span></li>
       </ul>
     </div>
     <div class="screen-frame">
@@ -745,7 +770,7 @@
 
 <!-- ===== TESTIMONIALS ===== -->
 <section class="testimonials">
-  <h2>O que os <span>profissionais do audiovisual dizem</span></h2>
+  <h2 data-i18n-html="testimonials-h2">O que os <span>profissionais do audiovisual dizem</span></h2>
   <div class="testimonials-carousel">
     <div class="testimonials-track">
       <!-- Original -->
@@ -770,24 +795,24 @@
 <section class="authority">
   <!-- Cabeçalho visível apenas no mobile (antes da foto) -->
   <div class="authority-mobile-header">
-    <div class="authority-tag">Quem criou o App OPA</div>
-    <h2>Quem é <span>Vanessa Nunes?</span></h2>
+    <div class="authority-tag" data-i18n="authority-tag">Quem criou o App OPA</div>
+    <h2 data-i18n-html="authority-h2">Quem é <span>Vanessa Nunes?</span></h2>
   </div>
   <div class="authority-inner">
     <div class="authority-img-frame">
       <img src="imagens/Foto-Vanessa-.webp" alt="Vanessa Nunes" />
     </div>
     <div class="authority-text">
-      <div class="authority-tag authority-desktop-header">Quem criou o App OPA</div>
-      <h2 class="authority-desktop-header">Quem é <span>Vanessa Nunes?</span></h2>
-      <p>Oi, eu sou a <strong>Vanessa Nunes.</strong> Produtora audiovisual há mais de 20 anos, formada em Publicidade, pós-graduada em Marketing Digital, e com uma trajetória que já passou por grandes agências, produtoras e estúdios de animação, tanto no Brasil quanto em Portugal, onde mora hoje.</p>
-      <p>Já estive nos bastidores de grandes campanhas, para grandes marcas mundiais, que você com certeza já viu por aí e foi exatamente ali, entre uma pré e uma pós produção, que entendi o que separa quem vive do audiovisual de quem tenta viver.</p>
-      <p>Criei o <strong>Método OPA</strong> quando percebi que o problema da maioria dos profissionais incríveis que eu encontrava não era talento, era estrutura e posicionamento. Me missionei em ajudar você a sair do improviso e se posicionar de forma profissional, com clareza, estrutura e confiança.</p>
-      <p>O App OPA nasceu dessa missão: colocar toda essa metodologia na prática, dentro de uma ferramenta que qualquer profissional do audiovisual consegue usar no dia a dia.</p>
-      <p><strong>Porque se tem uma coisa que levo a sério, é isso aqui: Produção é solução. E agora, pode ser a sua também!</strong></p>
+      <div class="authority-tag authority-desktop-header" data-i18n="authority-tag">Quem criou o App OPA</div>
+      <h2 class="authority-desktop-header" data-i18n-html="authority-h2">Quem é <span>Vanessa Nunes?</span></h2>
+      <p data-i18n-html="authority-p1">Oi, eu sou a <strong>Vanessa Nunes.</strong> Produtora audiovisual há mais de 20 anos, formada em Publicidade, pós-graduada em Marketing Digital, e com uma trajetória que já passou por grandes agências, produtoras e estúdios de animação, tanto no Brasil quanto em Portugal, onde mora hoje.</p>
+      <p data-i18n-html="authority-p2">Já estive nos bastidores de grandes campanhas, para grandes marcas mundiais, que você com certeza já viu por aí e foi exatamente ali, entre uma pré e uma pós produção, que entendi o que separa quem vive do audiovisual de quem tenta viver.</p>
+      <p data-i18n-html="authority-p3">Criei o <strong>Método OPA</strong> quando percebi que o problema da maioria dos profissionais incríveis que eu encontrava não era talento, era estrutura e posicionamento. Me missionei em ajudar você a sair do improviso e se posicionar de forma profissional, com clareza, estrutura e confiança.</p>
+      <p data-i18n-html="authority-p4">O App OPA nasceu dessa missão: colocar toda essa metodologia na prática, dentro de uma ferramenta que qualquer profissional do audiovisual consegue usar no dia a dia.</p>
+      <p data-i18n-html="authority-p5"><strong>Porque se tem uma coisa que levo a sério, é isso aqui: Produção é solução. E agora, pode ser a sua também!</strong></p>
       <div class="authority-sig">
-        <strong>Vanessa Nunes</strong>
-        <span>Produtora audiovisual há 20 anos · Criadora do Método OPA</span>
+        <strong data-i18n="authority-sig-name">Vanessa Nunes</strong>
+        <span data-i18n="authority-sig-title">Produtora audiovisual há 20 anos · Criadora do Método OPA</span>
       </div>
     </div>
   </div>
@@ -795,43 +820,43 @@
 
 <!-- ===== COMPARISON ===== -->
 <section class="comparison">
-  <h2>Que tipo de <span>profissional do audiovisual</span> você quer ser?</h2>
+  <h2 data-i18n-html="comparison-h2">Que tipo de <span>profissional do audiovisual</span> você quer ser?</h2>
   <div class="comparison-table">
     <div class="comp-col bad">
-      <div class="comp-header">❌ Profissionais do audiovisual sem o OPA</div>
+      <div class="comp-header" data-i18n="comp-bad-header">❌ Profissionais do audiovisual sem o OPA</div>
       <div class="comp-body">
-        <div class="comp-item"><span class="ci">❌</span><span>Manda orçamento no instinto e só descobre o lucro depois</span></div>
-        <div class="comp-item"><span class="ci">❌</span><span>Esquece itens e paga do próprio bolso no final do projeto</span></div>
-        <div class="comp-item"><span class="ci">❌</span><span>Não sabe se o projeto vai dar lucro ou prejuízo</span></div>
-        <div class="comp-item"><span class="ci">❌</span><span>Proposta sem profissionalismo facilita o desconto do cliente</span></div>
-        <div class="comp-item"><span class="ci">❌</span><span>Trabalha muito e não entende por que sobra tão pouco</span></div>
+        <div class="comp-item"><span class="ci">❌</span><span data-i18n="comp-bad-1">Manda orçamento no instinto e só descobre o lucro depois</span></div>
+        <div class="comp-item"><span class="ci">❌</span><span data-i18n="comp-bad-2">Esquece itens e paga do próprio bolso no final do projeto</span></div>
+        <div class="comp-item"><span class="ci">❌</span><span data-i18n="comp-bad-3">Não sabe se o projeto vai dar lucro ou prejuízo</span></div>
+        <div class="comp-item"><span class="ci">❌</span><span data-i18n="comp-bad-4">Proposta sem profissionalismo facilita o desconto do cliente</span></div>
+        <div class="comp-item"><span class="ci">❌</span><span data-i18n="comp-bad-5">Trabalha muito e não entende por que sobra tão pouco</span></div>
       </div>
     </div>
     <div class="comp-col good">
-      <div class="comp-header">✅ Profissionais do audiovisual com o OPA</div>
+      <div class="comp-header" data-i18n="comp-good-header">✅ Profissionais do audiovisual com o OPA</div>
       <div class="comp-body">
-        <div class="comp-item"><span class="ci">✅</span><span>Sabe exatamente quanto vai lucrar antes de aceitar o projeto</span></div>
-        <div class="comp-item"><span class="ci">✅</span><span>Orçamento completo, sem item esquecido, sem surpresa no final</span></div>
-        <div class="comp-item"><span class="ci">✅</span><span>Margem de lucro calculada automaticamente em tempo real</span></div>
-        <div class="comp-item"><span class="ci">✅</span><span>Proposta profissional em PDF que justifica o valor e evita barganha</span></div>
-        <div class="comp-item"><span class="ci">✅</span><span>Previsibilidade financeira e crescimento consistente</span></div>
+        <div class="comp-item"><span class="ci">✅</span><span data-i18n="comp-good-1">Sabe exatamente quanto vai lucrar antes de aceitar o projeto</span></div>
+        <div class="comp-item"><span class="ci">✅</span><span data-i18n="comp-good-2">Orçamento completo, sem item esquecido, sem surpresa no final</span></div>
+        <div class="comp-item"><span class="ci">✅</span><span data-i18n="comp-good-3">Margem de lucro calculada automaticamente em tempo real</span></div>
+        <div class="comp-item"><span class="ci">✅</span><span data-i18n="comp-good-4">Proposta profissional em PDF que justifica o valor e evita barganha</span></div>
+        <div class="comp-item"><span class="ci">✅</span><span data-i18n="comp-good-5">Previsibilidade financeira e crescimento consistente</span></div>
       </div>
     </div>
   </div>
-  <a href="#oferta" class="btn-primary">QUERO LUCRAR EM CADA PROJETO</a>
+  <a href="#oferta" class="btn-primary" data-i18n="comp-btn">QUERO LUCRAR EM CADA PROJETO</a>
 </section>
 
 <!-- ===== FEATURES ===== -->
 <section class="features">
-  <h2 class="features-title">Organize sua produção de forma simples</h2>
-  <p class="features-subtitle">Descubra quanto investir em cada projeto de forma antecipada, com segurança e confiança</p>
+  <h2 class="features-title" data-i18n="features-title">Organize sua produção de forma simples</h2>
+  <p class="features-subtitle" data-i18n="features-subtitle">Descubra quanto investir em cada projeto de forma antecipada, com segurança e confiança</p>
 
   <!-- Feature 1 -->
   <div class="feature-block">
     <div>
       <div class="feature-num">01</div>
-      <h3>Orçamento detalhado por <span>cada seção</span> da produção</h3>
-      <p>Do produtor ao motorista, da câmera ao figurino: o OPA tem abas separadas para Equipe Técnica, Elenco & Casting, Arte & Cenografia, Estúdio & Locais, Transportes, Pós-Produção e muito mais. Nenhum custo passa despercebido.</p>
+      <h3 data-i18n-html="f1-h3">Orçamento detalhado por <span>cada seção</span> da produção</h3>
+      <p data-i18n="f1-p">Do produtor ao motorista, da câmera ao figurino: o OPA tem abas separadas para Equipe Técnica, Elenco & Casting, Arte & Cenografia, Estúdio & Locais, Transportes, Pós-Produção e muito mais. Nenhum custo passa despercebido.</p>
     </div>
     <div class="screen-frame">
       <div class="screen-frame-bar">
@@ -848,8 +873,8 @@
   <div class="feature-block reverse">
     <div>
       <div class="feature-num">02</div>
-      <h3>Saiba <span>exatamente</span> quanto lucrou em cada projeto</h3>
-      <p>O resumo lado a lado mostra o orçamento previsto versus o custo real, com margem calculada automaticamente. Você vê na hora se o projeto está dentro do planejado ou se precisa de ajuste antes de ser tarde.</p>
+      <h3 data-i18n-html="f2-h3">Saiba <span>exatamente</span> quanto lucrou em cada projeto</h3>
+      <p data-i18n="f2-p">O resumo lado a lado mostra o orçamento previsto versus o custo real, com margem calculada automaticamente. Você vê na hora se o projeto está dentro do planejado ou se precisa de ajuste antes de ser tarde.</p>
     </div>
     <div class="screen-frame">
       <div class="screen-frame-bar">
@@ -866,8 +891,8 @@
   <div class="feature-block">
     <div>
       <div class="feature-num">03</div>
-      <h3>Cronograma visual com <span>linha do tempo</span> do projeto</h3>
-      <p>Organize todas as etapas da produção (reunião, PPM, filmagem, pós-produção, entrega) num calendário interativo com linha do tempo. Veja o progresso de cada fase e exporte o cronograma em PDF.</p>
+      <h3 data-i18n-html="f3-h3">Cronograma visual com <span>linha do tempo</span> do projeto</h3>
+      <p data-i18n="f3-p">Organize todas as etapas da produção (reunião, PPM, filmagem, pós-produção, entrega) num calendário interativo com linha do tempo. Veja o progresso de cada fase e exporte o cronograma em PDF.</p>
     </div>
     <div class="screen-frame">
       <div class="screen-frame-bar">
@@ -884,8 +909,8 @@
   <div class="feature-block reverse">
     <div>
       <div class="feature-num">04</div>
-      <h3>Controle <span>financeiro completo</span> com visão total do negócio</h3>
-      <p>Gerencie valores a receber e a pagar, acompanhe o saldo por moeda (BRL, EUR) e veja o fluxo de caixa por trimestre. Um dashboard financeiro que te dá a visão real do seu negócio em segundos.</p>
+      <h3 data-i18n-html="f4-h3">Controle <span>financeiro completo</span> com visão total do negócio</h3>
+      <p data-i18n="f4-p">Gerencie valores a receber e a pagar, acompanhe o saldo por moeda (BRL, EUR) e veja o fluxo de caixa por trimestre. Um dashboard financeiro que te dá a visão real do seu negócio em segundos.</p>
     </div>
     <div class="screen-frame">
       <div class="screen-frame-bar">
@@ -901,145 +926,145 @@
 
 <!-- ===== ALL MODULES ===== -->
 <section class="modules">
-  <h2>Tudo que você precisa <span>num só lugar</span></h2>
-  <p class="modules-sub">O OPA é um ecossistema completo de gestão para produtoras audiovisuais</p>
+  <h2 data-i18n-html="modules-h2">Tudo que você precisa <span>num só lugar</span></h2>
+  <p class="modules-sub" data-i18n="modules-sub">O OPA é um ecossistema completo de gestão para produtoras audiovisuais</p>
   <div class="modules-grid">
     <div class="module-card">
       <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2013.38.43.png" alt="Clientes e prospectos" />
-      <div class="module-card-label"><span class="module-dot"></span>CRM de Clientes</div>
+      <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-1">CRM de Clientes</span></div>
     </div>
     <div class="module-card">
       <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.49.20.png" alt="Fornecedores" />
-      <div class="module-card-label"><span class="module-dot"></span>Fornecedores</div>
+      <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-2">Fornecedores</span></div>
     </div>
     <div class="module-card">
-      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.16.48.png" alt="Folha de Serviço — Storyboard" />
-      <div class="module-card-label"><span class="module-dot"></span>Folha de Serviço</div>
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.16.48.png" alt="Folha de Serviço" />
+      <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-3">Folha de Serviço</span></div>
     </div>
     <div class="module-card">
       <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.09.png" alt="Financeiro — A Receber" />
-      <div class="module-card-label"><span class="module-dot"></span>Contas a Receber</div>
+      <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-4">Contas a Receber</span></div>
     </div>
     <div class="module-card">
       <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.21.png" alt="Financeiro — A Pagar" />
-      <div class="module-card-label"><span class="module-dot"></span>Contas a Pagar</div>
+      <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-5">Contas a Pagar</span></div>
     </div>
     <div class="module-card">
       <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.38.36.png" alt="Configurações" />
-      <div class="module-card-label"><span class="module-dot"></span>Config da Produtora</div>
+      <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-6">Config da Produtora</span></div>
     </div>
   </div>
 </section>
 
 <!-- ===== GUARANTEE ===== -->
 <section class="guarantee">
-  <h2>Você tem <span>15 dias de garantia</span> total</h2>
+  <h2 data-i18n-html="guarantee-h2">Você tem <span>15 dias de garantia</span> total</h2>
   <div class="guarantee-badge">
     <div class="guarantee-icon">🛡️</div>
     <div class="guarantee-text">
-      <h3>Garantia de 15 dias sem risco</h3>
-      <p>Acesse o App OPA, use todas as funcionalidades e coloque a metodologia em prática nos seus projetos. Se em até <strong>15 dias você não estiver satisfeito</strong> por qualquer motivo, basta entrar em contato e devolvemos 100% do seu investimento. Sem burocracia, sem perguntas.</p>
+      <h3 data-i18n="guarantee-badge-title">Garantia de 15 dias sem risco</h3>
+      <p data-i18n-html="guarantee-badge-p">Acesse o App OPA, use todas as funcionalidades e coloque a metodologia em prática nos seus projetos. Se em até <strong>15 dias você não estiver satisfeito</strong> por qualquer motivo, basta entrar em contato e devolvemos 100% do seu investimento. Sem burocracia, sem perguntas.</p>
     </div>
   </div>
 </section>
 
 <!-- ===== CTA FINAL ===== -->
 <section class="cta-final" id="oferta">
-  <div class="path-tag" style="display:inline-block;background:rgba(235,49,134,0.12);color:var(--pink);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:24px;">Garanta agora</div>
-  <h2>Gerencie seu <span>Audiovisual com lucro!</span></h2>
+  <div class="path-tag" style="display:inline-block;background:rgba(235,49,134,0.12);color:var(--pink);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:24px;" data-i18n="cta-tag">Garanta agora</div>
+  <h2 data-i18n-html="cta-h2">Gerencie seu <span>Audiovisual com lucro!</span></h2>
 
   <div class="offer-launch-banner">
     <span style="font-size:18px;flex-shrink:0">🔒</span>
-    <p><strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, o app passa a ser cobrado anualmente.</p>
+    <p data-i18n-html="cta-banner"><strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, o app passa a ser cobrado anualmente.</p>
   </div>
 
   <ul class="benefits-list">
-    <li><span>✓</span> Orçamento completo da pré-produção, produção e pós-produção</li>
-    <li><span>✓</span> Orçamento pronto pra enviar com sua logo</li>
-    <li><span>✓</span> Controle de fluxo de caixa por projeto</li>
-    <li><span>✓</span> Cronograma, folha de rodagem e CRM de clientes integrado</li>
-    <li><span>✓</span> Dashboard com visão total do negócio</li>
-    <li><span>✓</span> Controle financeiro completo por projeto</li>
+    <li><span>✓</span> <span data-i18n="cta-li1">Orçamento completo da pré-produção, produção e pós-produção</span></li>
+    <li><span>✓</span> <span data-i18n="cta-li2">Orçamento pronto pra enviar com sua logo</span></li>
+    <li><span>✓</span> <span data-i18n="cta-li3">Controle de fluxo de caixa por projeto</span></li>
+    <li><span>✓</span> <span data-i18n="cta-li4">Cronograma, folha de rodagem e CRM de clientes integrado</span></li>
+    <li><span>✓</span> <span data-i18n="cta-li5">Dashboard com visão total do negócio</span></li>
+    <li><span>✓</span> <span data-i18n="cta-li6">Controle financeiro completo por projeto</span></li>
   </ul>
 
-  <div class="offer-quote">
+  <div class="offer-quote" data-i18n="cta-quote">
     Uma proposta bem feita, o cliente fecha e o app já se paga por inteiro.
   </div>
 
   <div class="price-box">
-    <p class="price-anchor">de <s>R$ 297,00</s> por apenas</p>
-    <p class="price-main">12x de <span>R$ 15,20</span></p>
-    <p class="price-installments">ou R$ 147,00 à vista</p>
+    <p class="price-anchor" data-i18n-html="price-from">de <s>R$ 297,00</s> por apenas</p>
+    <p class="price-main" data-i18n-html="price-main">12x de <span>R$ 15,20</span></p>
+    <p class="price-installments" data-i18n="price-installments">ou R$ 147,00 à vista</p>
   </div>
 
-  <a href="https://pay.hotmart.com/E105087757J?off=lldcr67i&checkoutMode=10" target="_blank" class="btn-primary" style="font-size:18px;padding:22px 52px;">QUERO O APP OPA AGORA</a>
+  <a href="https://pay.hotmart.com/E105087757J?off=lldcr67i&checkoutMode=10" target="_blank" class="btn-primary" style="font-size:18px;padding:22px 52px;" data-i18n="cta-btn">QUERO O APP OPA AGORA</a>
 </section>
 
 <!-- ===== FAQ ===== -->
 <section class="faq">
-  <h2>Perguntas Frequentes</h2>
+  <h2 data-i18n="faq-h2">Perguntas Frequentes</h2>
   <div class="faq-list">
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">
-        Já uso planilha no Google, preciso do OPA?
+        <span data-i18n="faq-q1">Já uso planilha no Google, preciso do OPA?</span>
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>A planilha resolve o básico, mas o OPA foi construído especificamente para a realidade da produção audiovisual. Ele integra orçamento, cronograma, folha de serviço, controle de clientes, fornecedores e financeiro em um único lugar. Além disso, calcula automaticamente margem, impostos e lucro real por projeto — o que uma planilha genérica não faz com essa precisão e organização.</p>
+        <p data-i18n="faq-a1">A planilha resolve o básico, mas o OPA foi construído especificamente para a realidade da produção audiovisual. Ele integra orçamento, cronograma, folha de serviço, controle de clientes, fornecedores e financeiro em um único lugar. Além disso, calcula automaticamente margem, impostos e lucro real por projeto — o que uma planilha genérica não faz com essa precisão e organização.</p>
       </div>
     </div>
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">
-        Preciso saber de finanças para usar?
+        <span data-i18n="faq-q2">Preciso saber de finanças para usar?</span>
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>Não. O OPA foi pensado para profissionais do audiovisual que dominam a câmera, não a planilha. A interface é simples e intuitiva, com categorias pré-definidas para o audiovisual. É só inserir os valores e o app calcula margem, impostos e lucro automaticamente.</p>
+        <p data-i18n="faq-a2">Não. O OPA foi pensado para profissionais do audiovisual que dominam a câmera, não a planilha. A interface é simples e intuitiva, com categorias pré-definidas para o audiovisual. É só inserir os valores e o app calcula margem, impostos e lucro automaticamente.</p>
       </div>
     </div>
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">
-        Posso usar em qualquer tipo de projeto audiovisual?
+        <span data-i18n="faq-q3">Posso usar em qualquer tipo de projeto audiovisual?</span>
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>Sim. O OPA funciona para publicidade, clipes musicais, documentários, vídeos institucionais, filmes e qualquer outro tipo de produção audiovisual. Você personaliza as seções e itens conforme o seu nicho e tipo de projeto.</p>
+        <p data-i18n="faq-a3">Sim. O OPA funciona para publicidade, clipes musicais, documentários, vídeos institucionais, filmes e qualquer outro tipo de produção audiovisual. Você personaliza as seções e itens conforme o seu nicho e tipo de projeto.</p>
       </div>
     </div>
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">
-        Funciona no celular e computador?
+        <span data-i18n="faq-q4">Funciona no celular e computador?</span>
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>Sim. O OPA funciona em qualquer dispositivo, celular, tablet ou computador. Escolhe onde é mais prático para você e acessa na hora que precisar.</p>
+        <p data-i18n="faq-a4">Sim. O OPA funciona em qualquer dispositivo, celular, tablet ou computador. Escolhe onde é mais prático para você e acessa na hora que precisar.</p>
       </div>
     </div>
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">
-        O sistema suporta múltiplas moedas?
+        <span data-i18n="faq-q5">O sistema suporta múltiplas moedas?</span>
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>Sim. O OPA suporta múltiplas moedas (BRL, EUR e outras), o que é especialmente útil para produtoras que trabalham com clientes internacionais ou projetos co-produzidos com empresas estrangeiras.</p>
+        <p data-i18n="faq-a5">Sim. O OPA suporta múltiplas moedas (BRL, EUR e outras), o que é especialmente útil para produtoras que trabalham com clientes internacionais ou projetos co-produzidos com empresas estrangeiras.</p>
       </div>
     </div>
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">
-        Sou iniciante e ainda tenho poucos projetos. Vale a pena agora?
+        <span data-i18n="faq-q6">Sou iniciante e ainda tenho poucos projetos. Vale a pena agora?</span>
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>Vale a pena, principalmente agora. Quem começa com estrutura cresce muito mais rápido. O OPA te ajuda a cobrar o valor certo desde o primeiro projeto, evitar prejuízos por esquecer itens no orçamento e apresentar propostas profissionais para clientes maiores. Criar o hábito de orçar corretamente no início é o que separa quem evolui de quem fica estagnado.</p>
+        <p data-i18n="faq-a6">Vale a pena, principalmente agora. Quem começa com estrutura cresce muito mais rápido. O OPA te ajuda a cobrar o valor certo desde o primeiro projeto, evitar prejuízos por esquecer itens no orçamento e apresentar propostas profissionais para clientes maiores. Criar o hábito de orçar corretamente no início é o que separa quem evolui de quem fica estagnado.</p>
       </div>
     </div>
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">
-        Como é feita a entrega do acesso após a compra?
+        <span data-i18n="faq-q7">Como é feita a entrega do acesso após a compra?</span>
         <span class="faq-chevron">▾</span>
       </button>
       <div class="faq-answer">
-        <p>Assim que a compra for confirmada, você receberá dois e-mails: um da Hotmart confirmando a compra, e um segundo (esse é o importante) enviado por vanessanunes.publicidade@gmail.com com o seu código único de acesso no formato OPA-XXXX-XXXX. Basta acessar o App OPA, criar sua conta e inserir o código quando solicitado. Feito isso, é só entrar com e-mail de compra e senha normalmente. Não encontrou o e-mail? Verifique a pasta de Spam ou entre em contato que te enviamos o código.</p>
+        <p data-i18n="faq-a7">Assim que a compra for confirmada, você receberá dois e-mails: um da Hotmart confirmando a compra, e um segundo (esse é o importante) enviado por vanessanunes.publicidade@gmail.com com o seu código único de acesso no formato OPA-XXXX-XXXX. Basta acessar o App OPA, criar sua conta e inserir o código quando solicitado. Feito isso, é só entrar com e-mail de compra e senha normalmente. Não encontrou o e-mail? Verifique a pasta de Spam ou entre em contato que te enviamos o código.</p>
       </div>
     </div>
   </div>
@@ -1047,7 +1072,7 @@
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
-  <p>&copy; 2025 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.</p>
+  <p data-i18n-html="footer">&copy; 2025 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.</p>
 </footer>
 
 <script>
@@ -1057,6 +1082,322 @@
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
+
+  const translations = {
+    br: {
+      'hero-logo':'APP OPA — Orçamento de Produção Audiovisual',
+      'hero-h1':'Tenha controle total de cada produção audiovisual, com a <span>certeza que você vai lucrar</span> em todo projeto',
+      'hero-p':'Chega de perder dinheiro por orçamento mal feito. Com o OPA você visualiza o lucro real, organiza a equipe, controla o cronograma e gere o financeiro. Tudo num só lugar.',
+      'hero-btn':'QUERO CONTROLAR MINHA PRODUÇÃO AGORA',
+      'carousel-label':'Veja o app em ação',
+      'capable-h2':'Com o <strong>App OPA</strong> você será capaz de:',
+      'capable-c1-h3':'Calcular quanto vai lucrar em cada projeto',
+      'capable-c1-p':'Veja o lucro real com a comparação lado a lado de orçamento previsto e real, antes de assinar qualquer contrato',
+      'capable-c2-h3':'Enviar orçamentos em PDF profissional',
+      'capable-c2-p':'Gere propostas com a identidade da sua produtora, com logo do cliente e todas as condições de pagamento',
+      'capable-c3-h3':'Controlar toda a produção num só lugar',
+      'capable-c3-p':'Do orçamento ao financeiro, do cronograma à folha de serviço, tudo integrado no mesmo sistema',
+      'capable-btn':'QUERO LUCRAR EM CADA PROJETO',
+      'path-tag':'Baseado no Método OPA',
+      'path-h2':'A ferramenta criada a partir da <span>metodologia que já transformou</span> centenas de produtoras',
+      'path-subtitle':'O App OPA foi desenvolvido com base no <strong style="color:#d1cbda">Método OPA de Vanessa Nunes</strong>, o treinamento que ensina videomakers a sair do improviso e montar uma produtora estruturada, lucrativa e profissional. Agora toda essa metodologia está dentro do app, na prática, projeto a projeto.',
+      'path-li1':'Orçamento detalhado por seção (equipe, arte, locais, transporte...)','path-li2':'Comparação entre orçamento previsto e custo real',
+      'path-li3':'Margem e imposto calculados automaticamente','path-li4':'Exportação de orçamento em PDF com sua logo',
+      'path-li5':'Gestão de clientes e fornecedores','path-li6':'Cronograma e folha de serviço por projeto',
+      'path-li7':'Controle financeiro com múltiplas moedas',
+      'testimonials-h2':'O que os <span>profissionais do audiovisual dizem</span>',
+      'authority-tag':'Quem criou o App OPA','authority-h2':'Quem é <span>Vanessa Nunes?</span>',
+      'authority-p1':'Oi, eu sou a <strong>Vanessa Nunes.</strong> Produtora audiovisual há mais de 20 anos, formada em Publicidade, pós-graduada em Marketing Digital, e com uma trajetória que já passou por grandes agências, produtoras e estúdios de animação, tanto no Brasil quanto em Portugal, onde mora hoje.',
+      'authority-p2':'Já estive nos bastidores de grandes campanhas, para grandes marcas mundiais, que você com certeza já viu por aí e foi exatamente ali, entre uma pré e uma pós produção, que entendi o que separa quem vive do audiovisual de quem tenta viver.',
+      'authority-p3':'Criei o <strong>Método OPA</strong> quando percebi que o problema da maioria dos profissionais incríveis que eu encontrava não era talento, era estrutura e posicionamento. Me missionei em ajudar você a sair do improviso e se posicionar de forma profissional, com clareza, estrutura e confiança.',
+      'authority-p4':'O App OPA nasceu dessa missão: colocar toda essa metodologia na prática, dentro de uma ferramenta que qualquer profissional do audiovisual consegue usar no dia a dia.',
+      'authority-p5':'<strong>Porque se tem uma coisa que levo a sério, é isso aqui: Produção é solução. E agora, pode ser a sua também!</strong>',
+      'authority-sig-name':'Vanessa Nunes','authority-sig-title':'Produtora audiovisual há 20 anos · Criadora do Método OPA',
+      'comparison-h2':'Que tipo de <span>profissional do audiovisual</span> você quer ser?',
+      'comp-bad-header':'❌ Profissionais do audiovisual sem o OPA',
+      'comp-bad-1':'Manda orçamento no instinto e só descobre o lucro depois','comp-bad-2':'Esquece itens e paga do próprio bolso no final do projeto',
+      'comp-bad-3':'Não sabe se o projeto vai dar lucro ou prejuízo','comp-bad-4':'Proposta sem profissionalismo facilita o desconto do cliente',
+      'comp-bad-5':'Trabalha muito e não entende por que sobra tão pouco',
+      'comp-good-header':'✅ Profissionais do audiovisual com o OPA',
+      'comp-good-1':'Sabe exatamente quanto vai lucrar antes de aceitar o projeto','comp-good-2':'Orçamento completo, sem item esquecido, sem surpresa no final',
+      'comp-good-3':'Margem de lucro calculada automaticamente em tempo real','comp-good-4':'Proposta profissional em PDF que justifica o valor e evita barganha',
+      'comp-good-5':'Previsibilidade financeira e crescimento consistente','comp-btn':'QUERO LUCRAR EM CADA PROJETO',
+      'features-title':'Organize sua produção de forma simples',
+      'features-subtitle':'Descubra quanto investir em cada projeto de forma antecipada, com segurança e confiança',
+      'f1-h3':'Orçamento detalhado por <span>cada seção</span> da produção',
+      'f1-p':'Do produtor ao motorista, da câmera ao figurino: o OPA tem abas separadas para Equipe Técnica, Elenco & Casting, Arte & Cenografia, Estúdio & Locais, Transportes, Pós-Produção e muito mais. Nenhum custo passa despercebido.',
+      'f2-h3':'Saiba <span>exatamente</span> quanto lucrou em cada projeto',
+      'f2-p':'O resumo lado a lado mostra o orçamento previsto versus o custo real, com margem calculada automaticamente. Você vê na hora se o projeto está dentro do planejado ou se precisa de ajuste antes de ser tarde.',
+      'f3-h3':'Cronograma visual com <span>linha do tempo</span> do projeto',
+      'f3-p':'Organize todas as etapas da produção (reunião, PPM, filmagem, pós-produção, entrega) num calendário interativo com linha do tempo. Veja o progresso de cada fase e exporte o cronograma em PDF.',
+      'f4-h3':'Controle <span>financeiro completo</span> com visão total do negócio',
+      'f4-p':'Gerencie valores a receber e a pagar, acompanhe o saldo por moeda (BRL, EUR) e veja o fluxo de caixa por trimestre. Um dashboard financeiro que te dá a visão real do seu negócio em segundos.',
+      'modules-h2':'Tudo que você precisa <span>num só lugar</span>',
+      'modules-sub':'O OPA é um ecossistema completo de gestão para produtoras audiovisuais',
+      'mod-1':'CRM de Clientes','mod-2':'Fornecedores','mod-3':'Folha de Serviço','mod-4':'Contas a Receber','mod-5':'Contas a Pagar','mod-6':'Config da Produtora',
+      'guarantee-h2':'Você tem <span>15 dias de garantia</span> total',
+      'guarantee-badge-title':'Garantia de 15 dias sem risco',
+      'guarantee-badge-p':'Acesse o App OPA, use todas as funcionalidades e coloque a metodologia em prática nos seus projetos. Se em até <strong>15 dias você não estiver satisfeito</strong> por qualquer motivo, basta entrar em contato e devolvemos 100% do seu investimento. Sem burocracia, sem perguntas.',
+      'cta-tag':'Garanta agora','cta-h2':'Gerencie seu <span>Audiovisual com lucro!</span>',
+      'cta-banner':'<strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, o app passa a ser cobrado anualmente.',
+      'cta-li1':'Orçamento completo da pré-produção, produção e pós-produção','cta-li2':'Orçamento pronto pra enviar com sua logo',
+      'cta-li3':'Controle de fluxo de caixa por projeto','cta-li4':'Cronograma, folha de rodagem e CRM de clientes integrado',
+      'cta-li5':'Dashboard com visão total do negócio','cta-li6':'Controle financeiro completo por projeto',
+      'cta-quote':'Uma proposta bem feita, o cliente fecha e o app já se paga por inteiro.',
+      'price-from':'de <s>R$ 297,00</s> por apenas','price-main':'12x de <span>R$ 15,20</span>','price-installments':'ou R$ 147,00 à vista',
+      'cta-btn':'QUERO O APP OPA AGORA',
+      'faq-h2':'Perguntas Frequentes',
+      'faq-q1':'Já uso planilha no Google, preciso do OPA?','faq-a1':'A planilha resolve o básico, mas o OPA foi construído especificamente para a realidade da produção audiovisual. Ele integra orçamento, cronograma, folha de serviço, controle de clientes, fornecedores e financeiro em um único lugar. Além disso, calcula automaticamente margem, impostos e lucro real por projeto — o que uma planilha genérica não faz com essa precisão e organização.',
+      'faq-q2':'Preciso saber de finanças para usar?','faq-a2':'Não. O OPA foi pensado para profissionais do audiovisual que dominam a câmera, não a planilha. A interface é simples e intuitiva, com categorias pré-definidas para o audiovisual. É só inserir os valores e o app calcula margem, impostos e lucro automaticamente.',
+      'faq-q3':'Posso usar em qualquer tipo de projeto audiovisual?','faq-a3':'Sim. O OPA funciona para publicidade, clipes musicais, documentários, vídeos institucionais, filmes e qualquer outro tipo de produção audiovisual. Você personaliza as seções e itens conforme o seu nicho e tipo de projeto.',
+      'faq-q4':'Funciona no celular e computador?','faq-a4':'Sim. O OPA funciona em qualquer dispositivo, celular, tablet ou computador. Escolhe onde é mais prático para você e acessa na hora que precisar.',
+      'faq-q5':'O sistema suporta múltiplas moedas?','faq-a5':'Sim. O OPA suporta múltiplas moedas (BRL, EUR e outras), o que é especialmente útil para produtoras que trabalham com clientes internacionais ou projetos co-produzidos com empresas estrangeiras.',
+      'faq-q6':'Sou iniciante e ainda tenho poucos projetos. Vale a pena agora?','faq-a6':'Vale a pena, principalmente agora. Quem começa com estrutura cresce muito mais rápido. O OPA te ajuda a cobrar o valor certo desde o primeiro projeto, evitar prejuízos por esquecer itens no orçamento e apresentar propostas profissionais para clientes maiores. Criar o hábito de orçar corretamente no início é o que separa quem evolui de quem fica estagnado.',
+      'faq-q7':'Como é feita a entrega do acesso após a compra?','faq-a7':'Assim que a compra for confirmada, você receberá dois e-mails: um da Hotmart confirmando a compra, e um segundo (esse é o importante) enviado por vanessanunes.publicidade@gmail.com com o seu código único de acesso no formato OPA-XXXX-XXXX. Basta acessar o App OPA, criar sua conta e inserir o código quando solicitado. Feito isso, é só entrar com e-mail de compra e senha normalmente. Não encontrou o e-mail? Verifique a pasta de Spam ou entre em contato que te enviamos o código.',
+      'footer':'© 2025 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.'
+    },
+    pt: {
+      'hero-logo':'APP OPA — Orçamento de Produção Audiovisual',
+      'hero-h1':'Tenha controlo total de cada produção audiovisual, com a <span>certeza de que vais lucrar</span> em cada projeto',
+      'hero-p':'Chega de perder dinheiro por orçamentos mal feitos. Com o OPA visualizas o lucro real, organizas a equipa, controlas o cronograma e geres o financeiro. Tudo num só lugar.',
+      'hero-btn':'QUERO CONTROLAR A MINHA PRODUÇÃO AGORA',
+      'carousel-label':'Veja a aplicação em ação',
+      'capable-h2':'Com o <strong>App OPA</strong> vai ser capaz de:',
+      'capable-c1-h3':'Calcular quanto vais lucrar em cada projeto',
+      'capable-c1-p':'Vê o lucro real com a comparação lado a lado do orçamento previsto e real, antes de assinar qualquer contrato',
+      'capable-c2-h3':'Enviar orçamentos em PDF profissional',
+      'capable-c2-p':'Gere propostas com a identidade da sua produtora, com logo do cliente e todas as condições de pagamento',
+      'capable-c3-h3':'Controlar toda a produção num só lugar',
+      'capable-c3-p':'Do orçamento ao financeiro, do cronograma à folha de serviço, tudo integrado no mesmo sistema',
+      'capable-btn':'QUERO LUCRAR EM CADA PROJETO',
+      'path-tag':'Baseado no Método OPA',
+      'path-h2':'A ferramenta criada a partir da <span>metodologia que já transformou</span> centenas de produtoras',
+      'path-subtitle':'O App OPA foi desenvolvido com base no <strong style="color:#d1cbda">Método OPA de Vanessa Nunes</strong>, a formação que ensina videomakers a sair do improviso e a montar uma produtora estruturada, lucrativa e profissional. Agora toda essa metodologia está dentro da aplicação, na prática, projeto a projeto.',
+      'path-li1':'Orçamento detalhado por secção (equipa, arte, locais, transporte...)','path-li2':'Comparação entre orçamento previsto e custo real',
+      'path-li3':'Margem e imposto calculados automaticamente','path-li4':'Exportação de orçamento em PDF com o teu logótipo',
+      'path-li5':'Gestão de clientes e fornecedores','path-li6':'Cronograma e folha de serviço por projeto',
+      'path-li7':'Controlo financeiro com múltiplas moedas',
+      'testimonials-h2':'O que os <span>profissionais do audiovisual dizem</span>',
+      'authority-tag':'Quem criou o App OPA','authority-h2':'Quem é <span>Vanessa Nunes?</span>',
+      'authority-p1':'Olá, sou a <strong>Vanessa Nunes.</strong> Produtora audiovisual há mais de 20 anos, licenciada em Publicidade, pós-graduada em Marketing Digital, e com uma trajetória que passou por grandes agências, produtoras e estúdios de animação, tanto no Brasil como em Portugal, onde vivo atualmente.',
+      'authority-p2':'Já estive nos bastidores de grandes campanhas, para marcas mundiais que certamente já viu, e foi exatamente aí, entre uma pré e uma pós-produção, que percebi o que separa quem vive do audiovisual de quem tenta viver.',
+      'authority-p3':'Criei o <strong>Método OPA</strong> quando percebi que o problema da maioria dos profissionais talentosos que encontrava não era talento, era estrutura e posicionamento. Fiz da minha missão ajudá-los a sair do improviso e a posicionarem-se de forma profissional, com clareza, estrutura e confiança.',
+      'authority-p4':'O App OPA nasceu dessa missão: colocar toda essa metodologia em prática, dentro de uma ferramenta que qualquer profissional do audiovisual consegue usar no dia a dia.',
+      'authority-p5':'<strong>Porque se há uma coisa que levo a sério, é esta: Produção é solução. E agora, pode ser a sua também.</strong>',
+      'authority-sig-name':'Vanessa Nunes','authority-sig-title':'Produtora audiovisual há 20 anos · Criadora do Método OPA',
+      'comparison-h2':'Que tipo de <span>profissional do audiovisual</span> quer ser?',
+      'comp-bad-header':'❌ Profissionais do audiovisual sem o OPA',
+      'comp-bad-1':'Envia orçamentos por instinto e só descobre o lucro depois','comp-bad-2':'Esquece itens e paga do próprio bolso no final do projeto',
+      'comp-bad-3':'Não sabe se o projeto vai dar lucro ou prejuízo','comp-bad-4':'Proposta sem profissionalismo facilita o desconto do cliente',
+      'comp-bad-5':'Trabalha muito e não percebe por que sobra tão pouco',
+      'comp-good-header':'✅ Profissionais do audiovisual com o OPA',
+      'comp-good-1':'Sabe exatamente quanto vai lucrar antes de aceitar o projeto','comp-good-2':'Orçamento completo, sem item esquecido, sem surpresas no final',
+      'comp-good-3':'Margem de lucro calculada automaticamente em tempo real','comp-good-4':'Proposta profissional em PDF que justifica o valor e evita negociações',
+      'comp-good-5':'Previsibilidade financeira e crescimento consistente','comp-btn':'QUERO LUCRAR EM CADA PROJETO',
+      'features-title':'Organize a sua produção de forma simples',
+      'features-subtitle':'Descubra quanto investir em cada projeto antecipadamente, com segurança e confiança',
+      'f1-h3':'Orçamento detalhado por <span>cada secção</span> da produção',
+      'f1-p':'Do produtor ao motorista, da câmara ao figurino: o OPA tem separadores para Equipa Técnica, Elenco & Casting, Arte & Cenografia, Estúdio & Locais, Transportes, Pós-Produção e muito mais. Nenhum custo passa despercebido.',
+      'f2-h3':'Saiba <span>exatamente</span> quanto lucrou em cada projeto',
+      'f2-p':'O resumo lado a lado mostra o orçamento previsto versus o custo real, com margem calculada automaticamente. Vê na hora se o projeto está dentro do planeado ou se precisa de ajuste antes que seja tarde.',
+      'f3-h3':'Cronograma visual com <span>linha do tempo</span> do projeto',
+      'f3-p':'Organize todas as etapas da produção (reunião, PPM, filmagem, pós-produção, entrega) num calendário interativo com linha do tempo. Veja o progresso de cada fase e exporte o cronograma em PDF.',
+      'f4-h3':'Controlo <span>financeiro completo</span> com visão total do negócio',
+      'f4-p':'Gira valores a receber e a pagar, acompanhe o saldo por moeda (EUR, BRL) e veja o fluxo de caixa por trimestre. Um painel financeiro que lhe dá a visão real do seu negócio em segundos.',
+      'modules-h2':'Tudo o que precisa <span>num só lugar</span>',
+      'modules-sub':'O OPA é um ecossistema completo de gestão para produtoras audiovisuais',
+      'mod-1':'CRM de Clientes','mod-2':'Fornecedores','mod-3':'Folha de Serviço','mod-4':'Contas a Receber','mod-5':'Contas a Pagar','mod-6':'Config da Produtora',
+      'guarantee-h2':'Tem <span>15 dias de garantia</span> total',
+      'guarantee-badge-title':'Garantia de 15 dias sem risco',
+      'guarantee-badge-p':'Acede ao App OPA, usa todas as funcionalidades e coloca a metodologia em prática nos teus projetos. Se em até <strong>15 dias não estiveres satisfeito</strong> por qualquer motivo, basta entrares em contacto e devolvemos 100% do teu investimento. Sem burocracia, sem perguntas.',
+      'cta-tag':'Garanta agora','cta-h2':'Gere o teu <span>Audiovisual com lucro.</span>',
+      'cta-banner':'<strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, a aplicação passa a ser cobrada anualmente.',
+      'cta-li1':'Orçamento completo da pré-produção, produção e pós-produção','cta-li2':'Orçamento pronto para enviar com o teu logótipo',
+      'cta-li3':'Controlo do fluxo de caixa por projeto','cta-li4':'Cronograma, folha de rodagem e CRM de clientes integrado',
+      'cta-li5':'Painel com visão total do negócio','cta-li6':'Controlo financeiro completo por projeto',
+      'cta-quote':'Uma proposta bem feita, o cliente fecha e a aplicação já se paga por inteiro.',
+      'price-from':'Pagamento único','price-main':'<span>€33,21</span>','price-installments':'',
+      'cta-btn':'QUERO O APP OPA AGORA',
+      'faq-h2':'Perguntas Frequentes',
+      'faq-q1':'Já uso folha de cálculo no Google, preciso do OPA?','faq-a1':'A folha de cálculo resolve o básico, mas o OPA foi construído especificamente para a realidade da produção audiovisual. Integra orçamento, cronograma, folha de serviço, controlo de clientes, fornecedores e financeiro num único lugar. Além disso, calcula automaticamente margem, impostos e lucro real por projeto, o que uma folha de cálculo genérica não faz com essa precisão.',
+      'faq-q2':'Preciso de saber de finanças para usar?','faq-a2':'Não. O OPA foi pensado para profissionais do audiovisual que dominam a câmara, não a folha de cálculo. A interface é simples e intuitiva, com categorias pré-definidas para o audiovisual. Basta inserir os valores e a aplicação calcula margem, impostos e lucro automaticamente.',
+      'faq-q3':'Posso usar em qualquer tipo de projeto audiovisual?','faq-a3':'Sim. O OPA funciona para publicidade, videoclipes musicais, documentários, vídeos institucionais, filmes e qualquer outro tipo de produção audiovisual. Personalizas as secções e itens conforme o teu nicho e tipo de projeto.',
+      'faq-q4':'Funciona no telemóvel e no computador?','faq-a4':'Sim. O OPA funciona em qualquer dispositivo, telemóvel, tablet ou computador. Escolhe onde é mais prático e acede quando precisares.',
+      'faq-q5':'O sistema suporta múltiplas moedas?','faq-a5':'Sim. O OPA suporta múltiplas moedas (EUR, BRL e outras), o que é especialmente útil para produtoras que trabalham com clientes internacionais ou projetos co-produzidos com empresas estrangeiras.',
+      'faq-q6':'Sou iniciante e ainda tenho poucos projetos. Vale a pena agora?','faq-a6':'Vale a pena, especialmente agora. Quem começa com estrutura cresce muito mais rápido. O OPA ajuda a cobrar o valor certo desde o primeiro projeto, evitar prejuízos por esquecer itens no orçamento e apresentar propostas profissionais para clientes maiores.',
+      'faq-q7':'Como é feita a entrega do acesso após a compra?','faq-a7':'Assim que a compra for confirmada, vais receber dois e-mails: um da Hotmart a confirmar a compra, e um segundo (esse é o importante) enviado por vanessanunes.publicidade@gmail.com com o teu código único de acesso no formato OPA-XXXX-XXXX. Basta acederes ao App OPA, criares a tua conta e inserires o código quando solicitado. Feito isso, é só entrar com o teu e-mail de compra e a tua palavra-passe normalmente. Não encontraste o e-mail? Verifica a pasta de Spam ou entra em contacto que te enviamos o código.',
+      'footer':'© 2025 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.'
+    },
+    es: {
+      'hero-logo':'APP OPA — Presupuesto de Producción Audiovisual',
+      'hero-h1':'Ten control total de cada producción audiovisual, con la <span>certeza de que vas a ganar</span> en cada proyecto',
+      'hero-p':'Deja de perder dinero por presupuestos mal planificados. Con OPA visualizas el beneficio real, organizas el equipo, controlas el cronograma y gestionas las finanzas. Todo en un solo lugar.',
+      'hero-btn':'QUIERO CONTROLAR MI PRODUCCIÓN AHORA',
+      'carousel-label':'Mira la app en acción',
+      'capable-h2':'Con el <strong>App OPA</strong> serás capaz de:',
+      'capable-c1-h3':'Calcular cuánto vas a ganar en cada proyecto',
+      'capable-c1-p':'Ve el beneficio real con la comparación lado a lado del presupuesto previsto y real, antes de firmar cualquier contrato',
+      'capable-c2-h3':'Enviar presupuestos en PDF profesional',
+      'capable-c2-p':'Genera propuestas con la identidad de tu productora, con el logo del cliente y todas las condiciones de pago',
+      'capable-c3-h3':'Controlar toda la producción en un solo lugar',
+      'capable-c3-p':'Del presupuesto a las finanzas, del cronograma a la hoja de servicio, todo integrado en el mismo sistema',
+      'capable-btn':'QUIERO GANAR EN CADA PROYECTO',
+      'path-tag':'Basado en el Método OPA',
+      'path-h2':'La herramienta creada a partir de la <span>metodología que ya transformó</span> cientos de productoras',
+      'path-subtitle':'El App OPA fue desarrollado con base en el <strong style="color:#d1cbda">Método OPA de Vanessa Nunes</strong>, la formación que enseña a videomakers a salir de la improvisación y montar una productora estructurada, rentable y profesional. Ahora toda esa metodología está dentro de la app, en la práctica, proyecto a proyecto.',
+      'path-li1':'Presupuesto detallado por sección (equipo, arte, locaciones, transporte...)','path-li2':'Comparación entre presupuesto previsto y costo real',
+      'path-li3':'Margen e impuesto calculados automáticamente','path-li4':'Exportación de presupuesto en PDF con tu logo',
+      'path-li5':'Gestión de clientes y proveedores','path-li6':'Cronograma y hoja de servicio por proyecto',
+      'path-li7':'Control financiero con múltiples monedas',
+      'testimonials-h2':'Lo que dicen los <span>profesionales del audiovisual</span>',
+      'authority-tag':'Quién creó el App OPA','authority-h2':'¿Quién es <span>Vanessa Nunes?</span>',
+      'authority-p1':'Hola, soy <strong>Vanessa Nunes.</strong> Productora audiovisual hace más de 20 años, graduada en Publicidad, con posgrado en Marketing Digital, y con una trayectoria que ha pasado por grandes agencias, productoras y estudios de animación, tanto en Brasil como en Portugal, donde vivo actualmente.',
+      'authority-p2':'He estado detrás de grandes campañas, para grandes marcas mundiales que seguramente ya conoces, y fue exactamente ahí, entre una pre y una posproducción, donde entendí lo que separa a quienes viven del audiovisual de quienes intentan vivir de él.',
+      'authority-p3':'Creé el <strong>Método OPA</strong> cuando me di cuenta de que el problema de la mayoría de los profesionales increíbles que encontraba no era el talento, era la estructura y el posicionamiento. Me propuse ayudarte a salir de la improvisación y posicionarte de forma profesional, con claridad, estructura y confianza.',
+      'authority-p4':'El App OPA nació de esa misión: poner toda esa metodología en práctica, dentro de una herramienta que cualquier profesional del audiovisual puede usar en su día a día.',
+      'authority-p5':'<strong>Porque si hay algo que me tomo en serio, es esto: Producción es solución. Y ahora, puede ser la tuya también.</strong>',
+      'authority-sig-name':'Vanessa Nunes','authority-sig-title':'Productora audiovisual hace 20 años · Creadora del Método OPA',
+      'comparison-h2':'¿Qué tipo de <span>profesional del audiovisual</span> quieres ser?',
+      'comp-bad-header':'❌ Profesionales del audiovisual sin OPA',
+      'comp-bad-1':'Envía presupuestos por instinto y solo descubre el beneficio después','comp-bad-2':'Olvida ítems y paga de su propio bolsillo al final del proyecto',
+      'comp-bad-3':'No sabe si el proyecto va a dar beneficio o pérdida','comp-bad-4':'Propuesta sin profesionalismo facilita el descuento del cliente',
+      'comp-bad-5':'Trabaja mucho y no entiende por qué le queda tan poco',
+      'comp-good-header':'✅ Profesionales del audiovisual con OPA',
+      'comp-good-1':'Sabe exactamente cuánto va a ganar antes de aceptar el proyecto','comp-good-2':'Presupuesto completo, sin ítem olvidado, sin sorpresas al final',
+      'comp-good-3':'Margen de beneficio calculado automáticamente en tiempo real','comp-good-4':'Propuesta profesional en PDF que justifica el valor y evita regateos',
+      'comp-good-5':'Previsibilidad financiera y crecimiento consistente','comp-btn':'QUIERO GANAR EN CADA PROYECTO',
+      'features-title':'Organiza tu producción de forma sencilla',
+      'features-subtitle':'Descubre cuánto invertir en cada proyecto de forma anticipada, con seguridad y confianza',
+      'f1-h3':'Presupuesto detallado por <span>cada sección</span> de la producción',
+      'f1-p':'Del productor al conductor, de la cámara al vestuario: OPA tiene pestañas separadas para Equipo Técnico, Elenco & Casting, Arte & Escenografía, Estudio & Locaciones, Transportes, Postproducción y mucho más. Ningún costo pasa desapercibido.',
+      'f2-h3':'Sabe <span>exactamente</span> cuánto ganaste en cada proyecto',
+      'f2-p':'El resumen lado a lado muestra el presupuesto previsto versus el costo real, con margen calculado automáticamente. Ves en el momento si el proyecto está dentro de lo planeado o si necesita ajuste antes de que sea tarde.',
+      'f3-h3':'Cronograma visual con <span>línea de tiempo</span> del proyecto',
+      'f3-p':'Organiza todas las etapas de la producción (reunión, PPM, filmación, posproducción, entrega) en un calendario interactivo con línea de tiempo. Ve el progreso de cada fase y exporta el cronograma en PDF.',
+      'f4-h3':'Control <span>financiero completo</span> con visión total del negocio',
+      'f4-p':'Gestiona valores a cobrar y a pagar, sigue el saldo por moneda (EUR, BRL) y ve el flujo de caja por trimestre. Un panel financiero que te da la visión real de tu negocio en segundos.',
+      'modules-h2':'Todo lo que necesitas <span>en un solo lugar</span>',
+      'modules-sub':'OPA es un ecosistema completo de gestión para productoras audiovisuales',
+      'mod-1':'CRM de Clientes','mod-2':'Proveedores','mod-3':'Hoja de Servicio','mod-4':'Cuentas por Cobrar','mod-5':'Cuentas por Pagar','mod-6':'Config de la Productora',
+      'guarantee-h2':'Tienes <span>15 días de garantía</span> total',
+      'guarantee-badge-title':'Garantía de 15 días sin riesgo',
+      'guarantee-badge-p':'Accede al App OPA, usa todas las funcionalidades y pon la metodología en práctica en tus proyectos. Si en hasta <strong>15 días no estás satisfecho</strong> por cualquier motivo, solo contáctanos y devolvemos el 100% de tu inversión. Sin burocracia, sin preguntas.',
+      'cta-tag':'Asegura ahora','cta-h2':'Gestiona tu <span>Audiovisual con beneficios.</span>',
+      'cta-banner':'<strong>Acceso vitalicio exclusivo de lanzamiento.</strong> Después de este período, la app pasa a cobrarse anualmente.',
+      'cta-li1':'Presupuesto completo de preproducción, producción y posproducción','cta-li2':'Presupuesto listo para enviar con tu logo',
+      'cta-li3':'Control de flujo de caja por proyecto','cta-li4':'Cronograma, hoja de rodaje y CRM de clientes integrado',
+      'cta-li5':'Panel con visión total del negocio','cta-li6':'Control financiero completo por proyecto',
+      'cta-quote':'Una propuesta bien hecha, el cliente cierra y la app ya se paga por completo.',
+      'price-from':'Pago único','price-main':'<span>€33,21</span>','price-installments':'',
+      'cta-btn':'QUIERO EL APP OPA AHORA',
+      'faq-h2':'Preguntas Frecuentes',
+      'faq-q1':'Ya uso hojas de cálculo en Google, ¿necesito OPA?','faq-a1':'La hoja de cálculo resuelve lo básico, pero OPA fue construido específicamente para la realidad de la producción audiovisual. Integra presupuesto, cronograma, hoja de servicio, control de clientes, proveedores y finanzas en un único lugar. Además, calcula automáticamente margen, impuestos y beneficio real por proyecto, algo que una hoja de cálculo genérica no hace con esa precisión.',
+      'faq-q2':'¿Necesito saber de finanzas para usarlo?','faq-a2':'No. OPA fue pensado para profesionales del audiovisual que dominan la cámara, no la hoja de cálculo. La interfaz es simple e intuitiva, con categorías predefinidas para el audiovisual. Solo insertas los valores y la app calcula margen, impuestos y beneficio automáticamente.',
+      'faq-q3':'¿Puedo usarlo en cualquier tipo de proyecto audiovisual?','faq-a3':'Sí. OPA funciona para publicidad, videoclips musicales, documentales, videos institucionales, películas y cualquier otro tipo de producción audiovisual. Personalizas las secciones e ítems según tu nicho y tipo de proyecto.',
+      'faq-q4':'¿Funciona en el móvil y en el ordenador?','faq-a4':'Sí. OPA funciona en cualquier dispositivo, móvil, tablet u ordenador. Elige donde es más práctico para ti y accede cuando lo necesites.',
+      'faq-q5':'¿El sistema soporta múltiples monedas?','faq-a5':'Sí. OPA soporta múltiples monedas (EUR, BRL y otras), lo que es especialmente útil para productoras que trabajan con clientes internacionales o proyectos coproducidos con empresas extranjeras.',
+      'faq-q6':'Soy principiante y tengo pocos proyectos. ¿Vale la pena ahora?','faq-a6':'Vale la pena, especialmente ahora. Quien empieza con estructura crece mucho más rápido. OPA te ayuda a cobrar el valor correcto desde el primer proyecto, evitar pérdidas por olvidar ítems en el presupuesto y presentar propuestas profesionales a clientes más grandes.',
+      'faq-q7':'¿Cómo se entrega el acceso después de la compra?','faq-a7':'Una vez confirmada la compra, recibirás dos correos: uno de Hotmart confirmando la compra, y un segundo (ese es el importante) enviado por vanessanunes.publicidade@gmail.com con tu código único de acceso en el formato OPA-XXXX-XXXX. Solo accede al App OPA, crea tu cuenta e inserta el código cuando se solicite. Hecho eso, entra con el correo de compra y la contraseña normalmente. ¿No encuentras el correo? Revisa la carpeta de Spam o contáctanos y te enviamos el código.',
+      'footer':'© 2025 <strong>App OPA</strong> — Presupuesto de Producción Audiovisual. Todos los derechos reservados.'
+    },
+    en: {
+      'hero-logo':'APP OPA — Audiovisual Production Budget',
+      'hero-h1':'Take full control of every audiovisual production, with the <span>certainty that you will profit</span> on every project',
+      'hero-p':'Stop losing money on poorly planned budgets. With OPA you see the real profit, organize your team, track the schedule, and manage finances. All in one place.',
+      'hero-btn':'I WANT TO CONTROL MY PRODUCTION NOW',
+      'carousel-label':'See the app in action',
+      'capable-h2':'With <strong>App OPA</strong> you will be able to:',
+      'capable-c1-h3':'Calculate how much you will profit on each project',
+      'capable-c1-p':'See the real profit with a side-by-side comparison of estimated and actual budget, before signing any contract',
+      'capable-c2-h3':'Send professional PDF quotes',
+      'capable-c2-p':'Generate proposals with your production company branding, client logo, and all payment terms',
+      'capable-c3-h3':'Control every production in one place',
+      'capable-c3-p':'From budget to finances, from schedule to service sheet, everything integrated in the same system',
+      'capable-btn':'I WANT TO PROFIT ON EVERY PROJECT',
+      'path-tag':'Based on the OPA Method',
+      'path-h2':'The tool built from the <span>methodology that has already transformed</span> hundreds of production companies',
+      'path-subtitle':'App OPA was developed based on the <strong style="color:#d1cbda">OPA Method by Vanessa Nunes</strong>, the training that teaches videomakers to leave improvisation behind and build a structured, profitable, and professional production company. Now that entire methodology lives inside the app, in practice, project by project.',
+      'path-li1':'Detailed budget by section (crew, art, locations, transport...)','path-li2':'Comparison between estimated budget and actual cost',
+      'path-li3':'Margin and tax calculated automatically','path-li4':'Budget export to PDF with your logo',
+      'path-li5':'Client and supplier management','path-li6':'Schedule and service sheet per project',
+      'path-li7':'Financial control with multiple currencies',
+      'testimonials-h2':'What <span>audiovisual professionals say</span>',
+      'authority-tag':'Who created App OPA','authority-h2':'Who is <span>Vanessa Nunes?</span>',
+      'authority-p1':'Hi, I\'m <strong>Vanessa Nunes.</strong> An audiovisual producer for over 20 years, with a degree in Advertising, a postgraduate in Digital Marketing, and a career that has taken me through major agencies, production companies, and animation studios in both Brazil and Portugal, where I live today.',
+      'authority-p2':'I have been behind the scenes of major campaigns for global brands you have certainly seen, and it was exactly there, between pre and post-production, that I understood what separates those who live from audiovisual from those who try to.',
+      'authority-p3':'I created the <strong>OPA Method</strong> when I realized that the problem with most of the talented professionals I met was not talent, it was structure and positioning. I made it my mission to help you leave improvisation behind and position yourself professionally, with clarity, structure, and confidence.',
+      'authority-p4':'App OPA was born from that mission: putting all of that methodology into practice, inside a tool that any audiovisual professional can use every day.',
+      'authority-p5':'<strong>Because if there is one thing I take seriously, it is this: Production is the solution. And now, it can be yours too.</strong>',
+      'authority-sig-name':'Vanessa Nunes','authority-sig-title':'Audiovisual producer for 20 years · Creator of the OPA Method',
+      'comparison-h2':'What kind of <span>audiovisual professional</span> do you want to be?',
+      'comp-bad-header':'❌ Audiovisual professionals without OPA',
+      'comp-bad-1':'Sends quotes by gut feeling and only discovers profit later','comp-bad-2':'Forgets items and pays out of pocket at the end of the project',
+      'comp-bad-3':'Does not know if the project will profit or lose money','comp-bad-4':'Unprofessional proposal makes it easy for clients to ask for discounts',
+      'comp-bad-5':'Works a lot and does not understand why so little is left over',
+      'comp-good-header':'✅ Audiovisual professionals with OPA',
+      'comp-good-1':'Knows exactly how much they will profit before accepting the project','comp-good-2':'Complete budget, no forgotten item, no surprises at the end',
+      'comp-good-3':'Profit margin calculated automatically in real time','comp-good-4':'Professional PDF proposal that justifies the price and avoids negotiation',
+      'comp-good-5':'Financial predictability and consistent growth','comp-btn':'I WANT TO PROFIT ON EVERY PROJECT',
+      'features-title':'Organize your production simply',
+      'features-subtitle':'Discover how much to invest in each project in advance, with safety and confidence',
+      'f1-h3':'Detailed budget by <span>each section</span> of production',
+      'f1-p':'From the producer to the driver, from the camera to wardrobe: OPA has separate tabs for Technical Crew, Cast & Casting, Art & Set Design, Studio & Locations, Transport, Post-Production and much more. No cost goes unnoticed.',
+      'f2-h3':'Know <span>exactly</span> how much you profited on each project',
+      'f2-p':'The side-by-side summary shows estimated budget versus actual cost, with margin calculated automatically. You see right away if the project is within plan or if it needs adjustment before it is too late.',
+      'f3-h3':'Visual schedule with <span>project timeline</span>',
+      'f3-p':'Organize all production stages (meeting, PPM, filming, post-production, delivery) in an interactive calendar with a timeline. See the progress of each phase and export the schedule to PDF.',
+      'f4-h3':'<span>Complete financial</span> control with full business overview',
+      'f4-p':'Manage receivables and payables, track balance by currency (USD, EUR, BRL) and see quarterly cash flow. A financial dashboard that gives you the real picture of your business in seconds.',
+      'modules-h2':'Everything you need <span>in one place</span>',
+      'modules-sub':'OPA is a complete management ecosystem for audiovisual production companies',
+      'mod-1':'Client CRM','mod-2':'Suppliers','mod-3':'Service Sheet','mod-4':'Accounts Receivable','mod-5':'Accounts Payable','mod-6':'Company Settings',
+      'guarantee-h2':'You have a full <span>15-day guarantee</span>',
+      'guarantee-badge-title':'15-day risk-free guarantee',
+      'guarantee-badge-p':'Access App OPA, use all features and put the methodology into practice on your projects. If within <strong>15 days you are not satisfied</strong> for any reason, just contact us and we will refund 100% of your investment. No hassle, no questions.',
+      'cta-tag':'Get it now','cta-h2':'Run your <span>Audiovisual business profitably.</span>',
+      'cta-banner':'<strong>Exclusive lifetime access at launch price.</strong> After this period, the app will be billed annually.',
+      'cta-li1':'Complete budget for pre-production, production, and post-production','cta-li2':'Ready-to-send budget with your logo',
+      'cta-li3':'Cash flow control per project','cta-li4':'Schedule, shooting sheet, and integrated client CRM',
+      'cta-li5':'Dashboard with full business overview','cta-li6':'Complete financial control per project',
+      'cta-quote':'A well-crafted proposal closes the client, and the app pays for itself.',
+      'price-from':'One-time payment','price-main':'<span>$32.00</span>','price-installments':'',
+      'cta-btn':'I WANT APP OPA NOW',
+      'faq-h2':'Frequently Asked Questions',
+      'faq-q1':'I already use Google Sheets, do I need OPA?','faq-a1':'Spreadsheets handle the basics, but OPA was built specifically for the reality of audiovisual production. It integrates budget, schedule, service sheet, client management, suppliers, and finances in one place. It also automatically calculates margin, taxes, and real profit per project, something a generic spreadsheet cannot do with that precision.',
+      'faq-q2':'Do I need to know finance to use it?','faq-a2':'No. OPA was designed for audiovisual professionals who master the camera, not the spreadsheet. The interface is simple and intuitive, with predefined categories for audiovisual production. Just enter the values and the app calculates margin, taxes, and profit automatically.',
+      'faq-q3':'Can I use it for any type of audiovisual project?','faq-a3':'Yes. OPA works for advertising, music videos, documentaries, corporate videos, films, and any other type of audiovisual production. You customize the sections and items according to your niche and project type.',
+      'faq-q4':'Does it work on mobile and computer?','faq-a4':'Yes. OPA works on any device, mobile, tablet or computer. Choose what is most convenient for you and access it whenever you need.',
+      'faq-q5':'Does the system support multiple currencies?','faq-a5':'Yes. OPA supports multiple currencies (USD, EUR, BRL and others), which is especially useful for production companies that work with international clients or co-productions with foreign companies.',
+      'faq-q6':'I am a beginner with few projects. Is it worth it now?','faq-a6':'Absolutely, especially now. Those who start with structure grow much faster. OPA helps you charge the right price from the first project, avoid losses from forgetting budget items, and present professional proposals to larger clients.',
+      'faq-q7':'How is access delivered after purchase?','faq-a7':'Once the purchase is confirmed, you will receive two emails: one from Hotmart confirming the purchase, and a second one (that is the important one) sent from vanessanunes.publicidade@gmail.com with your unique access code in the format OPA-XXXX-XXXX. Just access App OPA, create your account, and enter the code when prompted. After that, simply log in with your purchase email and password. Did not receive the email? Check your Spam folder or contact us and we will send you the code.',
+      'footer':'© 2025 <strong>App OPA</strong> — Audiovisual Production Budget. All rights reserved.'
+    }
+  };
+
+  function setLang(lang) {
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.textContent = translations[lang][key];
+      }
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      const key = el.getAttribute('data-i18n-html');
+      if (translations[lang] && translations[lang][key] !== undefined) {
+        el.innerHTML = translations[lang][key];
+      }
+    });
+    const inst = document.querySelector('.price-installments');
+    if (inst) inst.style.display = translations[lang]['price-installments'] ? 'block' : 'none';
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    localStorage.setItem('opa-lang', lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setLang(localStorage.getItem('opa-lang') || 'br');
+  });
 </script>
 
 </body>
