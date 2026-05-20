@@ -634,6 +634,27 @@
     .footer { background: var(--dark); border-top: 1px solid var(--gray); padding: 32px 24px; text-align: center; font-size: 13px; color: #555; }
     .footer strong { color: var(--pink); }
 
+    /* ---- COOKIE BAR ---- */
+    .cookie-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 9998;
+      background: rgba(14, 8, 18, 0.94); backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 10px 24px; display: none;
+      align-items: center; justify-content: center;
+      gap: 20px; flex-wrap: wrap;
+      font-size: 12px; color: #666; line-height: 1.4;
+    }
+    .cookie-bar p { margin: 0; }
+    .cookie-bar-btns { display: flex; gap: 8px; flex-shrink: 0; }
+    .cookie-btn {
+      background: none; border: 1px solid #333; color: #666;
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+      padding: 4px 14px; border-radius: 4px; cursor: pointer; transition: all 0.2s;
+    }
+    .cookie-btn:hover { border-color: #555; color: #999; }
+    .cookie-btn.accept { border-color: rgba(0,191,99,0.35); color: rgba(0,191,99,0.7); }
+    .cookie-btn.accept:hover { background: rgba(0,191,99,0.07); color: #00bf63; }
+
     /* ---- LANG SWITCHER ---- */
     .lang-bar {
       position: fixed; top: 0; right: 0; z-index: 9999;
@@ -1269,7 +1290,7 @@
       'features-title':'Organiza tu producción de forma sencilla',
       'features-subtitle':'Descubre cuánto invertir en cada proyecto de forma anticipada, con seguridad y confianza',
       'f1-h3':'Presupuesto detallado por <span>cada sección</span> de la producción',
-      'f1-p':'Del productor al conductor, de la cámara al vestuario: OPA tiene pestañas separadas para Equipo Técnico, Elenco & Casting, Arte & Escenografía, Estudio & Locaciones, Transportes, Postproducción y mucho más. Ningún costo pasa desapercibido.',
+      'f1-p':'Del productor al conductor, de la cámara al vestuario: OPA tiene pestañas separadas para Equipo Técnico, Elenco & Casting, Arte & Escenografía, Estudio & Localizaciones, Transportes, Postproducción y mucho más. Ningún costo pasa desapercibido.',
       'f2-h3':'Sabe <span>exactamente</span> cuánto ganaste en cada proyecto',
       'f2-p':'El resumen lado a lado muestra el presupuesto previsto versus el costo real, con margen calculado automáticamente. Ves en el momento si el proyecto está dentro de lo planeado o si necesita ajuste antes de que sea tarde.',
       'f3-h3':'Cronograma visual con <span>línea de tiempo</span> del proyecto',
@@ -1338,14 +1359,14 @@
       'comp-good-1':'Knows exactly how much they will profit before accepting the project','comp-good-2':'Complete budget, no forgotten item, no surprises at the end',
       'comp-good-3':'Profit margin calculated automatically in real time','comp-good-4':'Professional PDF proposal that justifies the price and avoids negotiation',
       'comp-good-5':'Financial predictability and consistent growth','comp-btn':'I WANT TO PROFIT ON EVERY PROJECT',
-      'features-title':'Organize your production simply',
+      'features-title':'Organise your production simply',
       'features-subtitle':'Discover how much to invest in each project in advance, with safety and confidence',
       'f1-h3':'Detailed budget by <span>each section</span> of production',
       'f1-p':'From the producer to the driver, from the camera to wardrobe: OPA has separate tabs for Technical Crew, Cast & Casting, Art & Set Design, Studio & Locations, Transport, Post-Production and much more. No cost goes unnoticed.',
       'f2-h3':'Know <span>exactly</span> how much you profited on each project',
       'f2-p':'The side-by-side summary shows estimated budget versus actual cost, with margin calculated automatically. You see right away if the project is within plan or if it needs adjustment before it is too late.',
       'f3-h3':'Visual schedule with <span>project timeline</span>',
-      'f3-p':'Organize all production stages (meeting, PPM, filming, post-production, delivery) in an interactive calendar with a timeline. See the progress of each phase and export the schedule to PDF.',
+      'f3-p':'Organise all production stages (meeting, PPM, filming, post-production, delivery) in an interactive calendar with a timeline. See the progress of each phase and export the schedule to PDF.',
       'f4-h3':'<span>Complete financial</span> control with full business overview',
       'f4-p':'Manage receivables and payables, track balance by currency (USD, EUR, BRL) and see quarterly cash flow. A financial dashboard that gives you the real picture of your business in seconds.',
       'modules-h2':'Everything you need <span>in one place</span>',
@@ -1374,6 +1395,44 @@
     }
   };
 
+  // ---- COOKIE BANNER ----
+  const cookieTexts = {
+    pt: {
+      msg: 'Utilizamos cookies para melhorar a tua experiência. Ao continuar, aceitas a nossa política de privacidade.',
+      decline: 'Recusar',
+      accept: 'Aceitar'
+    },
+    es: {
+      msg: 'Usamos cookies para mejorar tu experiencia. Al continuar, aceptas nuestra política de privacidad.',
+      decline: 'Rechazar',
+      accept: 'Aceptar'
+    },
+    en: {
+      msg: 'We use cookies to improve your experience. By continuing, you accept our privacy policy.',
+      decline: 'Decline',
+      accept: 'Accept'
+    }
+  };
+
+  function initCookieBanner(lang) {
+    const bar = document.getElementById('cookie-bar');
+    if (!bar) return;
+    const euLangs = ['pt', 'es', 'en'];
+    if (!euLangs.includes(lang)) { bar.style.display = 'none'; return; }
+    if (localStorage.getItem('opa-cookie-consent')) { bar.style.display = 'none'; return; }
+    const t = cookieTexts[lang];
+    document.getElementById('cookie-msg').textContent = t.msg;
+    document.getElementById('cookie-decline').textContent = t.decline;
+    document.getElementById('cookie-accept').textContent = t.accept;
+    bar.style.display = 'flex';
+  }
+
+  function cookieConsent(accepted) {
+    localStorage.setItem('opa-cookie-consent', accepted ? 'accepted' : 'declined');
+    if (!accepted) { window._pixelBlocked = true; }
+    document.getElementById('cookie-bar').style.display = 'none';
+  }
+
   function setLang(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
@@ -1393,12 +1452,22 @@
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
     localStorage.setItem('opa-lang', lang);
+    initCookieBanner(lang);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     setLang(localStorage.getItem('opa-lang') || 'br');
   });
 </script>
+
+<!-- ===== COOKIE BAR ===== -->
+<div id="cookie-bar" class="cookie-bar" style="display:none">
+  <p id="cookie-msg"></p>
+  <div class="cookie-bar-btns">
+    <button class="cookie-btn" id="cookie-decline" onclick="cookieConsent(false)"></button>
+    <button class="cookie-btn accept" id="cookie-accept" onclick="cookieConsent(true)"></button>
+  </div>
+</div>
 
 </body>
 </html>
