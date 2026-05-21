@@ -631,8 +631,15 @@
     .guarantee-text p strong { color: #ccc; }
 
     /* ---- FOOTER ---- */
-    .footer { background: var(--dark); border-top: 1px solid var(--gray); padding: 32px 24px; text-align: center; font-size: 13px; color: #555; }
+    .footer { background: var(--dark); border-top: 1px solid var(--gray); padding: 40px 24px 32px; text-align: center; font-size: 13px; color: #555; }
     .footer strong { color: var(--pink); }
+    .footer-links { display: flex; gap: 6px; align-items: center; justify-content: center; margin-bottom: 14px; flex-wrap: wrap; }
+    .footer-links a { color: #444; font-size: 12px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--pink); }
+    .footer-sep { color: #2a2a2a; font-size: 12px; }
+    .footer-brand { margin-bottom: 14px; }
+    .footer-legal { font-size: 11px; color: #555; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+    @media (max-width: 768px) { .footer { padding-bottom: 72px; } }
 
     /* ---- COOKIE BAR ---- */
     .cookie-bar {
@@ -654,6 +661,64 @@
     .cookie-btn:hover { border-color: #555; color: #999; }
     .cookie-btn.accept { border-color: rgba(0,191,99,0.35); color: rgba(0,191,99,0.7); }
     .cookie-btn.accept:hover { background: rgba(0,191,99,0.07); color: #00bf63; }
+
+    /* ---- MOBILE FONT BOOST ---- */
+    @media (max-width: 768px) {
+      .path h2, .comparison h2, .features-title, .modules h2,
+      .testimonials h2, .guarantee h2, .faq h2 { font-size: 24px; }
+      .capable h2 { font-size: 22px; }
+      .authority h2, .cta-final h2 { font-size: 26px; }
+      .feature-block h3 { font-size: 20px; }
+    }
+
+    /* ---- MOBILE CAROUSEL SNAP ---- */
+    @media (max-width: 768px) {
+      .carousel { overflow: visible; }
+      .carousel::before, .carousel::after { display: none; }
+      .carousel-track {
+        animation: none !important;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 12px;
+        padding: 0 10vw;
+        width: 100vw;
+        box-sizing: border-box;
+      }
+      .carousel-track::-webkit-scrollbar { display: none; }
+      .carousel-item {
+        scroll-snap-align: center;
+        flex-shrink: 0;
+        width: 80vw;
+      }
+      .carousel-item:nth-child(n+13) { display: none; }
+      .carousel-item:active { border-color: rgba(0,191,99,0.6); transform: none; }
+    }
+
+    /* ---- STICKY MOBILE CTA ---- */
+    .sticky-cta-bar { display: none; }
+    @media (max-width: 768px) {
+      .sticky-cta-bar {
+        display: flex;
+        position: fixed; bottom: 0; left: 0; right: 0; z-index: 9997;
+        background: rgba(14,8,18,0.97); backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255,255,255,0.06);
+        padding: 10px 16px;
+        align-items: center; justify-content: space-between; gap: 12px;
+        transition: transform 0.3s ease;
+      }
+      .sticky-cta-bar.hidden { transform: translateY(110%); }
+      .sticky-cta-bar.above-cookie { bottom: 52px; }
+      .sticky-cta-sub { font-size: 11px; color: #777; line-height: 1.4; flex: 1; min-width: 0; }
+      .sticky-cta-btn {
+        flex-shrink: 0; background: #00bf63; color: #fff;
+        font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 800;
+        padding: 11px 16px; border-radius: 8px; border: none;
+        text-transform: uppercase; letter-spacing: 0.5px;
+        cursor: pointer; text-decoration: none; display: inline-block; white-space: nowrap;
+      }
+    }
 
     /* ---- LANG SWITCHER ---- */
     .lang-bar {
@@ -677,10 +742,10 @@
 
 <!-- ===== LANG SWITCHER ===== -->
 <div class="lang-bar">
-  <button class="lang-btn active" data-lang="br" onclick="setLang('br')">BR</button>
-  <button class="lang-btn" data-lang="pt" onclick="setLang('pt')">PT</button>
-  <button class="lang-btn" data-lang="es" onclick="setLang('es')">ES</button>
-  <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+  <button class="lang-btn active" data-lang="br" onclick="setLang('br')">🇧🇷</button>
+  <button class="lang-btn" data-lang="pt" onclick="setLang('pt')">🇵🇹</button>
+  <button class="lang-btn" data-lang="es" onclick="setLang('es')">🇪🇸</button>
+  <button class="lang-btn" data-lang="en" onclick="setLang('en')">🇬🇧</button>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -1093,7 +1158,15 @@
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
-  <p data-i18n-html="footer">&copy; 2025 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.</p>
+  <div class="footer-links">
+    <a href="#" data-i18n="footer-terms">Termos de Uso</a>
+    <span class="footer-sep">·</span>
+    <a href="#" data-i18n="footer-privacy">Política de Privacidade</a>
+    <span class="footer-sep">·</span>
+    <a href="#" data-i18n="footer-copyright">Direitos Autorais</a>
+  </div>
+  <p class="footer-brand" data-i18n-html="footer">&copy; 2026 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.</p>
+  <p class="footer-legal" data-i18n="footer-legal">OPA® é uma marca em processo de registo junto ao INPI (Brasil) e ao EUIPO (Europa). Todo o conteúdo, design e código desta página são protegidos por direitos autorais. A reprodução, cópia ou uso indevido, no todo ou em parte, sem autorização prévia por escrito, é proibida e sujeita às penalidades da Lei nº 9.279/96 e da legislação europeia aplicável, incluindo processo judicial e pedido de indemnização.</p>
 </footer>
 
 <script>
@@ -1166,7 +1239,7 @@
       'cta-li5':'Dashboard com visão total do negócio','cta-li6':'Controle financeiro completo por projeto',
       'cta-quote':'Uma proposta bem feita, o cliente fecha e o app já se paga por inteiro.',
       'price-from':'de <s>R$ 297,00</s> por apenas','price-main':'12x de <span>R$ 15,20</span>','price-installments':'ou R$ 147,00 à vista',
-      'cta-btn':'QUERO O APP OPA AGORA',
+      'cta-btn':'QUERO O APP OPA AGORA','sticky-price':'12x R$15,20 · ou R$147 à vista',
       'faq-h2':'Perguntas Frequentes',
       'faq-q1':'Já uso planilha no Google, preciso do OPA?','faq-a1':'A planilha resolve o básico, mas o OPA foi construído especificamente para a realidade da produção audiovisual. Ele integra orçamento, cronograma, folha de serviço, controle de clientes, fornecedores e financeiro em um único lugar. Além disso, calcula automaticamente margem, impostos e lucro real por projeto — o que uma planilha genérica não faz com essa precisão e organização.',
       'faq-q2':'Preciso saber de finanças para usar?','faq-a2':'Não. O OPA foi pensado para profissionais do audiovisual que dominam a câmera, não a planilha. A interface é simples e intuitiva, com categorias pré-definidas para o audiovisual. É só inserir os valores e o app calcula margem, impostos e lucro automaticamente.',
@@ -1175,7 +1248,9 @@
       'faq-q5':'O sistema suporta múltiplas moedas?','faq-a5':'Sim. O OPA suporta múltiplas moedas (BRL, EUR e outras), o que é especialmente útil para produtoras que trabalham com clientes internacionais ou projetos co-produzidos com empresas estrangeiras.',
       'faq-q6':'Sou iniciante e ainda tenho poucos projetos. Vale a pena agora?','faq-a6':'Vale a pena, principalmente agora. Quem começa com estrutura cresce muito mais rápido. O OPA te ajuda a cobrar o valor certo desde o primeiro projeto, evitar prejuízos por esquecer itens no orçamento e apresentar propostas profissionais para clientes maiores. Criar o hábito de orçar corretamente no início é o que separa quem evolui de quem fica estagnado.',
       'faq-q7':'Como é feita a entrega do acesso após a compra?','faq-a7':'Assim que a compra for confirmada, você receberá dois e-mails: um da Hotmart confirmando a compra, e um segundo (esse é o importante) enviado por vanessanunes.publicidade@gmail.com com o seu código único de acesso no formato OPA-XXXX-XXXX. Basta acessar o App OPA, criar sua conta e inserir o código quando solicitado. Feito isso, é só entrar com e-mail de compra e senha normalmente. Não encontrou o e-mail? Verifique a pasta de Spam ou entre em contato que te enviamos o código.',
-      'footer':'© 2025 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.'
+      'footer':'© 2026 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.',
+      'footer-terms':'Termos de Uso','footer-privacy':'Política de Privacidade','footer-copyright':'Direitos Autorais',
+      'footer-legal':'OPA® é uma marca requerida junto ao INPI Brasil e Europa. Todos os direitos reservados.'
     },
     pt: {
       'hero-logo':'APP OPA — Orçamento de Produção Audiovisual',
@@ -1237,8 +1312,8 @@
       'cta-li3':'Controlo do fluxo de caixa por projeto','cta-li4':'Cronograma, folha de rodagem e CRM de clientes integrado',
       'cta-li5':'Painel com visão total do negócio','cta-li6':'Controlo financeiro completo por projeto',
       'cta-quote':'Uma proposta bem feita, o cliente fecha e a aplicação já se paga por inteiro.',
-      'price-from':'Pagamento único','price-main':'<span>€33,21</span>','price-installments':'',
-      'cta-btn':'QUERO O APP OPA AGORA',
+      'price-from':'de <s>€97,00</s> por apenas','price-main':'<span>€33,21</span>','price-installments':'',
+      'cta-btn':'QUERO O APP OPA AGORA','sticky-price':'€33,21 · acesso vitalício',
       'faq-h2':'Perguntas Frequentes',
       'faq-q1':'Já uso folha de cálculo no Google, preciso do OPA?','faq-a1':'A folha de cálculo resolve o básico, mas o OPA foi construído especificamente para a realidade da produção audiovisual. Integra orçamento, cronograma, folha de serviço, controlo de clientes, fornecedores e financeiro num único lugar. Além disso, calcula automaticamente margem, impostos e lucro real por projeto, o que uma folha de cálculo genérica não faz com essa precisão.',
       'faq-q2':'Preciso de saber de finanças para usar?','faq-a2':'Não. O OPA foi pensado para profissionais do audiovisual que dominam a câmara, não a folha de cálculo. A interface é simples e intuitiva, com categorias pré-definidas para o audiovisual. Basta inserir os valores e a aplicação calcula margem, impostos e lucro automaticamente.',
@@ -1247,7 +1322,9 @@
       'faq-q5':'O sistema suporta múltiplas moedas?','faq-a5':'Sim. O OPA suporta múltiplas moedas (EUR, BRL e outras), o que é especialmente útil para produtoras que trabalham com clientes internacionais ou projetos co-produzidos com empresas estrangeiras.',
       'faq-q6':'Sou iniciante e ainda tenho poucos projetos. Vale a pena agora?','faq-a6':'Vale a pena, especialmente agora. Quem começa com estrutura cresce muito mais rápido. O OPA ajuda a cobrar o valor certo desde o primeiro projeto, evitar prejuízos por esquecer itens no orçamento e apresentar propostas profissionais para clientes maiores.',
       'faq-q7':'Como é feita a entrega do acesso após a compra?','faq-a7':'Assim que a compra for confirmada, vais receber dois e-mails: um da Hotmart a confirmar a compra, e um segundo (esse é o importante) enviado por vanessanunes.publicidade@gmail.com com o teu código único de acesso no formato OPA-XXXX-XXXX. Basta acederes ao App OPA, criares a tua conta e inserires o código quando solicitado. Feito isso, é só entrar com o teu e-mail de compra e a tua palavra-passe normalmente. Não encontraste o e-mail? Verifica a pasta de Spam ou entra em contacto que te enviamos o código.',
-      'footer':'© 2025 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.'
+      'footer':'© 2026 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.',
+      'footer-terms':'Termos de Utilização','footer-privacy':'Política de Privacidade','footer-copyright':'Direitos de Autor',
+      'footer-legal':'OPA® é uma marca requerida junto ao INPI Brasil e Europa. Todos os direitos reservados.'
     },
     es: {
       'hero-logo':'APP OPA — Presupuesto de Producción Audiovisual',
@@ -1309,8 +1386,8 @@
       'cta-li3':'Control de flujo de caja por proyecto','cta-li4':'Cronograma, hoja de rodaje y CRM de clientes integrado',
       'cta-li5':'Panel con visión total del negocio','cta-li6':'Control financiero completo por proyecto',
       'cta-quote':'Una propuesta bien hecha, el cliente cierra y la app ya se paga por completo.',
-      'price-from':'Pago único','price-main':'<span>€33,21</span>','price-installments':'',
-      'cta-btn':'QUIERO EL APP OPA AHORA',
+      'price-from':'de <s>€97,00</s> por solo','price-main':'<span>€33,21</span>','price-installments':'',
+      'cta-btn':'QUIERO EL APP OPA AHORA','sticky-price':'€33,21 · acceso vitalicio',
       'faq-h2':'Preguntas Frecuentes',
       'faq-q1':'Ya uso hojas de cálculo en Google, ¿necesito OPA?','faq-a1':'La hoja de cálculo resuelve lo básico, pero OPA fue construido específicamente para la realidad de la producción audiovisual. Integra presupuesto, cronograma, hoja de servicio, control de clientes, proveedores y finanzas en un único lugar. Además, calcula automáticamente margen, impuestos y beneficio real por proyecto, algo que una hoja de cálculo genérica no hace con esa precisión.',
       'faq-q2':'¿Necesito saber de finanzas para usarlo?','faq-a2':'No. OPA fue pensado para profesionales del audiovisual que dominan la cámara, no la hoja de cálculo. La interfaz es simple e intuitiva, con categorías predefinidas para el audiovisual. Solo insertas los valores y la app calcula margen, impuestos y beneficio automáticamente.',
@@ -1319,7 +1396,9 @@
       'faq-q5':'¿El sistema soporta múltiples monedas?','faq-a5':'Sí. OPA soporta múltiples monedas (EUR, BRL y otras), lo que es especialmente útil para productoras que trabajan con clientes internacionales o proyectos coproducidos con empresas extranjeras.',
       'faq-q6':'Soy principiante y tengo pocos proyectos. ¿Vale la pena ahora?','faq-a6':'Vale la pena, especialmente ahora. Quien empieza con estructura crece mucho más rápido. OPA te ayuda a cobrar el valor correcto desde el primer proyecto, evitar pérdidas por olvidar ítems en el presupuesto y presentar propuestas profesionales a clientes más grandes.',
       'faq-q7':'¿Cómo se entrega el acceso después de la compra?','faq-a7':'Una vez confirmada la compra, recibirás dos correos: uno de Hotmart confirmando la compra, y un segundo (ese es el importante) enviado por vanessanunes.publicidade@gmail.com con tu código único de acceso en el formato OPA-XXXX-XXXX. Solo accede al App OPA, crea tu cuenta e inserta el código cuando se solicite. Hecho eso, entra con el correo de compra y la contraseña normalmente. ¿No encuentras el correo? Revisa la carpeta de Spam o contáctanos y te enviamos el código.',
-      'footer':'© 2025 <strong>App OPA</strong> — Presupuesto de Producción Audiovisual. Todos los derechos reservados.'
+      'footer':'© 2026 <strong>App OPA</strong> — Presupuesto de Producción Audiovisual. Todos los derechos reservados.',
+      'footer-terms':'Términos de Uso','footer-privacy':'Política de Privacidad','footer-copyright':'Derechos de Autor',
+      'footer-legal':'OPA® es una marca registrada ante el INPI Brasil y Europa. Todos los derechos reservados.'
     },
     en: {
       'hero-logo':'APP OPA — Audiovisual Production Budget',
@@ -1381,8 +1460,8 @@
       'cta-li3':'Cash flow control per project','cta-li4':'Schedule, shooting sheet, and integrated client CRM',
       'cta-li5':'Dashboard with full business overview','cta-li6':'Complete financial control per project',
       'cta-quote':'A well-crafted proposal closes the client, and the app pays for itself.',
-      'price-from':'One-time payment','price-main':'<span>$32.00</span>','price-installments':'',
-      'cta-btn':'I WANT APP OPA NOW',
+      'price-from':'from <s>$97.00</s> for only','price-main':'<span>$32.00</span>','price-installments':'',
+      'cta-btn':'I WANT APP OPA NOW','sticky-price':'$32.00 · lifetime access',
       'faq-h2':'Frequently Asked Questions',
       'faq-q1':'I already use Google Sheets, do I need OPA?','faq-a1':'Spreadsheets handle the basics, but OPA was built specifically for the reality of audiovisual production. It integrates budget, schedule, service sheet, client management, suppliers, and finances in one place. It also automatically calculates margin, taxes, and real profit per project, something a generic spreadsheet cannot do with that precision.',
       'faq-q2':'Do I need to know finance to use it?','faq-a2':'No. OPA was designed for audiovisual professionals who master the camera, not the spreadsheet. The interface is simple and intuitive, with predefined categories for audiovisual production. Just enter the values and the app calculates margin, taxes, and profit automatically.',
@@ -1391,9 +1470,21 @@
       'faq-q5':'Does the system support multiple currencies?','faq-a5':'Yes. OPA supports multiple currencies (USD, EUR, BRL and others), which is especially useful for production companies that work with international clients or co-productions with foreign companies.',
       'faq-q6':'I am a beginner with few projects. Is it worth it now?','faq-a6':'Absolutely, especially now. Those who start with structure grow much faster. OPA helps you charge the right price from the first project, avoid losses from forgetting budget items, and present professional proposals to larger clients.',
       'faq-q7':'How is access delivered after purchase?','faq-a7':'Once the purchase is confirmed, you will receive two emails: one from Hotmart confirming the purchase, and a second one (that is the important one) sent from vanessanunes.publicidade@gmail.com with your unique access code in the format OPA-XXXX-XXXX. Just access App OPA, create your account, and enter the code when prompted. After that, simply log in with your purchase email and password. Did not receive the email? Check your Spam folder or contact us and we will send you the code.',
-      'footer':'© 2025 <strong>App OPA</strong> — Audiovisual Production Budget. All rights reserved.'
+      'footer':'© 2026 <strong>App OPA</strong> — Audiovisual Production Budget. All rights reserved.',
+      'footer-terms':'Terms of Use','footer-privacy':'Privacy Policy','footer-copyright':'Copyright',
+      'footer-legal':'OPA® is a registered trademark with INPI Brazil and Europe. All rights reserved.'
     }
   };
+
+  // ---- STICKY CTA ----
+  function updateStickyCta(lang) {
+    const prices = { br:'12x R$15,20 · ou R$147 à vista', pt:'€33,21 · acesso vitalício', es:'€33,21 · acceso vitalicio', en:'$32.00 · lifetime access' };
+    const btns = { br:'QUERO O APP OPA AGORA', pt:'QUERO O APP OPA AGORA', es:'QUIERO EL APP OPA AHORA', en:'I WANT APP OPA NOW' };
+    const priceEl = document.getElementById('sticky-price');
+    const btnEl = document.getElementById('sticky-btn');
+    if (priceEl) priceEl.textContent = prices[lang] || '';
+    if (btnEl) btnEl.textContent = btns[lang] || btns.br;
+  }
 
   // ---- COOKIE BANNER ----
   const cookieTexts = {
@@ -1416,21 +1507,25 @@
 
   function initCookieBanner(lang) {
     const bar = document.getElementById('cookie-bar');
+    const sticky = document.getElementById('sticky-cta');
     if (!bar) return;
     const euLangs = ['pt', 'es', 'en'];
-    if (!euLangs.includes(lang)) { bar.style.display = 'none'; return; }
-    if (localStorage.getItem('opa-cookie-consent')) { bar.style.display = 'none'; return; }
+    if (!euLangs.includes(lang)) { bar.style.display = 'none'; if (sticky) sticky.classList.remove('above-cookie'); return; }
+    if (localStorage.getItem('opa-cookie-consent')) { bar.style.display = 'none'; if (sticky) sticky.classList.remove('above-cookie'); return; }
     const t = cookieTexts[lang];
     document.getElementById('cookie-msg').textContent = t.msg;
     document.getElementById('cookie-decline').textContent = t.decline;
     document.getElementById('cookie-accept').textContent = t.accept;
     bar.style.display = 'flex';
+    if (sticky) sticky.classList.add('above-cookie');
   }
 
   function cookieConsent(accepted) {
     localStorage.setItem('opa-cookie-consent', accepted ? 'accepted' : 'declined');
     if (!accepted) { window._pixelBlocked = true; }
     document.getElementById('cookie-bar').style.display = 'none';
+    const sticky = document.getElementById('sticky-cta');
+    if (sticky) sticky.classList.remove('above-cookie');
   }
 
   function setLang(lang) {
@@ -1452,13 +1547,35 @@
       btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
     localStorage.setItem('opa-lang', lang);
+    updateStickyCta(lang);
     initCookieBanner(lang);
   }
 
   document.addEventListener('DOMContentLoaded', () => {
     setLang(localStorage.getItem('opa-lang') || 'br');
+
+    // Sticky CTA: aparece só após o hero, some quando #oferta está visível
+    const oferta = document.getElementById('oferta');
+    const stickyCta = document.getElementById('sticky-cta');
+    if (oferta && stickyCta) {
+      // Some quando a secção de oferta está visível
+      new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) stickyCta.classList.add('hidden');
+      }, { threshold: 0.1 }).observe(oferta);
+      // Aparece ao passar o hero, volta a esconder ao subir
+      new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting) stickyCta.classList.remove('hidden');
+        else stickyCta.classList.add('hidden');
+      }, { threshold: 0.3 }).observe(document.querySelector('.hero'));
+    }
   });
 </script>
+
+<!-- ===== STICKY MOBILE CTA ===== -->
+<div id="sticky-cta" class="sticky-cta-bar hidden">
+  <div class="sticky-cta-sub" id="sticky-price"></div>
+  <a href="https://pay.hotmart.com/E105087757J?off=lldcr67i&checkoutMode=10" target="_blank" class="sticky-cta-btn" id="sticky-btn">QUERO O APP OPA AGORA</a>
+</div>
 
 <!-- ===== COOKIE BAR ===== -->
 <div id="cookie-bar" class="cookie-bar" style="display:none">
