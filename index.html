@@ -699,7 +699,6 @@
       .testimonials-carousel { overflow: visible; }
       .testimonials-carousel::before, .testimonials-carousel::after { display: none; }
       .testimonials-track {
-        animation: none !important;
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
@@ -1592,6 +1591,57 @@
       }, { threshold: 0.3 }).observe(document.querySelector('.hero'));
     }
   });
+
+  // ---- AUTO-SCROLL DEPOIMENTOS NO MOBILE ----
+  (function() {
+    if (window.innerWidth > 768) return;
+    const track = document.querySelector('.testimonials-track');
+    if (!track) return;
+
+    // Parar animação CSS — o JS assume o controlo no mobile
+    track.style.animation = 'none';
+
+    const cards = Array.from(track.querySelectorAll('.testimonial-img-card'))
+      .filter(c => getComputedStyle(c).display !== 'none');
+
+    let idx = 0;
+    let timer = null;
+    let touching = false;
+
+    function goTo(i) {
+      idx = ((i % cards.length) + cards.length) % cards.length;
+      cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    function start() {
+      clearInterval(timer);
+      timer = setInterval(function() {
+        if (!touching) goTo(idx + 1);
+      }, 3200);
+    }
+
+    track.addEventListener('touchstart', function() {
+      touching = true;
+      clearInterval(timer);
+    }, { passive: true });
+
+    track.addEventListener('touchend', function() {
+      // Detectar qual card ficou centrado após o swipe
+      setTimeout(function() {
+        const center = track.scrollLeft + track.clientWidth / 2;
+        let closest = 0, minDist = Infinity;
+        cards.forEach(function(c, i) {
+          const dist = Math.abs((c.offsetLeft + c.offsetWidth / 2) - center);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        idx = closest;
+        touching = false;
+        start();
+      }, 3000); // retoma 3s após soltar
+    }, { passive: true });
+
+    start();
+  })();
 </script>
 
 <!-- ===== STICKY MOBILE CTA ===== -->
