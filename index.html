@@ -1610,7 +1610,9 @@
 
     function goTo(i) {
       idx = ((i % cards.length) + cards.length) % cards.length;
-      cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      var card = cards[idx];
+      var scrollTarget = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
+      track.scrollTo({ left: scrollTarget, behavior: 'smooth' });
     }
 
     function start() {
