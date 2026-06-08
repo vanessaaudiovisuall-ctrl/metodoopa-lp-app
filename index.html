@@ -1592,6 +1592,55 @@
     }
   });
 
+  // ---- AUTO-SCROLL CARROSSEL APP NO MOBILE ----
+  (function() {
+    if (window.innerWidth > 768) return;
+    const track = document.querySelector('.carousel-track');
+    if (!track) return;
+
+    const cards = Array.from(track.querySelectorAll('.carousel-item'))
+      .filter(c => getComputedStyle(c).display !== 'none');
+
+    let idx = 0;
+    let timer = null;
+    let touching = false;
+
+    function goTo(i) {
+      idx = ((i % cards.length) + cards.length) % cards.length;
+      var card = cards[idx];
+      var scrollTarget = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
+      track.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+    }
+
+    function start() {
+      clearInterval(timer);
+      timer = setInterval(function() {
+        if (!touching) goTo(idx + 1);
+      }, 2800);
+    }
+
+    track.addEventListener('touchstart', function() {
+      touching = true;
+      clearInterval(timer);
+    }, { passive: true });
+
+    track.addEventListener('touchend', function() {
+      setTimeout(function() {
+        const center = track.scrollLeft + track.clientWidth / 2;
+        let closest = 0, minDist = Infinity;
+        cards.forEach(function(c, i) {
+          const dist = Math.abs((c.offsetLeft + c.offsetWidth / 2) - center);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        idx = closest;
+        touching = false;
+        start();
+      }, 3000);
+    }, { passive: true });
+
+    start();
+  })();
+
   // ---- AUTO-SCROLL DEPOIMENTOS NO MOBILE ----
   (function() {
     if (window.innerWidth > 768) return;
