@@ -694,6 +694,29 @@
       }
       .carousel-item:nth-child(n+13) { display: none; }
       .carousel-item:active { border-color: rgba(0,191,99,0.6); transform: none; }
+
+      /* ---- MOBILE TESTIMONIALS SNAP ---- */
+      .testimonials-carousel { overflow: visible; }
+      .testimonials-carousel::before, .testimonials-carousel::after { display: none; }
+      .testimonials-track {
+        animation: none !important;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 12px;
+        padding: 0 10vw;
+        width: 100vw;
+        box-sizing: border-box;
+      }
+      .testimonials-track::-webkit-scrollbar { display: none; }
+      .testimonial-img-card {
+        scroll-snap-align: center;
+        flex-shrink: 0;
+        width: 80vw;
+      }
+      .testimonial-img-card:nth-child(n+7) { display: none; }
+      .testimonial-img-card:active { border-color: rgba(235,49,134,0.5); transform: none; }
     }
 
     /* ---- STICKY MOBILE CTA ---- */
