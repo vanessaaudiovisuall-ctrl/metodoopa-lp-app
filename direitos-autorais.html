@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Direitos Autorais — App OPA</title>
+  <meta name="description" content="Direitos Autorais e Propriedade Intelectual da App OPA — Orçamento de Produção Audiovisual." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink: #eb3186;
+      --pink-dark: #c4246f;
+      --purple: #5f4981;
+      --purple-light: #847b92;
+      --dark: #180f1b;
+      --dark2: #1e1423;
+      --dark3: #251a2e;
+      --gray: #2e2238;
+      --gray2: #3d3050;
+      --white: #FFFFFF;
+      --text-muted: #847b92;
+    }
+
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--white); line-height: 1.7; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- HEADER ---- */
+    .header {
+      background: var(--dark2);
+      border-bottom: 1px solid var(--gray);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .header-back:hover { color: var(--pink); }
+    .header-back svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .header-logo {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-left: auto;
+    }
+    .header-logo span { color: var(--pink); }
+
+    /* ---- LANG SWITCHER ---- */
+    .lang-switcher {
+      display: flex;
+      gap: 4px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--gray2);
+      border-radius: 8px;
+      padding: 4px;
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+      padding: 3px 5px;
+      border-radius: 5px;
+      transition: background 0.2s, transform 0.15s;
+      opacity: 0.45;
+    }
+    .lang-btn.active { background: rgba(255,255,255,0.12); opacity: 1; }
+    .lang-btn:hover { opacity: 0.85; transform: scale(1.12); }
+
+    /* ---- HERO ---- */
+    .page-hero {
+      background: linear-gradient(135deg, var(--dark2) 0%, var(--dark3) 100%);
+      border-bottom: 1px solid var(--gray);
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+    .page-hero .badge {
+      display: inline-block;
+      background: rgba(235,49,134,0.12);
+      border: 1px solid rgba(235,49,134,0.25);
+      color: var(--pink);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .page-hero h1 { font-size: clamp(24px, 5vw, 36px); font-weight: 800; line-height: 1.2; margin-bottom: 14px; }
+    .page-hero p { font-size: 14px; color: var(--text-muted); max-width: 480px; margin: 0 auto; }
+    .page-hero p strong { color: rgba(255,255,255,0.7); }
+
+    /* ---- CONTENT ---- */
+    .content-wrap { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+
+    .section-block {
+      margin-bottom: 40px;
+      background: var(--dark2);
+      border: 1px solid var(--gray);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .section-block:last-child { margin-bottom: 0; }
+
+    .section-number { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--pink); margin-bottom: 8px; }
+    .section-block h2 { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 16px; line-height: 1.3; }
+    .section-block p { font-size: 14px; color: rgba(255,255,255,0.75); margin-bottom: 14px; line-height: 1.75; }
+    .section-block p:last-child { margin-bottom: 0; }
+
+    .section-block ul { list-style: none; padding: 0; margin-top: 12px; }
+    .section-block ul li {
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      padding: 8px 0 8px 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+      line-height: 1.6;
+    }
+    .section-block ul li:last-child { border-bottom: none; }
+    .section-block ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 14px;
+      width: 18px; height: 18px;
+      background: rgba(0,191,99,0.12);
+      border: 1px solid rgba(0,191,99,0.3);
+      border-radius: 4px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='8' viewBox='0 0 10 8'%3E%3Cpath d='M1 4l2.5 2.5L9 1' stroke='%2300bf63' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .section-block ul.proibido li::before {
+      background: rgba(235,49,134,0.12);
+      border-color: rgba(235,49,134,0.3);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cline x1='2' y1='2' x2='8' y2='8' stroke='%23eb3186' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='8' y1='2' x2='2' y2='8' stroke='%23eb3186' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    }
+
+    .highlight-box {
+      background: rgba(235,49,134,0.06);
+      border: 1px solid rgba(235,49,134,0.2);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.7;
+    }
+    .highlight-box strong { color: var(--pink); }
+
+    .trademark-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--dark3);
+      border: 1px solid var(--gray2);
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin-top: 16px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+    }
+    .trademark-badge .mark {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--pink);
+      letter-spacing: -1px;
+    }
+
+    .contact-block { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+    .contact-item { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.75); }
+    .contact-item a { color: var(--pink); font-weight: 600; transition: opacity 0.2s; }
+    .contact-item a:hover { opacity: 0.8; }
+    .contact-icon {
+      width: 32px; height: 32px;
+      background: rgba(235,49,134,0.1);
+      border: 1px solid rgba(235,49,134,0.2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 14px;
+    }
+
+    /* ---- FOOTER ---- */
+    .footer { background: var(--dark); border-top: 1px solid var(--gray); padding: 40px 24px 32px; text-align: center; font-size: 13px; color: #555; }
+    .footer-links { display: flex; gap: 6px; align-items: center; justify-content: center; margin-bottom: 14px; flex-wrap: wrap; }
+    .footer-links a { color: #444; font-size: 12px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--pink); }
+    .footer-links a.active { color: var(--pink); }
+    .footer-sep { color: #2a2a2a; font-size: 12px; }
+    .footer-brand { margin-bottom: 14px; color: rgba(255,255,255,0.35); font-size: 13px; }
+    .footer-brand strong { color: var(--pink); }
+    .footer-legal { font-size: 11px; color: #555; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+
+    @media (max-width: 768px) {
+      .section-block { padding: 20px 18px; }
+      .content-wrap { padding: 32px 16px 64px; }
+      .page-hero { padding: 40px 20px 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="/" class="header-back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+      <span data-i18n="back">Voltar ao site</span>
+    </a>
+    <div class="lang-switcher">
+      <button class="lang-btn active" data-lang="br" onclick="setLang('br')">🇧🇷</button>
+      <button class="lang-btn" data-lang="pt" onclick="setLang('pt')">🇵🇹</button>
+      <button class="lang-btn" data-lang="es" onclick="setLang('es')">🇪🇸</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">🇬🇧</button>
+    </div>
+    <div class="header-logo">App <span>OPA</span></div>
+  </header>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="badge" data-i18n="badge">Propriedade Intelectual</div>
+    <h1 data-i18n="title">Direitos Autorais</h1>
+    <p>
+      <strong data-i18n="subtitle-product">App OPA — Orçamento de Produção Audiovisual</strong><br>
+      <span data-i18n="subtitle-date">Última atualização: junho de 2026</span>
+    </p>
+  </section>
+
+  <!-- CONTENT -->
+  <main class="content-wrap">
+
+    <!-- 1 -->
+    <div class="section-block">
+      <div class="section-number">01</div>
+      <h2 data-i18n="s1-title">Titularidade</h2>
+      <p data-i18n="s1-p1">A App OPA — Orçamento de Produção Audiovisual, incluindo todo o seu código-fonte, design, interface, logótipo, textos, imagens, estrutura e funcionalidades, é de propriedade exclusiva de Vanessa Nunes.</p>
+      <p data-i18n="s1-p2">Todo o conteúdo disponível na plataforma está protegido pela legislação de direitos autorais vigente no Brasil (Lei nº 9.610/98) e na União Europeia (Diretiva 2001/29/CE), bem como por tratados internacionais de propriedade intelectual.</p>
+      <div class="trademark-badge">
+        <span class="mark">OPA®</span>
+        <span data-i18n="s1-trademark">Marca requerida junto ao INPI Brasil e ao EUIPO Europa. Todos os direitos reservados.</span>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="section-block">
+      <div class="section-number">02</div>
+      <h2 data-i18n="s2-title">O que está protegido</h2>
+      <p data-i18n="s2-p1">Estão protegidos por direitos autorais, sem limitação:</p>
+      <ul>
+        <li data-i18n="s2-li1">Código-fonte e arquitetura da aplicação</li>
+        <li data-i18n="s2-li2">Design visual, interface e experiência do utilizador</li>
+        <li data-i18n="s2-li3">Logótipo, nome e identidade visual OPA®</li>
+        <li data-i18n="s2-li4">Textos, metodologias e conteúdos formativos</li>
+        <li data-i18n="s2-li5">Modelos de orçamento, templates e estruturas de dados</li>
+        <li data-i18n="s2-li6">Imagens, gráficos e materiais visuais produzidos para a plataforma</li>
+      </ul>
+    </div>
+
+    <!-- 3 -->
+    <div class="section-block">
+      <div class="section-number">03</div>
+      <h2 data-i18n="s3-title">O que é proibido</h2>
+      <p data-i18n="s3-p1">Sem autorização prévia e por escrito de Vanessa Nunes, é expressamente proibido:</p>
+      <ul class="proibido">
+        <li data-i18n="s3-li1">Copiar, reproduzir ou distribuir qualquer parte da app ou do seu conteúdo</li>
+        <li data-i18n="s3-li2">Modificar, adaptar ou criar obras derivadas com base na App OPA</li>
+        <li data-i18n="s3-li3">Utilizar o nome, logótipo ou marca OPA® em qualquer contexto comercial</li>
+        <li data-i18n="s3-li4">Fazer engenharia reversa do código ou das funcionalidades da aplicação</li>
+        <li data-i18n="s3-li5">Revender, sublicenciar ou ceder o acesso à app a terceiros</li>
+        <li data-i18n="s3-li6">Usar o conteúdo da app para criar produtos ou serviços concorrentes</li>
+      </ul>
+      <div class="highlight-box" style="margin-top:20px">
+        <strong data-i18n="s3-highlight">O uso indevido está sujeito a processo judicial e pedido de indemnização, nos termos da Lei nº 9.610/98 e da legislação europeia aplicável.</strong>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="section-block">
+      <div class="section-number">04</div>
+      <h2 data-i18n="s4-title">O que é permitido</h2>
+      <p data-i18n="s4-p1">O utilizador com acesso ativo à App OPA pode:</p>
+      <ul>
+        <li data-i18n="s4-li1">Utilizar a app para fins profissionais próprios, conforme os Termos de Uso</li>
+        <li data-i18n="s4-li2">Exportar e partilhar os seus orçamentos e documentos gerados pela app com clientes</li>
+        <li data-i18n="s4-li3">Fazer capturas de ecrã da app para uso interno ou para partilhar resultados pessoais</li>
+      </ul>
+    </div>
+
+    <!-- 5 -->
+    <div class="section-block">
+      <div class="section-number">05</div>
+      <h2 data-i18n="s5-title">Marca registada OPA®</h2>
+      <p data-i18n="s5-p1">O nome "OPA" e o logótipo associado são marcas em processo de registo junto ao INPI (Instituto Nacional da Propriedade Industrial — Brasil) e ao EUIPO (Instituto da Propriedade Intelectual da União Europeia).</p>
+      <p data-i18n="s5-p2">Qualquer utilização não autorizada da marca OPA®, incluindo em nomes de domínio, redes sociais, materiais de marketing ou produtos, será tratada como violação de marca e sujeita a ação legal.</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="section-block">
+      <div class="section-number">06</div>
+      <h2 data-i18n="s6-title">Licenciamento</h2>
+      <p data-i18n="s6-p1">Para qualquer pedido de licenciamento, parceria, uso comercial da marca ou autorização de reprodução de conteúdo, entre em contacto antes de qualquer utilização:</p>
+      <div class="contact-block">
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <a href="mailto:vanessanunes.publicidade@gmail.com">vanessanunes.publicidade@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <a href="https://metodoopa.com.br" target="_blank">metodoopa.com.br</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/politica-de-privacidade.html" data-i18n="footer-privacy">Política de Privacidade</a>
+      <span class="footer-sep">·</span>
+      <a href="/direitos-autorais.html" class="active" data-i18n="footer-this">Direitos Autorais</a>
+      <span class="footer-sep">·</span>
+      <a href="/" data-i18n="footer-back">Voltar ao site</a>
+    </div>
+    <p class="footer-brand" data-i18n="footer-brand">&copy; 2026 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.</p>
+    <p class="footer-legal" data-i18n="footer-legal">OPA® é uma marca requerida junto ao INPI Brasil e Europa. Todos os direitos reservados.</p>
+  </footer>
+
+<script>
+  const translations = {
+    br: {
+      'back':'Voltar ao site',
+      'badge':'Propriedade Intelectual',
+      'title':'Direitos Autorais',
+      'subtitle-product':'App OPA — Orçamento de Produção Audiovisual',
+      'subtitle-date':'Última atualização: junho de 2026',
+      's1-title':'Titularidade',
+      's1-p1':'A App OPA — Orçamento de Produção Audiovisual, incluindo todo o seu código-fonte, design, interface, logótipo, textos, imagens, estrutura e funcionalidades, é de propriedade exclusiva de Vanessa Nunes.',
+      's1-p2':'Todo o conteúdo disponível na plataforma está protegido pela legislação de direitos autorais vigente no Brasil (Lei nº 9.610/98) e na União Europeia (Diretiva 2001/29/CE), bem como por tratados internacionais de propriedade intelectual.',
+      's1-trademark':'Marca requerida junto ao INPI Brasil e ao EUIPO Europa. Todos os direitos reservados.',
+      's2-title':'O que está protegido',
+      's2-p1':'Estão protegidos por direitos autorais, sem limitação:',
+      's2-li1':'Código-fonte e arquitetura da aplicação',
+      's2-li2':'Design visual, interface e experiência do usuário',
+      's2-li3':'Logotipo, nome e identidade visual OPA®',
+      's2-li4':'Textos, metodologias e conteúdos formativos',
+      's2-li5':'Modelos de orçamento, templates e estruturas de dados',
+      's2-li6':'Imagens, gráficos e materiais visuais produzidos para a plataforma',
+      's3-title':'O que é proibido',
+      's3-p1':'Sem autorização prévia e por escrito de Vanessa Nunes, é expressamente proibido:',
+      's3-li1':'Copiar, reproduzir ou distribuir qualquer parte da app ou do seu conteúdo',
+      's3-li2':'Modificar, adaptar ou criar obras derivadas com base na App OPA',
+      's3-li3':'Utilizar o nome, logotipo ou marca OPA® em qualquer contexto comercial',
+      's3-li4':'Fazer engenharia reversa do código ou das funcionalidades da aplicação',
+      's3-li5':'Revender, sublicenciar ou ceder o acesso à app a terceiros',
+      's3-li6':'Usar o conteúdo da app para criar produtos ou serviços concorrentes',
+      's3-highlight':'O uso indevido está sujeito a processo judicial e pedido de indenização, nos termos da Lei nº 9.610/98 e da legislação europeia aplicável.',
+      's4-title':'O que é permitido',
+      's4-p1':'O usuário com acesso ativo à App OPA pode:',
+      's4-li1':'Utilizar a app para fins profissionais próprios, conforme os Termos de Uso',
+      's4-li2':'Exportar e compartilhar os seus orçamentos e documentos gerados pela app com clientes',
+      's4-li3':'Fazer capturas de tela da app para uso interno ou para compartilhar resultados pessoais',
+      's5-title':'Marca registrada OPA®',
+      's5-p1':'O nome "OPA" e o logotipo associado são marcas em processo de registro junto ao INPI (Instituto Nacional da Propriedade Industrial — Brasil) e ao EUIPO (Instituto da Propriedade Intelectual da União Europeia).',
+      's5-p2':'Qualquer utilização não autorizada da marca OPA®, incluindo em nomes de domínio, redes sociais, materiais de marketing ou produtos, será tratada como violação de marca e sujeita a ação legal.',
+      's6-title':'Licenciamento',
+      's6-p1':'Para qualquer pedido de licenciamento, parceria, uso comercial da marca ou autorização de reprodução de conteúdo, entre em contato antes de qualquer utilização:',
+      'footer-privacy':'Política de Privacidade',
+      'footer-this':'Direitos Autorais',
+      'footer-back':'Voltar ao site',
+      'footer-brand':'&copy; 2026 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.',
+      'footer-legal':'OPA® é uma marca requerida junto ao INPI Brasil e Europa. Todos os direitos reservados.'
+    },
+    pt: {
+      'back':'Voltar ao site',
+      'badge':'Propriedade Intelectual',
+      'title':'Direitos de Autor',
+      'subtitle-product':'App OPA — Orçamento de Produção Audiovisual',
+      'subtitle-date':'Última atualização: junho de 2026',
+      's1-title':'Titularidade',
+      's1-p1':'A App OPA — Orçamento de Produção Audiovisual, incluindo todo o seu código-fonte, design, interface, logótipo, textos, imagens, estrutura e funcionalidades, é propriedade exclusiva de Vanessa Nunes.',
+      's1-p2':'Todo o conteúdo disponível na plataforma está protegido pela legislação de direitos de autor vigente no Brasil (Lei nº 9.610/98) e na União Europeia (Diretiva 2001/29/CE), bem como por tratados internacionais de propriedade intelectual.',
+      's1-trademark':'Marca requerida junto ao INPI Brasil e ao EUIPO Europa. Todos os direitos reservados.',
+      's2-title':'O que está protegido',
+      's2-p1':'Estão protegidos por direitos de autor, sem limitação:',
+      's2-li1':'Código-fonte e arquitetura da aplicação',
+      's2-li2':'Design visual, interface e experiência do utilizador',
+      's2-li3':'Logótipo, nome e identidade visual OPA®',
+      's2-li4':'Textos, metodologias e conteúdos formativos',
+      's2-li5':'Modelos de orçamento, templates e estruturas de dados',
+      's2-li6':'Imagens, gráficos e materiais visuais produzidos para a plataforma',
+      's3-title':'O que é proibido',
+      's3-p1':'Sem autorização prévia e por escrito de Vanessa Nunes, é expressamente proibido:',
+      's3-li1':'Copiar, reproduzir ou distribuir qualquer parte da app ou do seu conteúdo',
+      's3-li2':'Modificar, adaptar ou criar obras derivadas com base na App OPA',
+      's3-li3':'Utilizar o nome, logótipo ou marca OPA® em qualquer contexto comercial',
+      's3-li4':'Fazer engenharia reversa do código ou das funcionalidades da aplicação',
+      's3-li5':'Revender, sublicenciar ou ceder o acesso à app a terceiros',
+      's3-li6':'Usar o conteúdo da app para criar produtos ou serviços concorrentes',
+      's3-highlight':'O uso indevido está sujeito a processo judicial e pedido de indemnização, nos termos da Lei nº 9.610/98 e da legislação europeia aplicável.',
+      's4-title':'O que é permitido',
+      's4-p1':'O utilizador com acesso ativo à App OPA pode:',
+      's4-li1':'Utilizar a app para fins profissionais próprios, conforme os Termos de Utilização',
+      's4-li2':'Exportar e partilhar os seus orçamentos e documentos gerados pela app com clientes',
+      's4-li3':'Fazer capturas de ecrã da app para uso interno ou para partilhar resultados pessoais',
+      's5-title':'Marca registada OPA®',
+      's5-p1':'O nome "OPA" e o logótipo associado são marcas em processo de registo junto ao INPI (Instituto Nacional da Propriedade Industrial — Brasil) e ao EUIPO (Instituto da Propriedade Intelectual da União Europeia).',
+      's5-p2':'Qualquer utilização não autorizada da marca OPA®, incluindo em nomes de domínio, redes sociais, materiais de marketing ou produtos, será tratada como violação de marca e sujeita a ação legal.',
+      's6-title':'Licenciamento',
+      's6-p1':'Para qualquer pedido de licenciamento, parceria, uso comercial da marca ou autorização de reprodução de conteúdo, entre em contacto antes de qualquer utilização:',
+      'footer-privacy':'Política de Privacidade',
+      'footer-this':'Direitos de Autor',
+      'footer-back':'Voltar ao site',
+      'footer-brand':'&copy; 2026 <strong>App OPA</strong> — Orçamento de Produção Audiovisual. Todos os direitos reservados.',
+      'footer-legal':'OPA® é uma marca requerida junto ao INPI Brasil e Europa. Todos os direitos reservados.'
+    },
+    es: {
+      'back':'Volver al sitio',
+      'badge':'Propiedad Intelectual',
+      'title':'Derechos de Autor',
+      'subtitle-product':'App OPA — Presupuesto de Producción Audiovisual',
+      'subtitle-date':'Última actualización: junio de 2026',
+      's1-title':'Titularidad',
+      's1-p1':'La App OPA — Presupuesto de Producción Audiovisual, incluyendo todo su código fuente, diseño, interfaz, logotipo, textos, imágenes, estructura y funcionalidades, es propiedad exclusiva de Vanessa Nunes.',
+      's1-p2':'Todo el contenido disponible en la plataforma está protegido por la legislación de derechos de autor vigente en Brasil (Ley nº 9.610/98) y en la Unión Europea (Directiva 2001/29/CE), así como por los tratados internacionales de propiedad intelectual.',
+      's1-trademark':'Marca solicitada ante el INPI Brasil y el EUIPO Europa. Todos los derechos reservados.',
+      's2-title':'Qué está protegido',
+      's2-p1':'Están protegidos por derechos de autor, sin limitación:',
+      's2-li1':'Código fuente y arquitectura de la aplicación',
+      's2-li2':'Diseño visual, interfaz y experiencia del usuario',
+      's2-li3':'Logotipo, nombre e identidad visual OPA®',
+      's2-li4':'Textos, metodologías y contenidos formativos',
+      's2-li5':'Modelos de presupuesto, plantillas y estructuras de datos',
+      's2-li6':'Imágenes, gráficos y materiales visuales producidos para la plataforma',
+      's3-title':'Qué está prohibido',
+      's3-p1':'Sin autorización previa y por escrito de Vanessa Nunes, está expresamente prohibido:',
+      's3-li1':'Copiar, reproducir o distribuir cualquier parte de la app o su contenido',
+      's3-li2':'Modificar, adaptar o crear obras derivadas basadas en la App OPA',
+      's3-li3':'Utilizar el nombre, logotipo o marca OPA® en cualquier contexto comercial',
+      's3-li4':'Realizar ingeniería inversa del código o las funcionalidades de la aplicación',
+      's3-li5':'Revender, sublicenciar o ceder el acceso a la app a terceros',
+      's3-li6':'Usar el contenido de la app para crear productos o servicios competidores',
+      's3-highlight':'El uso indebido está sujeto a proceso judicial e indemnización, conforme a la Ley nº 9.610/98 y la legislación europea aplicable.',
+      's4-title':'Qué está permitido',
+      's4-p1':'El usuario con acceso activo a la App OPA puede:',
+      's4-li1':'Utilizar la app para fines profesionales propios, conforme a los Términos de Uso',
+      's4-li2':'Exportar y compartir sus presupuestos y documentos generados por la app con clientes',
+      's4-li3':'Hacer capturas de pantalla de la app para uso interno o para compartir resultados personales',
+      's5-title':'Marca registrada OPA®',
+      's5-p1':'El nombre "OPA" y el logotipo asociado son marcas en proceso de registro ante el INPI (Instituto Nacional de la Propiedad Industrial — Brasil) y el EUIPO (Instituto de la Propiedad Intelectual de la Unión Europea).',
+      's5-p2':'Cualquier uso no autorizado de la marca OPA®, incluyendo en nombres de dominio, redes sociales, materiales de marketing o productos, será tratado como violación de marca y sujeto a acción legal.',
+      's6-title':'Licenciamiento',
+      's6-p1':'Para cualquier solicitud de licenciamiento, asociación, uso comercial de la marca o autorización de reproducción de contenido, contáctenos antes de cualquier uso:',
+      'footer-privacy':'Política de Privacidad',
+      'footer-this':'Derechos de Autor',
+      'footer-back':'Volver al sitio',
+      'footer-brand':'&copy; 2026 <strong>App OPA</strong> — Presupuesto de Producción Audiovisual. Todos los derechos reservados.',
+      'footer-legal':'OPA® es una marca registrada ante el INPI Brasil y Europa. Todos los derechos reservados.'
+    },
+    en: {
+      'back':'Back to site',
+      'badge':'Intellectual Property',
+      'title':'Copyright',
+      'subtitle-product':'App OPA — Audiovisual Production Budget',
+      'subtitle-date':'Last updated: June 2026',
+      's1-title':'Ownership',
+      's1-p1':'App OPA — Audiovisual Production Budget, including all its source code, design, interface, logo, texts, images, structure and features, is the exclusive property of Vanessa Nunes.',
+      's1-p2':'All content available on the platform is protected by copyright law in Brazil (Law nº 9.610/98) and the European Union (Directive 2001/29/EC), as well as by international intellectual property treaties.',
+      's1-trademark':'Trademark filed with INPI Brazil and EUIPO Europe. All rights reserved.',
+      's2-title':'What is protected',
+      's2-p1':'The following are protected by copyright, without limitation:',
+      's2-li1':'Source code and application architecture',
+      's2-li2':'Visual design, interface and user experience',
+      's2-li3':'Logo, name and visual identity OPA®',
+      's2-li4':'Texts, methodologies and educational content',
+      's2-li5':'Budget templates and data structures',
+      's2-li6':'Images, graphics and visual materials produced for the platform',
+      's3-title':'What is prohibited',
+      's3-p1':'Without prior written authorisation from Vanessa Nunes, the following are expressly prohibited:',
+      's3-li1':'Copying, reproducing or distributing any part of the app or its content',
+      's3-li2':'Modifying, adapting or creating derivative works based on App OPA',
+      's3-li3':'Using the name, logo or OPA® brand in any commercial context',
+      's3-li4':'Reverse engineering the code or features of the application',
+      's3-li5':'Reselling, sublicensing or transferring access to the app to third parties',
+      's3-li6':'Using the app\'s content to create competing products or services',
+      's3-highlight':'Unauthorised use is subject to legal action and damages, under Law nº 9.610/98 and applicable European legislation.',
+      's4-title':'What is permitted',
+      's4-p1':'Users with active access to App OPA may:',
+      's4-li1':'Use the app for their own professional purposes, in accordance with the Terms of Use',
+      's4-li2':'Export and share their budgets and documents generated by the app with clients',
+      's4-li3':'Take screenshots of the app for internal use or to share personal results',
+      's5-title':'OPA® trademark',
+      's5-p1':'The name "OPA" and the associated logo are trademarks in the process of registration with INPI (National Institute of Industrial Property — Brazil) and EUIPO (European Union Intellectual Property Office).',
+      's5-p2':'Any unauthorised use of the OPA® brand, including in domain names, social media, marketing materials or products, will be treated as trademark infringement and subject to legal action.',
+      's6-title':'Licensing',
+      's6-p1':'For any licensing requests, partnerships, commercial use of the brand or authorisation to reproduce content, please contact us before any use:',
+      'footer-privacy':'Privacy Policy',
+      'footer-this':'Copyright',
+      'footer-back':'Back to site',
+      'footer-brand':'&copy; 2026 <strong>App OPA</strong> — Audiovisual Production Budget. All rights reserved.',
+      'footer-legal':'OPA® is a trademark filed with INPI Brazil and Europe. All rights reserved.'
+    }
+  };
+
+  function setLang(lang) {
+    const t = translations[lang] || translations.br;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    document.documentElement.lang = lang === 'br' ? 'pt-BR' : lang === 'pt' ? 'pt-PT' : lang === 'es' ? 'es' : 'en';
+    localStorage.setItem('opa-lang', lang);
+  }
+
+  (function() {
+    const saved = localStorage.getItem('opa-lang') || 'br';
+    setLang(saved);
+  })();
+</script>
+</body>
+</html>
