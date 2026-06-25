@@ -221,13 +221,12 @@
     .capable-card {
       background: var(--dark3);
       border: 1px solid var(--gray2);
-      border-left: 3px solid var(--pink);
       border-radius: 14px;
       overflow: hidden;
       text-align: left;
-      transition: border-color 0.2s, border-width 0.2s, transform 0.2s;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .capable-card:hover { border: 2px solid var(--pink); transform: translateY(-4px); }
+    .capable-card:hover { border-color: var(--pink); transform: translateY(-4px); }
     .capable-card-img {
       width: 100%;
       overflow: hidden;
@@ -400,22 +399,9 @@
 
     /* ---- ALL MODULES STRIP ---- */
     .modules {
-      background: linear-gradient(160deg, #1e1030 0%, #180f1b 60%);
+      background: var(--dark2);
       padding: 80px 24px;
-      position: relative;
-      overflow: hidden;
     }
-    .modules::before {
-      content: '';
-      position: absolute;
-      top: -150px; left: 50%;
-      transform: translateX(-50%);
-      width: 800px; height: 600px;
-      background: radial-gradient(ellipse, rgba(235,49,134,0.13) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .modules h2, .modules-sub, .modules-grid { position: relative; z-index: 1; }
     .modules h2 { text-align: center; font-size: clamp(22px, 3vw, 32px); font-weight: 800; margin-bottom: 12px; }
     .modules h2 span { color: var(--pink); }
     .modules-sub { text-align: center; color: var(--text-muted); font-size: 15px; margin-bottom: 56px; }
@@ -798,33 +784,31 @@
   <p class="carousel-label" data-i18n="carousel-label">Veja o app em ação</p>
   <div class="carousel-track">
     <!-- Original set -->
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Dashboard</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Dashboard.png" alt="Dashboard" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Briefing</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Briefing.png" alt="Briefing" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Orçamento</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Or%C3%A7amento.png" alt="Orçamento" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Resumo</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Resumo%20or%C3%A7amento.png" alt="Resumo" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Exportar PDF</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/PDF%20Or%C3%A7amento.png" alt="PDF" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Equipe Técnica</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Equipe%20tecnica.png" alt="Equipe Técnica" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Clientes</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Clientes%20.png" alt="Clientes" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Fornecedores</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Fornecedores.png" alt="Fornecedores" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Cronograma</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Cronograma.png" alt="Cronograma" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Folha de Serviço</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Folha%20de%20Servi%C3%A7o.png" alt="Folha de Serviço" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Financeiro</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Financeiro.png" alt="Financeiro" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Ordem de Rodagem</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Folha%20de%20Servi%C3%A7o.png" alt="Ordem de Rodagem" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Configurações</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Configura%C3%A7%C3%A3o.png" alt="Configurações" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Dashboard</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.48.png" alt="Dashboard" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Orçamento</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.27.png" alt="Orçamento" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Resumo</span></div><img src="imagens/resumo-orcamento-previsto.png" alt="Resumo" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Exportar PDF</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.16.png" alt="PDF" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Equipe Técnica</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.07.png" alt="Equipe Técnica" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Clientes</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2013.38.43.png" alt="Clientes" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Fornecedores</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.49.20.png" alt="Fornecedores" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Cronograma</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.51.59.png" alt="Cronograma" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Folha de Serviço</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.16.48.png" alt="Folha de Serviço" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Financeiro</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.37.png" alt="Financeiro" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Ordem de Rodagem</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.20.50.png" alt="Ordem de Rodagem" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Configurações</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.38.36.png" alt="Configurações" /></div>
     <!-- Duplicado para loop infinito -->
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Dashboard</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Dashboard.png" alt="Dashboard" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Briefing</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Briefing.png" alt="Briefing" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Orçamento</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Or%C3%A7amento.png" alt="Orçamento" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Resumo</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Resumo%20or%C3%A7amento.png" alt="Resumo" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Exportar PDF</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/PDF%20Or%C3%A7amento.png" alt="PDF" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Equipe Técnica</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Equipe%20tecnica.png" alt="Equipe Técnica" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Clientes</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Clientes%20.png" alt="Clientes" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Fornecedores</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Fornecedores.png" alt="Fornecedores" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Cronograma</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Cronograma.png" alt="Cronograma" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Folha de Serviço</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Folha%20de%20Servi%C3%A7o.png" alt="Folha de Serviço" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Financeiro</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Financeiro.png" alt="Financeiro" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Ordem de Rodagem</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Folha%20de%20Servi%C3%A7o.png" alt="Ordem de Rodagem" /></div>
-    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Configurações</span></div><img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Configura%C3%A7%C3%A3o.png" alt="Configurações" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Dashboard</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.48.png" alt="Dashboard" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Orçamento</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.27.png" alt="Orçamento" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Resumo</span></div><img src="imagens/resumo-orcamento-previsto.png" alt="Resumo" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Exportar PDF</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.16.png" alt="PDF" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Equipe Técnica</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.07.png" alt="Equipe Técnica" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Clientes</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2013.38.43.png" alt="Clientes" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Fornecedores</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.49.20.png" alt="Fornecedores" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Cronograma</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.51.59.png" alt="Cronograma" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Folha de Serviço</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.16.48.png" alt="Folha de Serviço" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Financeiro</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.37.png" alt="Financeiro" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Ordem de Rodagem</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.20.50.png" alt="Ordem de Rodagem" /></div>
+    <div class="carousel-item"><div class="carousel-item-bar"><div class="sf-dot" style="background:#FF5F57"></div><div class="sf-dot" style="background:#FEBC2E"></div><div class="sf-dot" style="background:#28C840"></div><span>Configurações</span></div><img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.38.36.png" alt="Configurações" /></div>
   </div>
 </section>
 
@@ -834,7 +818,7 @@
   <div class="capable-grid">
     <div class="capable-card">
       <div class="capable-card-img">
-        <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Resumo%20or%C3%A7amento.png" alt="Calcular lucro" />
+        <img src="imagens/resumo-orcamento-previsto.png" alt="Calcular lucro" />
       </div>
       <div class="capable-card-body">
         <h3 data-i18n="capable-c1-h3">Calcular quanto vai lucrar em cada projeto</h3>
@@ -843,7 +827,7 @@
     </div>
     <div class="capable-card">
       <div class="capable-card-img">
-        <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/PDF%20Or%C3%A7amento.png" alt="PDF profissional" />
+        <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.41.16.png" alt="PDF profissional" />
       </div>
       <div class="capable-card-body">
         <h3 data-i18n="capable-c2-h3">Enviar orçamentos em PDF profissional</h3>
@@ -852,7 +836,7 @@
     </div>
     <div class="capable-card">
       <div class="capable-card-img">
-        <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Dashboard.png" alt="Dashboard completo" />
+        <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.48.png" alt="Dashboard completo" />
       </div>
       <div class="capable-card-body">
         <h3 data-i18n="capable-c3-h3">Controlar toda a produção num só lugar</h3>
@@ -887,7 +871,7 @@
         <div class="sf-dot" style="background:#28C840"></div>
         <span style="font-size:11px;color:#666;margin-left:8px;">OPA — Orçamento</span>
       </div>
-      <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Or%C3%A7amento.png" alt="Orçamento completo OPA" />
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.27.png" alt="Orçamento completo OPA" />
     </div>
   </div>
 </section>
@@ -989,7 +973,7 @@
         <div class="sf-dot" style="background:#28C840"></div>
         <span style="font-size:11px;color:#666;margin-left:8px;">Equipe Técnica</span>
       </div>
-      <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Equipe%20tecnica.png" alt="Orçamento equipe técnica" />
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.36.07.png" alt="Orçamento equipe técnica" />
     </div>
   </div>
 
@@ -1007,7 +991,7 @@
         <div class="sf-dot" style="background:#28C840"></div>
         <span style="font-size:11px;color:#666;margin-left:8px;">Resumo do Projeto</span>
       </div>
-      <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Resumo%20or%C3%A7amento.png" alt="Resumo previsto vs real" />
+      <img src="imagens/resumo-orcamento-previsto.png" alt="Resumo previsto vs real" />
     </div>
   </div>
 
@@ -1025,7 +1009,7 @@
         <div class="sf-dot" style="background:#28C840"></div>
         <span style="font-size:11px;color:#666;margin-left:8px;">Cronograma</span>
       </div>
-      <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Cronograma.png" alt="Cronograma do projeto" />
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.51.59.png" alt="Cronograma do projeto" />
     </div>
   </div>
 
@@ -1041,9 +1025,9 @@
         <div class="sf-dot" style="background:#FF5F57"></div>
         <div class="sf-dot" style="background:#FEBC2E"></div>
         <div class="sf-dot" style="background:#28C840"></div>
-        <span style="font-size:11px;color:#666;margin-left:8px;">Financeiro</span>
+        <span style="font-size:11px;color:#666;margin-left:8px;">Financeiro — Resumo</span>
       </div>
-      <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Resumo%20financeiro.png" alt="Resumo financeiro" />
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.24.37.png" alt="Resumo financeiro" />
     </div>
   </div>
 </section>
@@ -1054,19 +1038,15 @@
   <p class="modules-sub" data-i18n="modules-sub">O OPA é um ecossistema completo de gestão para produtoras audiovisuais</p>
   <div class="modules-grid">
     <div class="module-card">
-      <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Briefing.png" alt="Briefing" />
-      <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-0">Briefing</span></div>
-    </div>
-    <div class="module-card">
-      <img src="imagens/clientes-recortado.png" alt="Clientes e prospectos" />
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2013.38.43.png" alt="Clientes e prospectos" />
       <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-1">CRM de Clientes</span></div>
     </div>
     <div class="module-card">
-      <img src="imagens/fornecedores-recortado.png" alt="Fornecedores" />
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2016.49.20.png" alt="Fornecedores" />
       <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-2">Fornecedores</span></div>
     </div>
     <div class="module-card">
-      <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Folha%20de%20Servi%C3%A7o.png" alt="Folha de Serviço" />
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2017.16.48.png" alt="Folha de Serviço" />
       <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-3">Folha de Serviço</span></div>
     </div>
     <div class="module-card">
@@ -1078,7 +1058,7 @@
       <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-5">Contas a Pagar</span></div>
     </div>
     <div class="module-card">
-      <img src="imagens/Novas%20Prints%20%20interior%20App%20OPA%20/Configura%C3%A7%C3%A3o.png" alt="Configurações" />
+      <img src="imagens/Captura%20de%20ecr%C3%A3%202026-04-13%2C%20%C3%A0s%2012.38.36.png" alt="Configurações" />
       <div class="module-card-label"><span class="module-dot"></span><span data-i18n="mod-6">Config da Produtora</span></div>
     </div>
   </div>
@@ -1103,7 +1083,7 @@
 
   <div class="offer-launch-banner">
     <span style="font-size:18px;flex-shrink:0">🔒</span>
-    <p data-i18n-html="cta-banner"><strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, o app passa a ser cobrado anualmente para novos usuários.</p>
+    <p data-i18n-html="cta-banner"><strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, o app passa a ser cobrado anualmente.</p>
   </div>
 
   <ul class="benefits-list">
@@ -1270,12 +1250,12 @@
       'f4-p':'Gerencie valores a receber e a pagar, acompanhe o saldo por moeda (BRL, EUR) e veja o fluxo de caixa por trimestre. Um dashboard financeiro que te dá a visão real do seu negócio em segundos.',
       'modules-h2':'Tudo que você precisa <span>num só lugar</span>',
       'modules-sub':'O OPA é um ecossistema completo de gestão para produtoras audiovisuais',
-      'mod-0':'Briefing','mod-1':'CRM de Clientes','mod-2':'Fornecedores','mod-3':'Folha de Serviço','mod-4':'Contas a Receber','mod-5':'Contas a Pagar','mod-6':'Config da Produtora',
+      'mod-1':'CRM de Clientes','mod-2':'Fornecedores','mod-3':'Folha de Serviço','mod-4':'Contas a Receber','mod-5':'Contas a Pagar','mod-6':'Config da Produtora',
       'guarantee-h2':'Você tem <span>15 dias de garantia</span> total',
       'guarantee-badge-title':'Garantia de 15 dias sem risco',
       'guarantee-badge-p':'Acesse o App OPA, use todas as funcionalidades e coloque a metodologia em prática nos seus projetos. Se em até <strong>15 dias você não estiver satisfeito</strong> por qualquer motivo, basta entrar em contato e devolvemos 100% do seu investimento. Sem burocracia, sem perguntas.',
       'cta-tag':'Garanta agora','cta-h2':'Gerencie seu <span>Audiovisual com lucro!</span>',
-      'cta-banner':'<strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, o app passa a ser cobrado anualmente para novos usuários.',
+      'cta-banner':'<strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, o app passa a ser cobrado anualmente.',
       'cta-li1':'Orçamento completo da pré-produção, produção e pós-produção','cta-li2':'Orçamento pronto pra enviar com sua logo',
       'cta-li3':'Controle de fluxo de caixa por projeto','cta-li4':'Cronograma, folha de rodagem e CRM de clientes integrado',
       'cta-li5':'Dashboard com visão total do negócio','cta-li6':'Controle financeiro completo por projeto',
@@ -1344,12 +1324,12 @@
       'f4-p':'Gira valores a receber e a pagar, acompanhe o saldo por moeda (EUR, BRL) e veja o fluxo de caixa por trimestre. Um painel financeiro que lhe dá a visão real do seu negócio em segundos.',
       'modules-h2':'Tudo o que precisa <span>num só lugar</span>',
       'modules-sub':'O OPA é um ecossistema completo de gestão para produtoras audiovisuais',
-      'mod-0':'Briefing','mod-1':'CRM de Clientes','mod-2':'Fornecedores','mod-3':'Folha de Serviço','mod-4':'Contas a Receber','mod-5':'Contas a Pagar','mod-6':'Config da Produtora',
+      'mod-1':'CRM de Clientes','mod-2':'Fornecedores','mod-3':'Folha de Serviço','mod-4':'Contas a Receber','mod-5':'Contas a Pagar','mod-6':'Config da Produtora',
       'guarantee-h2':'Tem <span>15 dias de garantia</span> total',
       'guarantee-badge-title':'Garantia de 15 dias sem risco',
       'guarantee-badge-p':'Acede ao App OPA, usa todas as funcionalidades e coloca a metodologia em prática nos teus projetos. Se em até <strong>15 dias não estiveres satisfeito</strong> por qualquer motivo, basta entrares em contacto e devolvemos 100% do teu investimento. Sem burocracia, sem perguntas.',
       'cta-tag':'Garanta agora','cta-h2':'Gere o teu <span>Audiovisual com lucro.</span>',
-      'cta-banner':'<strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, a aplicação passa a ser cobrada anualmente para novos utilizadores.',
+      'cta-banner':'<strong>Acesso vitalício exclusivo de lançamento.</strong> Após este período, a aplicação passa a ser cobrada anualmente.',
       'cta-li1':'Orçamento completo da pré-produção, produção e pós-produção','cta-li2':'Orçamento pronto para enviar com o teu logótipo',
       'cta-li3':'Controlo do fluxo de caixa por projeto','cta-li4':'Cronograma, folha de rodagem e CRM de clientes integrado',
       'cta-li5':'Painel com visão total do negócio','cta-li6':'Controlo financeiro completo por projeto',
@@ -1418,12 +1398,12 @@
       'f4-p':'Gestiona valores a cobrar y a pagar, sigue el saldo por moneda (EUR, BRL) y ve el flujo de caja por trimestre. Un panel financiero que te da la visión real de tu negocio en segundos.',
       'modules-h2':'Todo lo que necesitas <span>en un solo lugar</span>',
       'modules-sub':'OPA es un ecosistema completo de gestión para productoras audiovisuales',
-      'mod-0':'Briefing','mod-1':'CRM de Clientes','mod-2':'Proveedores','mod-3':'Hoja de Servicio','mod-4':'Cuentas por Cobrar','mod-5':'Cuentas por Pagar','mod-6':'Config de la Productora',
+      'mod-1':'CRM de Clientes','mod-2':'Proveedores','mod-3':'Hoja de Servicio','mod-4':'Cuentas por Cobrar','mod-5':'Cuentas por Pagar','mod-6':'Config de la Productora',
       'guarantee-h2':'Tienes <span>15 días de garantía</span> total',
       'guarantee-badge-title':'Garantía de 15 días sin riesgo',
       'guarantee-badge-p':'Accede al App OPA, usa todas las funcionalidades y pon la metodología en práctica en tus proyectos. Si en hasta <strong>15 días no estás satisfecho</strong> por cualquier motivo, solo contáctanos y devolvemos el 100% de tu inversión. Sin burocracia, sin preguntas.',
       'cta-tag':'Asegura ahora','cta-h2':'Gestiona tu <span>Audiovisual con beneficios.</span>',
-      'cta-banner':'<strong>Acceso vitalicio exclusivo de lanzamiento.</strong> Después de este período, la app pasa a cobrarse anualmente para nuevos usuarios.',
+      'cta-banner':'<strong>Acceso vitalicio exclusivo de lanzamiento.</strong> Después de este período, la app pasa a cobrarse anualmente.',
       'cta-li1':'Presupuesto completo de preproducción, producción y posproducción','cta-li2':'Presupuesto listo para enviar con tu logo',
       'cta-li3':'Control de flujo de caja por proyecto','cta-li4':'Cronograma, hoja de rodaje y CRM de clientes integrado',
       'cta-li5':'Panel con visión total del negocio','cta-li6':'Control financiero completo por proyecto',
@@ -1492,12 +1472,12 @@
       'f4-p':'Manage receivables and payables, track balance by currency (USD, EUR, BRL) and see quarterly cash flow. A financial dashboard that gives you the real picture of your business in seconds.',
       'modules-h2':'Everything you need <span>in one place</span>',
       'modules-sub':'OPA is a complete management ecosystem for audiovisual production companies',
-      'mod-0':'Briefing','mod-1':'Client CRM','mod-2':'Suppliers','mod-3':'Service Sheet','mod-4':'Accounts Receivable','mod-5':'Accounts Payable','mod-6':'Company Settings',
+      'mod-1':'Client CRM','mod-2':'Suppliers','mod-3':'Service Sheet','mod-4':'Accounts Receivable','mod-5':'Accounts Payable','mod-6':'Company Settings',
       'guarantee-h2':'You have a full <span>15-day guarantee</span>',
       'guarantee-badge-title':'15-day risk-free guarantee',
       'guarantee-badge-p':'Access App OPA, use all features and put the methodology into practice on your projects. If within <strong>15 days you are not satisfied</strong> for any reason, just contact us and we will refund 100% of your investment. No hassle, no questions.',
       'cta-tag':'Get it now','cta-h2':'Run your <span>Audiovisual business profitably.</span>',
-      'cta-banner':'<strong>Exclusive lifetime access at launch price.</strong> After this period, the app will be billed annually for new users.',
+      'cta-banner':'<strong>Exclusive lifetime access at launch price.</strong> After this period, the app will be billed annually.',
       'cta-li1':'Complete budget for pre-production, production, and post-production','cta-li2':'Ready-to-send budget with your logo',
       'cta-li3':'Cash flow control per project','cta-li4':'Schedule, shooting sheet, and integrated client CRM',
       'cta-li5':'Dashboard with full business overview','cta-li6':'Complete financial control per project',
